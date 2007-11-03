@@ -6,5 +6,7 @@ Currently can send to tumblr.com sites.  Site posting back-ends are pluggable.
 Rick Bradley (rick@rickbradley.com)
 
 TODO:
+ - diagnose what is the problem with trying to start with the big-switch.rb command.  Currently start with 'ruby genesis.rb'
  - factor out the last config options from the Sender setup (should read from YAML file)
- - 
+ - make the BotSender subclasses register automatically by discovery.
+ - add more BotSender targets
