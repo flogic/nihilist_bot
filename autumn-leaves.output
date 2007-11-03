@@ -1,0 +1,265 @@
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require': no such file to load -- bot_parser (LoadError)
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+	from /Users/rick/git/home/bot/leaves/bot.rb:1
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+	from /Users/rick/git/home/bot/genesis.rb:58
+	from /Users/rick/git/home/bot/genesis.rb:55:in `each'
+	from /Users/rick/git/home/bot/genesis.rb:55
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.6/lib/daemons/application.rb:158:in `load'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.6/lib/daemons/application.rb:158:in `start_load'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.6/lib/daemons/application.rb:235:in `start'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.6/lib/daemons/controller.rb:69:in `run'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.6/lib/daemons.rb:136:in `run'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.6/lib/daemons/cmdline.rb:105:in `call'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.6/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.6/lib/daemons.rb:135:in `run'
+	from big-switch.rb:27
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require': no such file to load -- bot_parser (LoadError)
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+	from /Users/rick/git/home/bot/leaves/bot.rb:1
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+	from /Users/rick/git/home/bot/genesis.rb:58
+	from /Users/rick/git/home/bot/genesis.rb:55:in `each'
+	from /Users/rick/git/home/bot/genesis.rb:55
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+	from big-switch.rb:27
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require': no such file to load -- bot_parser (LoadError)
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+	from /Users/rick/git/home/bot/leaves/bot.rb:1
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+	from /Users/rick/git/home/bot/genesis.rb:58
+	from /Users/rick/git/home/bot/genesis.rb:55:in `each'
+	from /Users/rick/git/home/bot/genesis.rb:55
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+	from big-switch.rb:27
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require': no such file to load -- bot_parser (LoadError)
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+	from /Users/rick/git/home/bot/leaves/bot.rb:1
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+	from /Users/rick/git/home/bot/genesis.rb:58
+	from /Users/rick/git/home/bot/genesis.rb:55:in `each'
+	from /Users/rick/git/home/bot/genesis.rb:55
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+	from /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+	from big-switch.rb:27
+Info	<SYSTEM>	Helper class not found for leaf Scorekeeper
+Info	Scorekeeper	starting up
+Debug	Scorekeeper	<< USER Scorekeeper Scorekeeper Scorekeeper Scorekeeper
+Debug	Scorekeeper	<< NICK Scorekeeper
+Debug	Scorekeeper	>> NOTICE AUTH :*** Looking up your hostname...
+Debug	Scorekeeper	>> NOTICE AUTH :*** Checking ident
+Debug	Scorekeeper	>> NOTICE AUTH :*** No identd (auth) response
+Debug	Scorekeeper	>> NOTICE AUTH :*** Couldn't look up your hostname
+Debug	Scorekeeper	>> :brown.freenode.net 001 Scorekeeper :Welcome to the freenode IRC Network Scorekeeper
+Debug	Scorekeeper	S>> 1: Welcome to the freenode IRC Network Scorekeeper
+Debug	Scorekeeper	>> :brown.freenode.net 002 Scorekeeper :Your host is brown.freenode.net[brown.freenode.net/6667], running version hyperion-1.0.2b
+Debug	Scorekeeper	S>> 2: Your host is brown.freenode.net[brown.freenode.net/6667], running version hyperion-1.0.2b
+Debug	Scorekeeper	>> NOTICE Scorekeeper :*** Your host is brown.freenode.net[brown.freenode.net/6667], running version hyperion-1.0.2b
+Debug	Scorekeeper	>> :brown.freenode.net 003 Scorekeeper :This server was created Sat May 19 03:04:27 UTC 2007
+Debug	Scorekeeper	S>> 3: This server was created Sat May 19 03:04:27 UTC 2007
+Debug	Scorekeeper	>> :brown.freenode.net 004 Scorekeeper brown.freenode.net hyperion-1.0.2b aAbBcCdDeEfFGhHiIjkKlLmMnNopPQrRsStTuUvVwWxXyYzZ01234569*@ bcdefFhiIklmnoPqstv
+Debug	Scorekeeper	>> :brown.freenode.net 005 Scorekeeper IRCD=dancer CAPAB CHANTYPES=# EXCEPTS INVEX CHANMODES=bdeIq,k,lfJD,cgijLmnPQrRstz CHANLIMIT=#:20 PREFIX=(ov)@+ MAXLIST=bdeI:50 MODES=4 STATUSMSG=@ KNOCK NICKLEN=16 :are supported by this server
+Debug	Scorekeeper	>> :brown.freenode.net 005 Scorekeeper SAFELIST CASEMAPPING=ascii CHANNELLEN=30 TOPICLEN=450 KICKLEN=450 KEYLEN=23 USERLEN=10 HOSTLEN=63 SILENCE=50 :are supported by this server
+Debug	Scorekeeper	>> :brown.freenode.net 251 Scorekeeper :There are 20943 listed and 17287 unlisted users on 30 servers
+Debug	Scorekeeper	S>> 251: There are 20943 listed and 17287 unlisted users on 30 servers
+Debug	Scorekeeper	>> :brown.freenode.net 252 Scorekeeper 35 :flagged staff members
+Debug	Scorekeeper	>> :brown.freenode.net 254 Scorekeeper 18053 :channels formed
+Debug	Scorekeeper	>> :brown.freenode.net 255 Scorekeeper :I have 3328 clients and 0 servers
+Debug	Scorekeeper	S>> 255: I have 3328 clients and 0 servers
+Debug	Scorekeeper	>> :brown.freenode.net 265 Scorekeeper :Current local  users: 3328  Max: 3947
+Debug	Scorekeeper	S>> 265: Current local  users: 3328  Max: 3947
+Debug	Scorekeeper	>> :brown.freenode.net 266 Scorekeeper :Current global users: 38230  Max: 43147
+Debug	Scorekeeper	S>> 266: Current global users: 38230  Max: 43147
+Debug	Scorekeeper	>> :brown.freenode.net 250 Scorekeeper :Highest connection count: 3948 (3947 clients) (725132 since server was (re)started)
+Debug	Scorekeeper	S>> 250: Highest connection count: 3948 (3947 clients) (725132 since server was (re)started)
+Debug	Scorekeeper	>> :brown.freenode.net 375 Scorekeeper :- brown.freenode.net Message of the Day - 
+Debug	Scorekeeper	S>> 375: - brown.freenode.net Message of the Day - 
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- BROWN, DAN [1964-]. Born in New Hampshire, USA, the son of a
+Debug	Scorekeeper	S>> 372: - BROWN, DAN [1964-]. Born in New Hampshire, USA, the son of a
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- math teacher at Phillips Exeter Academy, he studied at
+Debug	Scorekeeper	S>> 372: - math teacher at Phillips Exeter Academy, he studied at
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- Amherst College and later returned to teach English there.
+Debug	Scorekeeper	S>> 372: - Amherst College and later returned to teach English there.
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- His works include Digital Fortress, Angels and Demons and
+Debug	Scorekeeper	S>> 372: - His works include Digital Fortress, Angels and Demons and
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- the number one bestseller The Da Vinci Code. He is
+Debug	Scorekeeper	S>> 372: - the number one bestseller The Da Vinci Code. He is
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- currently living in New England with his wife, Blythe, an art
+Debug	Scorekeeper	S>> 372: - currently living in New England with his wife, Blythe, an art
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- historian and painter who helped him write The Da Vinci
+Debug	Scorekeeper	S>> 372: - historian and painter who helped him write The Da Vinci
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- Code.
+Debug	Scorekeeper	S>> 372: - Code.
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- 
+Debug	Scorekeeper	S>> 372: - 
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- You're using freenode, a service of Peer-Directed Projects
+Debug	Scorekeeper	S>> 372: - You're using freenode, a service of Peer-Directed Projects
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- Center (http://freenode.net/pdpc.shtml).
+Debug	Scorekeeper	S>> 372: - Center (http://freenode.net/pdpc.shtml).
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- 
+Debug	Scorekeeper	S>> 372: - 
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- freenode runs an open proxy scanner. Your use of the network
+Debug	Scorekeeper	S>> 372: - freenode runs an open proxy scanner. Your use of the network
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- indicates your acceptance of this policy. For details on
+Debug	Scorekeeper	S>> 372: - indicates your acceptance of this policy. For details on
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- freenode network policy, please take a look at our policy
+Debug	Scorekeeper	S>> 372: - freenode network policy, please take a look at our policy
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- page (http://freenode.net/policy.shtml). Thank you for using
+Debug	Scorekeeper	S>> 372: - page (http://freenode.net/policy.shtml). Thank you for using
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- the network!
+Debug	Scorekeeper	S>> 372: - the network!
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- 
+Debug	Scorekeeper	S>> 372: - 
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- freenode is a service of Peer-Directed Projects Center, an
+Debug	Scorekeeper	S>> 372: - freenode is a service of Peer-Directed Projects Center, an
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- IRS 501(c)(3) not-for-profit organization.  Our yearly
+Debug	Scorekeeper	S>> 372: - IRS 501(c)(3) not-for-profit organization.  Our yearly
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- fundraiser will begin soon; if you'd like to donate early,
+Debug	Scorekeeper	S>> 372: - fundraiser will begin soon; if you'd like to donate early,
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- please see http://freenode.net/pdpc_donations.shtml for more
+Debug	Scorekeeper	S>> 372: - please see http://freenode.net/pdpc_donations.shtml for more
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- information.  Thank you for using freenode!
+Debug	Scorekeeper	S>> 372: - information.  Thank you for using freenode!
+Debug	Scorekeeper	>> :brown.freenode.net 372 Scorekeeper :- 
+Debug	Scorekeeper	S>> 372: - 
+Debug	Scorekeeper	>> :brown.freenode.net 376 Scorekeeper :End of /MOTD command.
+Debug	Scorekeeper	S>> 376: End of /MOTD command.
+Debug	Scorekeeper	<< JOIN #nihilist
+Debug	Scorekeeper	<< PRIVMSG #nihilist :Scorekeeper started without previous points information; everyone's points reset to zero. Command is "!points".
+Debug	Scorekeeper	<< PRIVMSG #nihilist :No one has any points yet.
+Debug	Scorekeeper	>> :NickServ!NickServ@services. NOTICE Scorekeeper :This nickname is owned by someone else
+Debug	Scorekeeper	>> :NickServ!NickServ@services. NOTICE Scorekeeper :If this is your nickname, type /msg NickServ IDENTIFY <password>
+Debug	Scorekeeper	>> :freenode-connect!freenode@freenode/bot/connect PRIVMSG scorekeeper :VERSION
+Debug	Scorekeeper	>> :Scorekeeper!n=Scorekee@63.133.202.25 JOIN :#nihilist
+Debug	Scorekeeper	>> :brown.freenode.net 353 Scorekeeper @ #nihilist :Scorekeeper @rickbradley 
+Debug	Scorekeeper	>> :brown.freenode.net 366 Scorekeeper #nihilist :End of /NAMES list.
+Debug	Scorekeeper	>> :brown.freenode.net 477 scorekeeper #nihilist :[freenode-info] if you need to send private messages, please register: http://freenode.net/faq.shtml#privmsg
+Info	<SYSTEM>	Helper class not found for leaf Bot
+Info	Bot	starting up
+Error	Bot	getaddrinfo: No address associated with nodename
+Error	Bot	 -- /Users/rick/git/home/bot/libs/EyeAreSee.rb:257:in `initialize'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/EyeAreSee.rb:257:in `new'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/EyeAreSee.rb:257:in `connect'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/EyeAreSee.rb:165:in `start'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/leaf.rb:212:in `run'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/loader.rb:67:in `load_leaf'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/loader.rb:64:in `initialize'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/loader.rb:64:in `new'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/loader.rb:64:in `load_leaf'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/loader.rb:38:in `load_leaves'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/loader.rb:16:in `each'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/loader.rb:16:in `load_leaves'
+Error	Bot	 -- /Users/rick/git/home/bot/genesis.rb:66
+Error	Bot	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+Error	Bot	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+Error	Bot	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+Error	Bot	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+Error	Bot	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+Error	Bot	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+Error	Bot	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+Error	Bot	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+Error	Bot	 -- big-switch.rb:27
+Info	<SYSTEM>	Helper class not found for leaf Bot
+Info	Bot	starting up
+Error	Bot	getaddrinfo: No address associated with nodename
+Error	Bot	 -- /Users/rick/git/home/bot/libs/EyeAreSee.rb:257:in `initialize'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/EyeAreSee.rb:257:in `new'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/EyeAreSee.rb:257:in `connect'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/EyeAreSee.rb:165:in `start'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/leaf.rb:212:in `run'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/loader.rb:67:in `load_leaf'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/loader.rb:64:in `initialize'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/loader.rb:64:in `new'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/loader.rb:64:in `load_leaf'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/loader.rb:38:in `load_leaves'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/loader.rb:16:in `each'
+Error	Bot	 -- /Users/rick/git/home/bot/libs/loader.rb:16:in `load_leaves'
+Error	Bot	 -- /Users/rick/git/home/bot/genesis.rb:66
+Error	Bot	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+Error	Bot	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+Error	Bot	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+Error	Bot	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+Error	Bot	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+Error	Bot	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+Error	Bot	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+Error	Bot	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+Error	Bot	 -- big-switch.rb:27
+Info	<SYSTEM>	Helper class not found for leaf Bot
+Info	Bot	starting up
+Debug	Bot	<< USER Bot Bot Bot Bot
+Debug	Bot	<< NICK Bot
+Debug	Bot	>> NOTICE AUTH :*** Looking up your hostname...
+Debug	Bot	>> NOTICE AUTH :*** Checking ident
+Debug	Bot	>> NOTICE AUTH :*** No identd (auth) response
+Debug	Bot	>> NOTICE AUTH :*** Couldn't look up your hostname
+Debug	Bot	>> :heinlein.freenode.net 432 * Bot :Erroneous Nickname
+Debug	Bot	>> ERROR :Closing Link: 127.0.0.1 (Connection Timed Out)
+Info	<SYSTEM>	Helper class not found for leaf Bot
+Info	Bot	starting up
+Debug	Bot	<< USER Bot Bot Bot Bot
+Debug	Bot	<< NICK Bot
+Debug	Bot	>> NOTICE AUTH :*** Looking up your hostname...
+Debug	Bot	>> NOTICE AUTH :*** Checking ident
+Debug	Bot	>> NOTICE AUTH :*** No identd (auth) response
+Debug	Bot	>> NOTICE AUTH :*** Couldn't look up your hostname
+Debug	Bot	>> :clarke.freenode.net 432 * Bot :Erroneous Nickname
+Debug	Bot	>> ERROR :Closing Link: 127.0.0.1 (Connection Timed Out)
+Info	<SYSTEM>	Helper class not found for leaf Bot
+Info	Bot	starting up
+Debug	Bot	<< USER Bot Bot Bot Bot
+Debug	Bot	<< NICK Bot
+Debug	Bot	>> NOTICE AUTH :*** Looking up your hostname...
+Debug	Bot	>> NOTICE AUTH :*** Checking ident
+Debug	Bot	>> NOTICE AUTH :*** No identd (auth) response
+Debug	Bot	>> NOTICE AUTH :*** Couldn't look up your hostname
+Debug	Bot	>> :clarke.freenode.net 432 * Bot :Erroneous Nickname
+Debug	Bot	>> ERROR :Closing Link: 127.0.0.1 (Connection Timed Out)
+Error	<SYSTEM>	wrong argument type Class (expected Module)
+Error	<SYSTEM>	 -- /Users/rick/git/home/bot/libs/loader.rb:62:in `extend'
+Error	<SYSTEM>	 -- /Users/rick/git/home/bot/libs/loader.rb:62:in `load_leaf'
+Error	<SYSTEM>	 -- /Users/rick/git/home/bot/libs/loader.rb:38:in `load_leaves'
+Error	<SYSTEM>	 -- /Users/rick/git/home/bot/libs/loader.rb:16:in `each'
+Error	<SYSTEM>	 -- /Users/rick/git/home/bot/libs/loader.rb:16:in `load_leaves'
+Error	<SYSTEM>	 -- /Users/rick/git/home/bot/genesis.rb:66
+Error	<SYSTEM>	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+Error	<SYSTEM>	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+Error	<SYSTEM>	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+Error	<SYSTEM>	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+Error	<SYSTEM>	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+Error	<SYSTEM>	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+Error	<SYSTEM>	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+Error	<SYSTEM>	 -- /usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+Error	<SYSTEM>	 -- big-switch.rb:27
+Info	Bot	starting up
+Debug	Bot	<< USER Bot Bot Bot Bot
+Debug	Bot	<< NICK Bot
+Debug	Bot	>> NOTICE AUTH :*** Looking up your hostname...
+Debug	Bot	>> NOTICE AUTH :*** Checking ident
+Debug	Bot	>> NOTICE AUTH :*** No identd (auth) response
+Debug	Bot	>> NOTICE AUTH :*** Couldn't look up your hostname
+Debug	Bot	>> :clarke.freenode.net 432 * Bot :Erroneous Nickname
+Debug	Bot	>> ERROR :Closing Link: 127.0.0.1 (Connection Timed Out)

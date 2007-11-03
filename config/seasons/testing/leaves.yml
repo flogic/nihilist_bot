@@ -1,0 +1,11 @@
+#- type: Scorekeeper
+#  server: irc.freenode.net
+#  channels:
+#  - nihilist
+#  rejoin: true
+- type: Bot
+  server: irc.freenode.net
+  nick: n1h1l1s7
+  channels:
+  - rubyconf
+

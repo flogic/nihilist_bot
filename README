@@ -1,0 +1,10 @@
+= nihilist bot
+
+IRC robot designed to post to a Tumblelog.  Utilizes Autumn-Leaves IRC bot library.
+Currently can send to tumblr.com sites.  Site posting back-ends are pluggable.
+
+Rick Bradley (rick@rickbradley.com)
+
+TODO:
+ - factor out the last config options from the Sender setup (should read from YAML file)
+ - 

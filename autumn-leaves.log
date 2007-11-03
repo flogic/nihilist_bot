@@ -1,0 +1,400 @@
+# Logfile created on Sat Nov 03 10:59:37 -0500 2007 by logger.rb/1.5.2.9
+E, [2007-11-03T10:59:37.322176 #1101] ERROR -- : failed to allocate memory (NoMemoryError)
+
+E, [2007-11-03T10:59:37.322322 #1101] ERROR -- : stack level too deep (SystemStackError)
+
+E, [2007-11-03T10:59:37.322418 #1101] ERROR -- : exception reentered (fatal)
+
+E, [2007-11-03T10:59:37.327265 #1101] ERROR -- : no such file to load -- daemons (LoadError)
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+big-switch.rb:25
+E, [2007-11-03T10:59:37.329047 #1101] ERROR -- : no such file to load -- bot_parser (LoadError)
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/Users/rick/git/home/bot/leaves/bot.rb:1
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/Users/rick/git/home/bot/genesis.rb:58
+/Users/rick/git/home/bot/genesis.rb:55:in `each'
+/Users/rick/git/home/bot/genesis.rb:55
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.6/lib/daemons/application.rb:158:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.6/lib/daemons/application.rb:158:in `start_load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.6/lib/daemons/application.rb:235:in `start'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.6/lib/daemons/controller.rb:69:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.6/lib/daemons.rb:136:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.6/lib/daemons/cmdline.rb:105:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.6/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.6/lib/daemons.rb:135:in `run'
+big-switch.rb:27
+E, [2007-11-03T11:35:30.100089 #1176] ERROR -- : failed to allocate memory (NoMemoryError)
+
+E, [2007-11-03T11:35:30.100331 #1176] ERROR -- : stack level too deep (SystemStackError)
+
+E, [2007-11-03T11:35:30.100408 #1176] ERROR -- : exception reentered (fatal)
+
+E, [2007-11-03T11:35:30.104492 #1176] ERROR -- : no such file to load -- daemons (LoadError)
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+big-switch.rb:25
+E, [2007-11-03T11:35:30.105906 #1176] ERROR -- : no such file to load -- bot_parser (LoadError)
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/Users/rick/git/home/bot/leaves/bot.rb:1
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/Users/rick/git/home/bot/genesis.rb:58
+/Users/rick/git/home/bot/genesis.rb:55:in `each'
+/Users/rick/git/home/bot/genesis.rb:55
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+big-switch.rb:27
+E, [2007-11-03T11:35:56.505462 #1181] ERROR -- : failed to allocate memory (NoMemoryError)
+
+E, [2007-11-03T11:35:56.505678 #1181] ERROR -- : stack level too deep (SystemStackError)
+
+E, [2007-11-03T11:35:56.505752 #1181] ERROR -- : exception reentered (fatal)
+
+E, [2007-11-03T11:35:56.510152 #1181] ERROR -- : no such file to load -- daemons (LoadError)
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+big-switch.rb:25
+E, [2007-11-03T11:35:56.511475 #1181] ERROR -- : no such file to load -- bot_parser (LoadError)
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/Users/rick/git/home/bot/leaves/bot.rb:1
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/Users/rick/git/home/bot/genesis.rb:58
+/Users/rick/git/home/bot/genesis.rb:55:in `each'
+/Users/rick/git/home/bot/genesis.rb:55
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+big-switch.rb:27
+E, [2007-11-03T11:36:08.700822 #1187] ERROR -- : failed to allocate memory (NoMemoryError)
+
+E, [2007-11-03T11:36:08.701510 #1187] ERROR -- : stack level too deep (SystemStackError)
+
+E, [2007-11-03T11:36:08.701774 #1187] ERROR -- : exception reentered (fatal)
+
+E, [2007-11-03T11:36:08.710778 #1187] ERROR -- : no such file to load -- daemons (LoadError)
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+big-switch.rb:25
+E, [2007-11-03T11:36:08.712466 #1187] ERROR -- : no such file to load -- bot_parser (LoadError)
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/Users/rick/git/home/bot/leaves/bot.rb:1
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/Users/rick/git/home/bot/genesis.rb:58
+/Users/rick/git/home/bot/genesis.rb:55:in `each'
+/Users/rick/git/home/bot/genesis.rb:55
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+big-switch.rb:27
+E, [2007-11-03T11:43:06.088558 #1238] ERROR -- : failed to allocate memory (NoMemoryError)
+
+E, [2007-11-03T11:43:06.088705 #1238] ERROR -- : stack level too deep (SystemStackError)
+
+E, [2007-11-03T11:43:06.088809 #1238] ERROR -- : exception reentered (fatal)
+
+E, [2007-11-03T11:43:06.094269 #1238] ERROR -- : no such file to load -- daemons (LoadError)
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+big-switch.rb:25
+E, [2007-11-03T11:43:06.094726 #1238] ERROR -- : getaddrinfo: No address associated with nodename (SocketError)
+/Users/rick/git/home/bot/libs/EyeAreSee.rb:257:in `initialize'
+/Users/rick/git/home/bot/libs/EyeAreSee.rb:257:in `new'
+/Users/rick/git/home/bot/libs/EyeAreSee.rb:257:in `connect'
+/Users/rick/git/home/bot/libs/EyeAreSee.rb:165:in `start'
+/Users/rick/git/home/bot/libs/leaf.rb:212:in `run'
+/Users/rick/git/home/bot/libs/loader.rb:67:in `load_leaf'
+/Users/rick/git/home/bot/libs/loader.rb:64:in `initialize'
+/Users/rick/git/home/bot/libs/loader.rb:64:in `new'
+/Users/rick/git/home/bot/libs/loader.rb:64:in `load_leaf'
+/Users/rick/git/home/bot/libs/loader.rb:38:in `load_leaves'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `each'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `load_leaves'
+/Users/rick/git/home/bot/genesis.rb:66
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+big-switch.rb:27
+E, [2007-11-03T11:43:06.095747 #1238] ERROR -- : No such file or directory - /Users/rick/git/home/bot/data/Bot.testing.yml (Errno::ENOENT)
+/Users/rick/git/home/bot/libs/leaf.rb:848:in `initialize'
+/Users/rick/git/home/bot/libs/leaf.rb:848:in `open'
+/Users/rick/git/home/bot/libs/leaf.rb:848:in `load_data'
+/Users/rick/git/home/bot/libs/leaf.rb:198:in `initialize'
+/Users/rick/git/home/bot/libs/loader.rb:61:in `new'
+/Users/rick/git/home/bot/libs/loader.rb:61:in `load_leaf'
+/Users/rick/git/home/bot/libs/loader.rb:38:in `load_leaves'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `each'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `load_leaves'
+/Users/rick/git/home/bot/genesis.rb:66
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+big-switch.rb:27
+E, [2007-11-03T11:43:06.096214 #1238] ERROR -- : uninitialized constant Kernel::BotHelper (NameError)
+/Users/rick/git/home/bot/libs/loader.rb:27:in `const_get'
+/Users/rick/git/home/bot/libs/loader.rb:27:in `load_leaves'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `each'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `load_leaves'
+/Users/rick/git/home/bot/genesis.rb:66
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+big-switch.rb:27
+E, [2007-11-03T11:48:56.263419 #1268] ERROR -- : failed to allocate memory (NoMemoryError)
+
+E, [2007-11-03T11:48:56.264178 #1268] ERROR -- : stack level too deep (SystemStackError)
+
+E, [2007-11-03T11:48:56.264670 #1268] ERROR -- : exception reentered (fatal)
+
+E, [2007-11-03T11:48:56.273205 #1268] ERROR -- : no such file to load -- daemons (LoadError)
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+big-switch.rb:25
+E, [2007-11-03T11:48:56.274169 #1268] ERROR -- : getaddrinfo: No address associated with nodename (SocketError)
+/Users/rick/git/home/bot/libs/EyeAreSee.rb:257:in `initialize'
+/Users/rick/git/home/bot/libs/EyeAreSee.rb:257:in `new'
+/Users/rick/git/home/bot/libs/EyeAreSee.rb:257:in `connect'
+/Users/rick/git/home/bot/libs/EyeAreSee.rb:165:in `start'
+/Users/rick/git/home/bot/libs/leaf.rb:212:in `run'
+/Users/rick/git/home/bot/libs/loader.rb:67:in `load_leaf'
+/Users/rick/git/home/bot/libs/loader.rb:64:in `initialize'
+/Users/rick/git/home/bot/libs/loader.rb:64:in `new'
+/Users/rick/git/home/bot/libs/loader.rb:64:in `load_leaf'
+/Users/rick/git/home/bot/libs/loader.rb:38:in `load_leaves'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `each'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `load_leaves'
+/Users/rick/git/home/bot/genesis.rb:66
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+big-switch.rb:27
+E, [2007-11-03T11:48:56.276376 #1268] ERROR -- : No such file or directory - /Users/rick/git/home/bot/data/Bot.testing.yml (Errno::ENOENT)
+/Users/rick/git/home/bot/libs/leaf.rb:848:in `initialize'
+/Users/rick/git/home/bot/libs/leaf.rb:848:in `open'
+/Users/rick/git/home/bot/libs/leaf.rb:848:in `load_data'
+/Users/rick/git/home/bot/libs/leaf.rb:198:in `initialize'
+/Users/rick/git/home/bot/libs/loader.rb:61:in `new'
+/Users/rick/git/home/bot/libs/loader.rb:61:in `load_leaf'
+/Users/rick/git/home/bot/libs/loader.rb:38:in `load_leaves'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `each'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `load_leaves'
+/Users/rick/git/home/bot/genesis.rb:66
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+big-switch.rb:27
+E, [2007-11-03T11:48:56.278284 #1268] ERROR -- : uninitialized constant Kernel::BotHelper (NameError)
+/Users/rick/git/home/bot/libs/loader.rb:27:in `const_get'
+/Users/rick/git/home/bot/libs/loader.rb:27:in `load_leaves'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `each'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `load_leaves'
+/Users/rick/git/home/bot/genesis.rb:66
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+big-switch.rb:27
+E, [2007-11-03T11:50:26.255377 #1289] ERROR -- : failed to allocate memory (NoMemoryError)
+
+E, [2007-11-03T11:50:26.255524 #1289] ERROR -- : stack level too deep (SystemStackError)
+
+E, [2007-11-03T11:50:26.255618 #1289] ERROR -- : exception reentered (fatal)
+
+E, [2007-11-03T11:50:26.261418 #1289] ERROR -- : no such file to load -- daemons (LoadError)
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+big-switch.rb:25
+E, [2007-11-03T11:50:26.262051 #1289] ERROR -- : No such file or directory - /Users/rick/git/home/bot/data/Bot.testing.yml (Errno::ENOENT)
+/Users/rick/git/home/bot/libs/leaf.rb:848:in `initialize'
+/Users/rick/git/home/bot/libs/leaf.rb:848:in `open'
+/Users/rick/git/home/bot/libs/leaf.rb:848:in `load_data'
+/Users/rick/git/home/bot/libs/leaf.rb:198:in `initialize'
+/Users/rick/git/home/bot/libs/loader.rb:61:in `new'
+/Users/rick/git/home/bot/libs/loader.rb:61:in `load_leaf'
+/Users/rick/git/home/bot/libs/loader.rb:38:in `load_leaves'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `each'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `load_leaves'
+/Users/rick/git/home/bot/genesis.rb:66
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+big-switch.rb:27
+E, [2007-11-03T11:50:26.263077 #1289] ERROR -- : uninitialized constant Kernel::BotHelper (NameError)
+/Users/rick/git/home/bot/libs/loader.rb:27:in `const_get'
+/Users/rick/git/home/bot/libs/loader.rb:27:in `load_leaves'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `each'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `load_leaves'
+/Users/rick/git/home/bot/genesis.rb:66
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+big-switch.rb:27
+E, [2007-11-03T11:51:25.177204 #1302] ERROR -- : failed to allocate memory (NoMemoryError)
+
+E, [2007-11-03T11:51:25.177351 #1302] ERROR -- : stack level too deep (SystemStackError)
+
+E, [2007-11-03T11:51:25.177466 #1302] ERROR -- : exception reentered (fatal)
+
+E, [2007-11-03T11:51:25.183177 #1302] ERROR -- : no such file to load -- daemons (LoadError)
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+big-switch.rb:25
+E, [2007-11-03T11:51:25.183885 #1302] ERROR -- : No such file or directory - /Users/rick/git/home/bot/data/Bot.testing.yml (Errno::ENOENT)
+/Users/rick/git/home/bot/libs/leaf.rb:848:in `initialize'
+/Users/rick/git/home/bot/libs/leaf.rb:848:in `open'
+/Users/rick/git/home/bot/libs/leaf.rb:848:in `load_data'
+/Users/rick/git/home/bot/libs/leaf.rb:198:in `initialize'
+/Users/rick/git/home/bot/libs/loader.rb:61:in `new'
+/Users/rick/git/home/bot/libs/loader.rb:61:in `load_leaf'
+/Users/rick/git/home/bot/libs/loader.rb:38:in `load_leaves'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `each'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `load_leaves'
+/Users/rick/git/home/bot/genesis.rb:66
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+big-switch.rb:27
+E, [2007-11-03T11:51:25.184151 #1302] ERROR -- : uninitialized constant Kernel::BotHelper (NameError)
+/Users/rick/git/home/bot/libs/loader.rb:27:in `const_get'
+/Users/rick/git/home/bot/libs/loader.rb:27:in `load_leaves'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `each'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `load_leaves'
+/Users/rick/git/home/bot/genesis.rb:66
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+big-switch.rb:27
+E, [2007-11-03T11:52:20.065869 #1311] ERROR -- : failed to allocate memory (NoMemoryError)
+
+E, [2007-11-03T11:52:20.066040 #1311] ERROR -- : stack level too deep (SystemStackError)
+
+E, [2007-11-03T11:52:20.066148 #1311] ERROR -- : exception reentered (fatal)
+
+E, [2007-11-03T11:52:20.071790 #1311] ERROR -- : no such file to load -- daemons (LoadError)
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+big-switch.rb:25
+E, [2007-11-03T11:52:20.072507 #1311] ERROR -- : uninitialized constant Kernel::BotHelper (NameError)
+/Users/rick/git/home/bot/libs/loader.rb:27:in `const_get'
+/Users/rick/git/home/bot/libs/loader.rb:27:in `load_leaves'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `each'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `load_leaves'
+/Users/rick/git/home/bot/genesis.rb:66
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+big-switch.rb:27
+E, [2007-11-03T11:53:50.430739 #1321] ERROR -- : failed to allocate memory (NoMemoryError)
+
+E, [2007-11-03T11:53:50.430871 #1321] ERROR -- : stack level too deep (SystemStackError)
+
+E, [2007-11-03T11:53:50.430968 #1321] ERROR -- : exception reentered (fatal)
+
+E, [2007-11-03T11:53:50.435416 #1321] ERROR -- : no such file to load -- daemons (LoadError)
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+big-switch.rb:25
+E, [2007-11-03T11:53:50.435929 #1321] ERROR -- : wrong argument type Class (expected Module) (TypeError)
+/Users/rick/git/home/bot/libs/loader.rb:62:in `extend'
+/Users/rick/git/home/bot/libs/loader.rb:62:in `load_leaf'
+/Users/rick/git/home/bot/libs/loader.rb:38:in `load_leaves'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `each'
+/Users/rick/git/home/bot/libs/loader.rb:16:in `load_leaves'
+/Users/rick/git/home/bot/genesis.rb:66
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:159:in `start_load'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/application.rb:236:in `start'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/controller.rb:69:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:136:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+/usr/local/lib/ruby/gems/1.8/gems/daemons-1.0.8/lib/daemons.rb:135:in `run'
+big-switch.rb:27
+E, [2007-11-03T11:54:38.625043 #1325] ERROR -- : failed to allocate memory (NoMemoryError)
+
+E, [2007-11-03T11:54:38.625238 #1325] ERROR -- : stack level too deep (SystemStackError)
+
+E, [2007-11-03T11:54:38.625358 #1325] ERROR -- : exception reentered (fatal)
+
+E, [2007-11-03T11:54:38.631035 #1325] ERROR -- : no such file to load -- daemons (LoadError)
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+big-switch.rb:25
