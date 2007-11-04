@@ -148,7 +148,7 @@ describe BotParser do
 
   should "recognize a fact post" do
     result = @parser.parse('rick', 't3hchannel', "fact: zed shaw doesn't do pushups, he pushes the earth down")
-    result[:type].should == 'text'
+    result[:type].should == 'fact'
     result[:title].should == "FACT: zed shaw doesn't do pushups, he pushes the earth down"
     result[:body].should match(/posted by rick/)
   end

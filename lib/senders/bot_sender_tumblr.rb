@@ -22,6 +22,10 @@ class BotSender::Tumblr < BotSender
     handle_response(result, args)
   end
 
+  def do_fact(args = {})
+    do_text(args)
+  end
+
   def do_text(args = {})
     result = Net::HTTP.post_form(URI.parse(@post_url), { 
       :type     => 'regular', 
