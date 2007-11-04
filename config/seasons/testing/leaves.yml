@@ -5,7 +5,7 @@
 #  rejoin: true
 - type: Bot
   server: irc.freenode.net
-  nick: n1h1l1s7
+  nick: n1h1l1s7_test
   channels:
-  - rubyconf
+  - nihilist
 

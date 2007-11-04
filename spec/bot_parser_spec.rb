@@ -146,6 +146,13 @@ describe BotParser do
     result[:channel].should == 't3hchannel'
   end
 
+  should "recognize a fact post" do
+    result = @parser.parse('rick', 't3hchannel', "fact: zed shaw doesn't do pushups, he pushes the earth down")
+    result[:type].should == 'text'
+    result[:title].should == "FACT: zed shaw doesn't do pushups, he pushes the earth down"
+    result[:body].should match(/posted by rick/)
+  end
+
   should "return nothing for an unrecognized message" do
     @parser.parse('rick', 't3hchannel', "This is some wack shizzle, m'nizzle.").should be_nil
   end

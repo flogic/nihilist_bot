@@ -14,6 +14,8 @@ class BotParser
         return result.merge(:type => 'quote', :quote => $1, :source => $2 + " (posted by #{sender})")
       when %r{^\s*(?:(.*?)\s+)?(https?://\S+)\s*(?:\s+(\S.*))?$}i
         return result.merge(:type => 'link', :url => $2, :name => ($1 || ''), :description => ($3 || '') + " (posted by #{sender})")
+      when %r{^\s*fact:\s+(.*)}i
+        return result.merge(:type => 'text', :title => "FACT: #{$1}", :body => "(posted by #{sender})")
       else 
         return nil
     end

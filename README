@@ -7,6 +7,10 @@ Rick Bradley (rick@rickbradley.com)
 
 TODO:
  - diagnose what is the problem with trying to start with the big-switch.rb command.  Currently start with 'ruby genesis.rb'
- - factor out the last config options from the Sender setup (should read from YAML file)
+ - factor out the last config options from the Sender setup (should read from YAML file); make an example config file so we can ignore the real one in version control
  - make the BotSender subclasses register automatically by discovery.
  - add more BotSender targets
+ - add "T or F" rules to parser
+ - add some sort of help command
+ - have the sender capable of looking up titles for links to automatically name them
+ - turn off the various !foo commands from autumn leaves
