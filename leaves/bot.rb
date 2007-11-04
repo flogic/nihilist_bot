@@ -5,6 +5,8 @@ require 'bot_sender'
 require 'bot_helper'
 
 class Bot < AutumnLeaf
+  self.instance_methods.select {|meth| meth.to_s =~ /_command$/ }.each {|meth| undef_method(meth) }
+  
   def did_receive_channel_message(sender, channel, mesg)
     bot_parser = BotParser.new
     bot_sender = BotSender.new(:destination => :tumblr, 

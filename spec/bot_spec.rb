@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
 class AutumnLeaf
+  def foo_command(*args)
+  end
 end
 
 require File.dirname(__FILE__) + '/../leaves/bot'
@@ -47,6 +49,10 @@ describe Bot do
   should "send a message to the channel when responding with real text" do
     @bot.expects(:message).with("foo", "channel")
     @bot.respond("foo", "channel")
+  end
+  
+  should "not respond to !foo commands" do
+    @bot.should_not respond_to(:foo_command)
   end
   
   should "should not send a message to the channel when responding with an empty message" do
