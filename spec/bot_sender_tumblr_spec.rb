@@ -74,6 +74,12 @@ describe BotSender::Tumblr, "when generating a summary response" do
     @sender.handle_response(@mock_response, @params).should match(%r{widget})    
   end
   
+  should "english-ize the post type for the post summary" do
+    Net::HTTPSuccess.expects(:===).returns(true)
+    @mock_response.stubs(:body).returns('http://www.domain.com/post/1')
+    @sender.handle_response(@mock_response, @params.merge(:type => 'true_or_false')).should match(%r{true or false})    
+  end
+  
   should "include the error string when an error occurs" do
     Net::HTTPSuccess.stubs(:===).returns(false)
     @mock_response.expects(:error!).returns('Really Bad Error')
@@ -234,7 +240,7 @@ describe BotSender::Tumblr, "when posting a fact" do
     @sender.do_fact(:title => 'FACT:  cardioid is a turd nugget', :body => 'word')
   end
   
-  should "set the text body" do
+  should "set the fact body" do
     Net::HTTP.expects(:post_form).with do |url, args|
       args[:body] == 'word'
     end
@@ -252,6 +258,60 @@ describe BotSender::Tumblr, "when posting a fact" do
     Net::HTTP.stubs(:post_form).returns('fake response')
     @sender.expects(:handle_response).returns("fake response")
     @sender.do_fact(:title => 'FACT:  cardioid is a turd nugget', :body => 'word')
+  end
+end
+
+describe BotSender::Tumblr, "when posting a true/false post" do
+  before(:each) do
+    setup_for_posting
+  end
+
+  should "authenticate with the email address and password" do
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:email] == @params[:email] and args[:password] == @params[:password]
+    end
+    @sender.do_true_or_false(:title => 'T or F: cardioid is still a turd nugget', :body => 'word')
+  end
+
+  should "make a post to the post url" do
+    Net::HTTP.expects(:post_form).with do |url, args|
+      url == URI.parse(@params[:post_url])
+    end
+    @sender.do_true_or_false(:title => 'T or F: cardioid is still a turd nugget', :body => 'word')
+  end
+
+  should "post a text item" do
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:type] == 'regular'
+    end
+    @sender.do_true_or_false(:title => 'T or F: cardioid is still a turd nugget', :body => 'word')
+  end
+
+  should "set the fact title" do
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:title] == 'T or F: cardioid is still a turd nugget'
+    end
+    @sender.do_true_or_false(:title => 'T or F: cardioid is still a turd nugget', :body => 'word')
+  end
+  
+  should "set the fact body" do
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:body] == 'word'
+    end
+    @sender.do_true_or_false(:title => 'T or F: cardioid is still a turd nugget', :body => 'word')
+  end
+  
+  should "handle empty arguments" do
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:body] == "" and args[:title] == ''
+    end
+    @sender.do_true_or_false()
+  end
+  
+  should "process the result to get a standard response" do
+    Net::HTTP.stubs(:post_form).returns('fake response')
+    @sender.expects(:handle_response).returns("fake response")
+    @sender.do_true_or_false(:title => 'T or F: cardioid is still a turd nugget', :body => 'word')
   end
 end
 

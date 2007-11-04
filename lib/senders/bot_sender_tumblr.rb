@@ -25,6 +25,10 @@ class BotSender::Tumblr < BotSender
   def do_fact(args = {})
     do_text(args)
   end
+  
+  def do_true_or_false(args = {})
+    do_text(args)
+  end  
 
   def do_text(args = {})
     result = Net::HTTP.post_form(URI.parse(@post_url), { 
@@ -84,11 +88,12 @@ class BotSender::Tumblr < BotSender
   
   def handle_response(response, metadata)
     return nil unless response
+    type_string = metadata[:type].gsub(/_/, ' ')
     case response
       when Net::HTTPSuccess
-        "created #{metadata[:type]} for #{metadata[:poster]} at #{@site_url.sub(%r{/$}, '')}/post/#{response.body.to_s}"
+        "created #{type_string} for #{metadata[:poster]} at #{@site_url.sub(%r{/$}, '')}/post/#{response.body.to_s}"
       else
-        "encountered error: [#{response.error!}] when trying to post #{metadata[:type]} for #{metadata[:poster]}"
+        "encountered error: [#{response.error!}] when trying to post #{type_string} for #{metadata[:poster]}"
     end
   end
 end

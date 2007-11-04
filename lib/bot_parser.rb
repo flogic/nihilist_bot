@@ -16,6 +16,8 @@ class BotParser
         return result.merge(:type => 'link', :url => $2, :name => ($1 || ''), :description => ($3 || '') + " (posted by #{sender})")
       when %r{^\s*fact:\s+(.*)}i
         return result.merge(:type => 'fact', :title => "FACT: #{$1}", :body => "(posted by #{sender})")
+      when %r{^\s*(?:(?:true\s+or\s+false)|(?:t\s+or\s+f))\s*[:\?]\s+(.*)}i
+        return result.merge(:type => 'true_or_false', :title => "True or False?  #{$1}", :body => "(posted by #{sender})")
       else 
         return nil
     end

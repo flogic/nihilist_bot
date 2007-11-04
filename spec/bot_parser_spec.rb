@@ -153,6 +153,25 @@ describe BotParser do
     result[:body].should match(/posted by rick/)
   end
 
+  should "recognize a 'T or F' post" do
+    result = @parser.parse('rick', 't3hchannel', "T or F: the human body has more than one sphincter")
+    result[:type].should == 'true_or_false'
+    result[:title].should == "True or False?  the human body has more than one sphincter"
+    result[:body].should match(/posted by rick/)
+  end
+  
+  should "recognize a true/false post when spelled out" do
+    result = @parser.parse('rick', 't3hchannel', "true or false: the human body has more than one sphincter")
+    result[:type].should == 'true_or_false'
+    result[:title].should == "True or False?  the human body has more than one sphincter"    
+  end
+  
+  should "recognize a true/false post with '?' or ':' as a separator" do
+    result = @parser.parse('rick', 't3hchannel', "true or false? the human body has more than one sphincter")
+    result[:type].should == 'true_or_false'
+    result[:title].should == "True or False?  the human body has more than one sphincter"        
+  end
+  
   should "return nothing for an unrecognized message" do
     @parser.parse('rick', 't3hchannel', "This is some wack shizzle, m'nizzle.").should be_nil
   end
