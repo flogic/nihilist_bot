@@ -42,10 +42,11 @@ class BotSender::Tumblr < BotSender
   end
 
   def do_image(args = {})
+    caption = args[:source] ? %Q[#{args[:caption] || ''} <a href="#{args[:source]}">zoom</a>] : ''
     result = Net::HTTP.post_form(URI.parse(@post_url), { 
       :type           => 'photo',
       :source         => (args[:source] || ''),
-      :caption        => (args[:caption] || ''), 
+      :caption        => caption, 
       :email          => @email,
       :password       => @password
     })
