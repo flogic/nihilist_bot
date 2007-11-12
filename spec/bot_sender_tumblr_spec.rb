@@ -404,7 +404,14 @@ describe BotSender::Tumblr, "when posting an image message" do
 
   should "set the image caption" do
     Net::HTTP.expects(:post_form).with do |url, args|
-      args[:caption] == "I'm Rick James, b*tch!"
+      args[:caption] =~ Regexp.new(Regexp.quote("I'm Rick James, b*tch!"))
+    end
+    @sender.do_image(:source => 'http://www.upscaleaudio.com/rare/rickjames.jpg', :caption => "I'm Rick James, b*tch!")
+  end
+  
+  should "include a 'zoom' link to the original image" do
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:caption] =~ Regexp.new(Regexp.quote(%Q[<a href="http://www.upscaleaudio.com/rare/rickjames.jpg">zoom</a>]))
     end
     @sender.do_image(:source => 'http://www.upscaleaudio.com/rare/rickjames.jpg', :caption => "I'm Rick James, b*tch!")
   end
