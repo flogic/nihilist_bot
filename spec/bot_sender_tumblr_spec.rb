@@ -122,21 +122,28 @@ describe BotSender::Tumblr, "when posting a quote" do
     Net::HTTP.expects(:post_form).with do |url, args|
       args[:type] == 'quote'
     end
-    @sender.do_quote(:quote => 'sibboleth, yo!', :source => 'ymendel')    
+    @sender.do_quote(:quote => 'sibboleth, yo!', :source => 'ymendel')
   end
 
   should "set the quote body to the provided quote" do
     Net::HTTP.expects(:post_form).with do |url, args|
       args[:quote] == 'sibboleth, yo!'
     end
-    @sender.do_quote(:quote => 'sibboleth, yo!', :source => 'ymendel')    
+    @sender.do_quote(:quote => 'sibboleth, yo!', :source => 'ymendel')
   end
   
   should "set the quote source to the provided source" do
     Net::HTTP.expects(:post_form).with do |url, args|
       args[:source] == 'ymendel'
     end
-    @sender.do_quote(:quote => 'sibboleth, yo!', :source => 'ymendel')            
+    @sender.do_quote(:quote => 'sibboleth, yo!', :source => 'ymendel')
+  end
+  
+  should "make the quote source a link if a URL is provided" do
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:source] == '<a href="http://www.link.net/">ymendel</a>'
+    end
+    @sender.do_quote(:quote => 'sibboleth, yo!', :source => 'ymendel', :url => 'http://www.link.net/')
   end
   
   should "handle empty arguments" do

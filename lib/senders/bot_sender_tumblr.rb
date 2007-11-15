@@ -12,10 +12,12 @@ class BotSender::Tumblr < BotSender
   end
 
   def do_quote(args = {})
+    source = args[:source] || ''
+    source = %Q[<a href="#{args[:url]}">#{source}</a>] if args[:url]
     result = Net::HTTP.post_form(URI.parse(@post_url), { 
       :type     => 'quote', 
       :quote    => (args[:quote] || ''), 
-      :source   => (args[:source] || ''), 
+      :source   => source, 
       :email    => @email, 
       :password => @password
     })
