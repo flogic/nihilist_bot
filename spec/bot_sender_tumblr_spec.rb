@@ -122,21 +122,28 @@ describe BotSender::Tumblr, "when posting a quote" do
     Net::HTTP.expects(:post_form).with do |url, args|
       args[:type] == 'quote'
     end
-    @sender.do_quote(:quote => 'sibboleth, yo!', :source => 'ymendel')    
+    @sender.do_quote(:quote => 'sibboleth, yo!', :source => 'ymendel')
   end
 
   should "set the quote body to the provided quote" do
     Net::HTTP.expects(:post_form).with do |url, args|
       args[:quote] == 'sibboleth, yo!'
     end
-    @sender.do_quote(:quote => 'sibboleth, yo!', :source => 'ymendel')    
+    @sender.do_quote(:quote => 'sibboleth, yo!', :source => 'ymendel')
   end
   
   should "set the quote source to the provided source" do
     Net::HTTP.expects(:post_form).with do |url, args|
       args[:source] == 'ymendel'
     end
-    @sender.do_quote(:quote => 'sibboleth, yo!', :source => 'ymendel')            
+    @sender.do_quote(:quote => 'sibboleth, yo!', :source => 'ymendel')
+  end
+  
+  should "make the quote source a link if a URL is provided" do
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:source] == '<a href="http://www.link.net/">ymendel</a>'
+    end
+    @sender.do_quote(:quote => 'sibboleth, yo!', :source => 'ymendel', :url => 'http://www.link.net/')
   end
   
   should "handle empty arguments" do
@@ -404,7 +411,14 @@ describe BotSender::Tumblr, "when posting an image message" do
 
   should "set the image caption" do
     Net::HTTP.expects(:post_form).with do |url, args|
-      args[:caption] == "I'm Rick James, b*tch!"
+      args[:caption] =~ Regexp.new(Regexp.quote("I'm Rick James, b*tch!"))
+    end
+    @sender.do_image(:source => 'http://www.upscaleaudio.com/rare/rickjames.jpg', :caption => "I'm Rick James, b*tch!")
+  end
+  
+  should "include a 'zoom' link to the original image" do
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:caption] =~ Regexp.new(Regexp.quote(%Q[<a href="http://www.upscaleaudio.com/rare/rickjames.jpg">zoom</a>]))
     end
     @sender.do_image(:source => 'http://www.upscaleaudio.com/rare/rickjames.jpg', :caption => "I'm Rick James, b*tch!")
   end
