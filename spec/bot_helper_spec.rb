@@ -2,18 +2,15 @@ require File.dirname(__FILE__) + '/spec_helper'
 require 'bot_helper'
 
 describe Kernel::BotHelper do
-  
   it 'should implement get_link_title as a module method' do
     Kernel::BotHelper.should respond_to(:get_link_title)
   end
-  
 end
 
 describe 'get_link_title', 'without a URL' do
   it 'should fail' do
     lambda { Kernel::BotHelper.get_link_title }.should raise_error(ArgumentError)
   end
-  
 end
 
 describe 'get_link_title', 'with a URL' do
@@ -40,4 +37,9 @@ describe 'get_link_title', 'with a URL' do
     Kernel::BotHelper.expects(:open).once
     Kernel::BotHelper.get_link_title(@url)
   end
+
+  # Uncomment test if you want to test with a network connection
+  # it 'should work if there is a network connection' do
+  #   Kernel::BotHelper.get_link_title('http://ni.hili.st').should == 'ni.hili.st'
+  # end
 end

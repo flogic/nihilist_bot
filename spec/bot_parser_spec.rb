@@ -1,5 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper'
 require 'bot_parser'
+require 'bot_helper'
 
 describe BotParser do
   before(:each) do
@@ -79,10 +80,21 @@ describe BotParser do
   end
   
   should "recognize a link post" do
+    Kernel::BotHelper.stubs(:get_link_title).returns('')
     result = @parser.parse('rick', 't3hchannel', 'http://www.rickbradley.com/misc/communist_bloc(k)_party.html')
     result[:type].should == 'link'
     result[:url].should == 'http://www.rickbradley.com/misc/communist_bloc(k)_party.html'
     result[:name].should == ''
+  end
+  
+  should "recognize a link post without a name and try to set title" do
+    url   = 'http://www.rickbradley.com/misc/communist_bloc(k)_party.html'
+    title = 'Communist Bloc(k) Party'
+    Kernel::BotHelper.expects(:get_link_title).with(url).returns(title)
+    result = @parser.parse('rick', 't3hchannel', url)
+    result[:type].should == 'link'
+    result[:url].should == url
+    result[:name].should == title
   end
   
   should "recognize a link with a name" do
