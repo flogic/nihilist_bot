@@ -10,5 +10,9 @@ class BotParserFormat
   end
   
   def process(text)
+    md = format.match(text)
+    return nil unless md
+    
+    block.call(text, md).merge(:type => name)
   end
 end
