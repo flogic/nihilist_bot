@@ -86,6 +86,22 @@ describe BotParser do
     result[:url].should == 'http://www.rickbradley.com/misc/communist_bloc(k)_party.html'
     result[:name].should == ''
   end
+
+  should "recognize an ignore link post" do
+    @parser.parse('rick', 't3hchannel', '!http://www.rickbradley.com').should be_nil
+  end
+
+  should "recognize an ignore link post with a title" do
+    @parser.parse('rick', 't3hchannel', 'The best site eva! !http://www.rickbradley.com').should be_nil
+  end
+
+  should "recognize an ignore link post with a description" do
+    @parser.parse('rick', 't3hchannel', '!http://www.rickbradley.com The best site eva!').should be_nil
+  end
+
+  should "recognize an ignore link post with a name and a description" do
+    @parser.parse('rick', 't3hchannel', 'The best !http://www.rickbradley.com site eva!').should be_nil
+  end
   
   should "recognize a link post without a name and try to set title" do
     url   = 'http://www.rickbradley.com/misc/communist_bloc(k)_party.html'
