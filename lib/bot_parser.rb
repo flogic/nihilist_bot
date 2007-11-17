@@ -6,9 +6,8 @@ class BotParser
   class << self
     attr_reader :formats
     
-    def register_format(format_name, &block)
-      raise ArgumentError, 'Block needed' if block.nil?
-      formats << BotParserFormat.new(format_name, &block)
+    def register_format(format_name, format, &block)
+      formats << BotParserFormat.new(format_name, format, &block)
     end
   end
   
