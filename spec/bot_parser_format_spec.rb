@@ -36,7 +36,7 @@ describe BotParserFormat, 'when initializing' do
 end
 
 describe BotParserFormat, 'when processing' do
-  before(:each) do
+  before :each do
     @re = /format/
     @block = lambda {}
     @format = BotParserFormat.new(:format_name, @re, &@block)
@@ -54,11 +54,11 @@ describe BotParserFormat, 'when processing' do
     @format.process('hey hey hey').should be_nil
   end
   
-  should 'call block with text and match data if text matches format' do
+  should 'call block with match data and text if text matches format' do
     text = 'this should match the format'
     md = stub('match data')
     @re.stubs(:match).returns(md)
-    @block.expects(:call).with(text, md).returns({})
+    @block.expects(:call).with(md, text).returns({})
     @format.process(text)
   end
   

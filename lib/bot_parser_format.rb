@@ -13,6 +13,6 @@ class BotParserFormat
     md = format.match(text)
     return nil unless md
     
-    block.call(text, md).merge(:type => name)
+    block.call(md, text).merge(:type => name)
   end
 end
