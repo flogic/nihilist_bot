@@ -204,3 +204,28 @@ describe BotParser do
     @parser.parse('rick', 't3hchannel', "This is some wack shizzle, m'nizzle.").should be_nil
   end
 end
+
+describe BotParser, 'when registering formats' do
+  should 'require a format name' do
+    lambda { BotParser.register_format }.should raise_error(ArgumentError)
+  end
+  
+  should 'require a block' do
+    lambda { BotParser.register_format(:format_name) }.should raise_error(ArgumentError)
+  end
+  
+  should 'accept a format name and block' do
+    lambda { BotParser.register_format(:format_name) {} }.should_not raise_error
+  end
+  
+  should 'provide access to formats' do
+    BotParser.should respond_to(:formats)
+  end
+  
+  should 'store given format' do
+    block = lambda {}
+    BotParser.register_format(:format_name, &block)
+    format = BotParser.formats.detect { |f|  f.name == :format_name and f.block == block }
+    BotParser.formats.should_not be_nil
+  end
+end

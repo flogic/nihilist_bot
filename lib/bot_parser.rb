@@ -1,4 +1,17 @@
+require 'bot_parser_format'
+
 class BotParser
+  @formats = []
+  
+  class << self
+    attr_reader :formats
+    
+    def register_format(format_name, &block)
+      raise ArgumentError, 'Block needed' if block.nil?
+      formats << BotParserFormat.new(format_name, &block)
+    end
+  end
+  
   def parse(sender, channel, mesg)
     return nil if mesg.empty?
     
