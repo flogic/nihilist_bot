@@ -74,6 +74,13 @@ describe BotSender::Tumblr, "when generating a summary response" do
     @sender.handle_response(@mock_response, @params).should match(%r{widget})    
   end
   
+  should 'be able to handle a symbol type' do
+    @params[:type] = :widget
+    Net::HTTPSuccess.expects(:===).returns(true)
+    @mock_response.stubs(:body).returns('http://www.domain.com/post/1')
+    @sender.handle_response(@mock_response, @params).should match(%r{widget})    
+  end
+  
   should "english-ize the post type for the post summary" do
     Net::HTTPSuccess.expects(:===).returns(true)
     @mock_response.stubs(:body).returns('http://www.domain.com/post/1')

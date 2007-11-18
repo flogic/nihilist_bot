@@ -91,7 +91,7 @@ class BotSender::Tumblr < BotSender
   
   def handle_response(response, metadata)
     return nil unless response
-    type_string = metadata[:type].gsub(/_/, ' ')
+    type_string = metadata[:type].to_s.gsub(/_/, ' ')
     case response
       when Net::HTTPSuccess
         "created #{type_string} for #{metadata[:poster]} at #{@site_url.sub(%r{/$}, '')}/post/#{response.body.to_s}"
