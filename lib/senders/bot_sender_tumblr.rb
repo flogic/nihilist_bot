@@ -23,15 +23,7 @@ class BotSender::Tumblr < BotSender
     })
     handle_response(result, args)
   end
-
-  def do_fact(args = {})
-    do_text(args)
-  end
   
-  def do_true_or_false(args = {})
-    do_text(args)
-  end  
-
   def do_text(args = {})
     result = Net::HTTP.post_form(URI.parse(@post_url), { 
       :type     => 'regular', 
@@ -42,6 +34,9 @@ class BotSender::Tumblr < BotSender
     })
     handle_response(result, args)
   end
+  
+  alias_method :do_fact, :do_text
+  alias_method :do_true_or_false, :do_text
 
   def do_image(args = {})
     caption = args[:source] ? %Q[#{args[:caption] || ''} <a href="#{args[:source]}">zoom</a>] : ''
