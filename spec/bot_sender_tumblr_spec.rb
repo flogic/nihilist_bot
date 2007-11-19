@@ -1,5 +1,5 @@
 require File.dirname(__FILE__) + '/spec_helper'
-require 'senders/bot_sender_tumblr'
+require 'senders/tumblr'
 
 
 # TODO: make sure that nil values passed in don't freak things out
