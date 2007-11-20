@@ -31,3 +31,6 @@ end
 
 require 'filters/link_title'
 BotFilter.register(:link_title => BotFilter::LinkTitle)
+
+require 'filters/poster_info'
+BotFilter.register(:poster_info => BotFilter::PosterInfo)

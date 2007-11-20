@@ -32,15 +32,7 @@ describe BotParser do
     result[:poster].should == 'rick'
     result[:channel].should == 't3hchannel'
   end
-  
-  should "put quote poster into quote caption" do
-    result = @parser.parse('rick', 't3hchannel', '"I\'m a little teapot." --J.P.')
-    result[:source].should match(/posted by rick/)        
-
-    result = @parser.parse('rick', 't3hchannel', '"adios, turd nuggets" --J.P. (http://imdb.com/title/tt0456554/)')
-    result[:source].should match(/posted by rick/)        
-  end
-  
+    
   should "recognize a JPEG image link" do
     result = @parser.parse('rick', 't3hchannel', 'http://citizenx.cx/img/tn/best_picture_ever.jpg')
     result[:type].should == :image
@@ -64,14 +56,6 @@ describe BotParser do
     result[:type].should == :image
     result[:source].should == 'http://citizenx.cx/img/tn/best_picture_never.jpg'
     result[:caption].should match(/Best Picture Never/)
-  end
-  
-  should "put image link poster into image caption" do
-    result = @parser.parse('rick', 't3hchannel', 'http://photos-b.ak.facebook.com/photos-ak-sctm/v122/61/43/625045653/n625045653_1275457_7998.jpg')
-    result[:caption].should match(/posted by rick/)
-
-    result = @parser.parse('rick', 't3hchannel', 'http://photos-b.ak.facebook.com/photos-ak-sctm/v122/61/43/625045653/n625045653_1275457_7998.jpg  BOING!!!')
-    result[:caption].should match(/posted by rick/)
   end
   
   should "make poster and channel available in the results when matching an image" do
@@ -131,7 +115,6 @@ describe BotParser do
     result[:type].should == :link
     result[:url].should == 'http://www.rickbradley.com/misc/communist_bloc(k)_party.html'
     result[:name].should == 'Please Rocking!'
-    result[:description].should match(/posted by rick/)        
   end
   
   should "make poster and channel available in the results when matching a link" do
@@ -152,12 +135,7 @@ describe BotParser do
     result[:embed].should == 'http://youtube.com/watch?v=uwEXywdSpNQ' 
     result[:caption].should match(/Robot Chicken/)   
   end
-  
-  should "put video poster into the description body" do
-    result = @parser.parse('rick', 't3hchannel', 'http://youtube.com/watch?v=uwEXywdSpNQ  Robot Chicken')
-    result[:caption].should match(/posted by rick/)
-  end
-  
+    
   should "make poster and channel available in the results when matching a video link" do
     result = @parser.parse('rick', 't3hchannel', 'http://youtube.com/watch?v=uwEXywdSpNQ  Robot Chicken')
     result[:poster].should == 'rick'
@@ -168,14 +146,12 @@ describe BotParser do
     result = @parser.parse('rick', 't3hchannel', "fact: zed shaw doesn't do pushups, he pushes the earth down")
     result[:type].should == :fact
     result[:title].should == "FACT: zed shaw doesn't do pushups, he pushes the earth down"
-    result[:body].should match(/posted by rick/)
   end
 
   should "recognize a 'T or F' post" do
     result = @parser.parse('rick', 't3hchannel', "T or F: the human body has more than one sphincter")
     result[:type].should == :true_or_false
     result[:title].should == "True or False?  the human body has more than one sphincter"
-    result[:body].should match(/posted by rick/)
   end
   
   should "recognize a true/false post when spelled out" do

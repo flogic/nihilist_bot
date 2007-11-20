@@ -56,6 +56,6 @@ class BotParser
     
     return nil unless result
     
-    Kernel::BotHelper.add_poster_info(common.merge(result))
+    common.merge(result)
   end
 end
