@@ -11,37 +11,57 @@ describe Bot do
   before(:each) do
     @mock_parser = stub('parser')
     @mock_sender = stub('sender')
+    @mock_filter = stub('filter')
     @mock_result = {}
     BotParser.stubs(:new).returns(@mock_parser)
     BotSender.stubs(:new).returns(@mock_sender)
+    BotFilter.stubs(:new).returns(@mock_filter)
     @bot = Bot.new
   end
   
   should "pass channel messages to a parser for identification" do
     @mock_parser.expects(:parse)
+    @mock_filter.stubs(:process)
     @bot.did_receive_channel_message('bob', 'foochat', "what's up, bitches???")
   end
   
   should "pass poster to the parser" do
     @mock_sender.stubs(:deliver)
+    @mock_filter.stubs(:process)
     @mock_parser.expects(:parse).with('bob', 'foochat', "you winnin', homey?").returns(@mock_result)
     @bot.did_receive_channel_message('bob', 'foochat', "you winnin', homey?")    
   end
   
-  should "pass data to sender when parser provides results" do
+  should "pass data to filter when parser provides results" do
     @mock_parser.stubs(:parse).returns(@mock_result)
+    @mock_filter.expects(:process).with(@mock_result)
+    @bot.did_receive_channel_message('bob', 'foochat', "you winnin', homey?")
+  end
+  
+  should "not use filter when parser provides no results" do
+    @mock_parser.stubs(:parse).returns(nil)
+    @mock_filter.expects(:process).never
+    @bot.did_receive_channel_message('bob', 'foochat', "where my witches be?")    
+  end
+
+  should "pass data to sender when filter provides results" do
+    @mock_parser.stubs(:parse).returns(@mock_result)
+    @mock_filter.stubs(:process).returns(@mock_result)
     @mock_sender.expects(:deliver)
     @bot.did_receive_channel_message('bob', 'foochat', "you winnin', homey?")
   end
   
-  should "not use sender when parser provides no results" do
-    @mock_parser.stubs(:parse).returns(nil)
+  should "not use sender when filter provides no results" do
+    @mock_parser.stubs(:parse).returns(@mock_result)
+    @mock_filter.stubs(:process).returns(nil)
+    @mock_sender.expects(:deliver).never
     @bot.did_receive_channel_message('bob', 'foochat', "where my witches be?")    
-  end
+  end  
   
   should "send message back to channel if sender has response" do
     @mock_parser.stubs(:parse).returns(@mock_result)
     @mock_sender.stubs(:deliver).returns(@mock_result)
+    @mock_filter.stubs(:process).returns(@mock_result)
     @bot.expects(:respond)
     @bot.did_receive_channel_message('bob', 'foochat', "you winnin', homey?")        
   end

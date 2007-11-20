@@ -3,6 +3,7 @@ $:.unshift(File.dirname(__FILE__) + '/../lib/')
 require 'bot_parser'
 require 'bot_sender'
 require 'bot_helper'
+require 'bot_filter'
 
 class Bot < AutumnLeaf
   self.instance_methods.select {|meth| meth.to_s =~ /_command$/ }.each {|meth| undef_method(meth) }
@@ -14,7 +15,9 @@ class Bot < AutumnLeaf
                                :site_url => 'http://ni.hili.st/', 
                                :email => 'ni@hili.st',
                                :password => 'password')
+    bot_filter = BotFilter.new
     result = bot_parser.parse(sender, channel, mesg)
+    result = bot_filter.process(result) if result
     respond(bot_sender.deliver(result), channel) if result
   end
   
