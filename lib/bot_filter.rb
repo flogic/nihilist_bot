@@ -28,3 +28,6 @@ class BotFilter
     result
   end
 end
+
+require 'filters/link_title'
+BotFilter.register(:link_title => BotFilter::LinkTitle)
