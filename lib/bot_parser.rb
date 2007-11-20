@@ -56,6 +56,7 @@ class BotParser
     
     return nil unless result
     
-    common.merge(result)
+    result = common.merge(result)
+    result
   end
 end
