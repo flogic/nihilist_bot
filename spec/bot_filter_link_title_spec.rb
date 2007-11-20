@@ -26,21 +26,27 @@ describe BotFilter::LinkTitle do
   
   should 'use open to fetch URL' do
     @filter.expects(:open).with(@url)
-    @filter.process({:url => @url})
+    @filter.process({:url => @url, :type => :link})
+  end
+  
+  should 'do nothing for non-links' do
+    @filter.expects(:open).never
+    data = {:url => @url}
+    @filter.process(data).should == data
   end
   
   should 'not fail if there is a problem with opening the URL' do
-    lambda { @filter.process({:url => 'bad url' }) }.should_not raise_error
+    lambda { @filter.process({:url => 'bad url', :type => :link}) }.should_not raise_error
   end
   
   should 'not change existing title' do
     title = 'Welcome to my humble adobe'
-    result = @filter.process({:url => 'bad url', :name => title})
+    result = @filter.process({:url => 'bad url', :type => :link, :name => title})
     result[:name].should == title
   end
   
   should 'populate title with an empty string if there is a problem with opening the URL' do
-    result = @filter.process({:url => 'bad url'})
+    result = @filter.process({:url => 'bad url', :type => :link})
     result[:name].should == ''
   end
   
@@ -48,7 +54,7 @@ describe BotFilter::LinkTitle do
     title = 'Yahoo is the bomb'
     match_data = stub('match data', :[] => title)
     String.any_instance.stubs(:match).returns(match_data)
-    result = @filter.process({:url => @url})
+    result = @filter.process({:url => @url, :type => :link})
     result[:name].should == title
   end
 
