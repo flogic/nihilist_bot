@@ -2,7 +2,6 @@ $:.unshift(File.dirname(__FILE__) + '/../lib/')
 
 require 'bot_parser'
 require 'bot_sender'
-require 'bot_helper'
 require 'bot_filter'
 
 class Bot < AutumnLeaf

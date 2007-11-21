@@ -9,6 +9,5 @@ TODO:
  - factor out the last config options from the Sender setup (should read from YAML file); make an example config file so we can ignore the real one in version control
  - make the BotSender subclasses register automatically by discovery.
  - add some sort of help command
- - have the sender capable of looking up titles for links to automatically name them
  - diagnose: what is the problem with trying to start with the big-switch.rb command.  Currently start with 'ruby genesis.rb'
  - add more BotSender targets

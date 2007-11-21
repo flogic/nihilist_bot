@@ -1,6 +1,5 @@
 require File.dirname(__FILE__) + '/spec_helper'
 require 'bot_parser'
-require 'bot_helper'
 require 'bot_filter'
 
 describe BotParser do
