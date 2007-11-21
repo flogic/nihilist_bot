@@ -1,4 +1,4 @@
-class BotFilter::PosterInfo < BotFilter
+class BotFilter::PosterInfo
   def process(data)
     poster_info = "(posted by #{data[:poster]})"
     

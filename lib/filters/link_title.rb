@@ -1,6 +1,6 @@
 require 'open-uri'
 
-class BotFilter::LinkTitle < BotFilter
+class BotFilter::LinkTitle
   def process(data)
     raise TypeError unless data.is_a?(Hash)
     
