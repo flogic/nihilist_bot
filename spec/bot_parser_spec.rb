@@ -57,6 +57,21 @@ describe BotParser do
     result[:caption].should match(/Best Picture Never/)
   end
   
+  should 'recognize an image link with a title' do
+    result = @parser.parse('rick', 't3hchannel', 'Picture of the day http://citizenx.cx/img/tn/best_picture_never.jpg')
+    result[:type].should == :image
+    result[:source].should == 'http://citizenx.cx/img/tn/best_picture_never.jpg'
+    result[:title].should == 'Picture of the day'
+  end
+  
+  should 'recognize an image link with a title and caption' do
+    result = @parser.parse('rick', 't3hchannel', 'Picture of the day http://citizenx.cx/img/tn/best_picture_never.jpg Best Picture Never')
+    result[:type].should == :image
+    result[:source].should == 'http://citizenx.cx/img/tn/best_picture_never.jpg'
+    result[:title].should == 'Picture of the day'
+    result[:caption].should match(/Best Picture Never/)
+  end
+  
   should "make poster and channel available in the results when matching an image" do
     result = @parser.parse('rick', 't3hchannel', 'http://photos-b.ak.facebook.com/photos-ak-sctm/v122/61/43/625045653/n625045653_1275457_7998.jpg')
     result[:poster].should == 'rick'
