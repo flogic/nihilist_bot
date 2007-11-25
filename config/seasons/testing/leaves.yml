@@ -1,11 +1,13 @@
-#- type: Scorekeeper
-#  server: irc.freenode.net
-#  channels:
-#  - nihilist
-#  rejoin: true
 - type: Bot
   server: irc.freenode.net
   nick: n1h1l1s7_test
   channels:
   - nihilist
-
+  senders:
+    nihilist:
+    - destination: tumblr
+      post_url: http://www.tumblr.com/api/write
+      site_url: http://ni.hili.st/
+      email: ni@hili.st
+      password: password
+  active_sender: nihilist
