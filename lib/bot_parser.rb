@@ -13,8 +13,8 @@ class BotParser
   
   def formats()  self.class.formats;  end
   
-  register_format :image, /^\s*(http:\S+\.(?:jpe?g|png|gif))(?:\s+(\S.*))?$/i do |md, _|
-    { :source => md[1], :caption => md[2] }
+  register_format :image, /^\s*(?:(.*?)\s+)?(http:\S+\.(?:jpe?g|png|gif))(?:\s+(\S.*))?$/i do |md, _|
+    { :title => md[1], :source => md[2], :caption => md[3] }
   end
   
   register_format :video, %r{^\s*(http://(?:www\.)?youtube\.com/\S+\?\S+)(?:\s+(.*))?$}i do |md, _|
@@ -30,8 +30,7 @@ class BotParser
   end
   
   register_format :link, %r{^\s*(?:(.*?)\s+)?(https?://\S+)\s*(?:\s+(\S.*))?$}i do |md, _|
-      title = md[1] || Kernel::BotHelper.get_link_title(md[2])
-      { :url => md[2], :name => title, :description => md[3] }
+      { :url => md[2], :name => md[1], :description => md[3] }
   end
   
   register_format :fact, %r{^\s*fact:\s+(.*)}i do |md, _|
@@ -57,6 +56,7 @@ class BotParser
     
     return nil unless result
     
-    Kernel::BotHelper.add_poster_info(common.merge(result))
+    result = common.merge(result)
+    result
   end
 end

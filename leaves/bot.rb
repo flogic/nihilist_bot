@@ -2,7 +2,7 @@ $:.unshift(File.dirname(__FILE__) + '/../lib/')
 
 require 'bot_parser'
 require 'bot_sender'
-require 'bot_helper'
+require 'bot_filter'
 
 class Bot < AutumnLeaf
   attr_reader :options
@@ -12,7 +12,9 @@ class Bot < AutumnLeaf
   def did_receive_channel_message(sender, channel, mesg)
     bot_parser = BotParser.new
     bot_sender = BotSender.new(sender_configuration)
+    bot_filter = BotFilter.new
     result = bot_parser.parse(sender, channel, mesg)
+    result = bot_filter.process(result) if result
     respond(bot_sender.deliver(result), channel) if result
   end
   

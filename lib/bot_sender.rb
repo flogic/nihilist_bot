@@ -39,7 +39,7 @@ class BotSender
   end
 end
 
-require 'senders/bot_sender_tumblr'
+require 'senders/tumblr'
 
 class BotSender
   @@kinds[:tumblr] = BotSender::Tumblr
