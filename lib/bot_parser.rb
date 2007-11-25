@@ -13,7 +13,7 @@ class BotParser
   
   def formats()  self.class.formats;  end
   
-  register_format :image, /^\s*(\S.*?)?\s*(http:\S+\.(?:jpe?g|png|gif))(?:\s+(\S.*))?$/i do |md, _|
+  register_format :image, /^\s*(?:(.*?)\s+)?(http:\S+\.(?:jpe?g|png|gif))(?:\s+(\S.*))?$/i do |md, _|
     { :title => md[1], :source => md[2], :caption => md[3] }
   end
   
