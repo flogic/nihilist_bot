@@ -84,13 +84,14 @@ describe Bot do
   should "look up options for sender" do
     @mock_parser.stubs(:parse).returns(@mock_result)
     @mock_sender.stubs(:deliver).returns(@mock_result)
+    @mock_filter.stubs(:process).returns(@mock_result)
     @bot.stubs(:respond).returns(@mock_result)
     @bot.expects(:sender_configuration)
     @bot.did_receive_channel_message('bob', 'foochat', "what's up, bitches???")
   end
 end
 
-describe Bot, "" do
+describe Bot do
   before(:each) do
     @bot = Bot.new
   end
