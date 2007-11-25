@@ -29,6 +29,9 @@ class BotFilter
   end
 end
 
+require 'filters/link_name_cleanup'
+BotFilter.register(:link_name_cleanup => BotFilter::LinkNameCleanup)
+
 require 'filters/link_title'
 BotFilter.register(:link_title => BotFilter::LinkTitle)
 
