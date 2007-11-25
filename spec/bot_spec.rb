@@ -91,7 +91,7 @@ describe Bot do
   end
 end
 
-describe Bot do
+describe Bot, 'giving the sender configuration' do
   before(:each) do
     @bot = Bot.new
   end
@@ -128,5 +128,3 @@ describe Bot do
     result[:option].should == :baz
   end
 end
-
-

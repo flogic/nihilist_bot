@@ -23,13 +23,13 @@ class Bot < AutumnLeaf
   end
   
   def sender_configuration
-    raise "leaf bot configuration should include an :active_sender option" unless options['active_sender'] 
-    raise "leaf bot configuration should include a list of :senders" unless options['senders'] 
-    raise "leaf bot configuration doesn't have a :senders entry for :active_sender [#{options['active_sender']}]" unless options['senders'][options['active_sender']]
-    raise "leaf bot configuration doesn't have a :destination type for :active_sender [#{options['active_sender']}]" unless options['senders'][options['active_sender']]['destination']
+    raise "leaf bot configuration should include an :active_sender option" unless options[:active_sender] 
+    raise "leaf bot configuration should include a list of :senders" unless options[:senders] 
+    raise "leaf bot configuration doesn't have a :senders entry for :active_sender [#{options[:active_sender]}]" unless options[:senders][options[:active_sender]]
+    raise "leaf bot configuration doesn't have a :destination type for :active_sender [#{options[:active_sender]}]" unless options[:senders][options[:active_sender]]['destination']
     
     result = {}
-    options['senders'][options['active_sender']].each_pair {|k,v| result[k.to_sym] = v.to_sym }
+    options[:senders][options[:active_sender]].each_pair {|k,v| result[k.to_sym] = v.to_sym }
     result
   end
 end

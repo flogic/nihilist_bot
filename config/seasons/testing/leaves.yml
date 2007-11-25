@@ -5,7 +5,7 @@
   - nihilist
   senders:
     nihilist:
-    - destination: tumblr
+      destination: tumblr
       post_url: http://www.tumblr.com/api/write
       site_url: http://ni.hili.st/
       email: ni@hili.st
