@@ -10,7 +10,7 @@ class BotFilter::LinkTitle
     unless title
       begin
         open(data[:url]) do |f|
-          title = f.read.match(/<title>(.*)<\/title>/)[1]
+          title = f.read.match(/<title>(.*?)<\/title>/m)[1].strip.gsub(/\s+/, ' ')
         end
       rescue
         title = ''
