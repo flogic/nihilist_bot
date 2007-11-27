@@ -7,6 +7,25 @@ describe BotFilter::PosterInfo, 'adding poster info' do
     @filter = BotFilter::PosterInfo.new
   end
   
+  should 'accept options on initialization' do
+    lambda { BotFilter::PosterInfo.new(stub('options')) }.should_not raise_error(ArgumentError)
+  end
+  
+  should 'not require options on initialization' do
+    lambda { BotFilter::PosterInfo.new }.should_not raise_error(ArgumentError)
+  end
+  
+  should 'store options' do
+    options = stub('options')
+    filter = BotFilter::PosterInfo.new(options)
+    filter.options.should == options
+  end
+  
+  should 'default options to empty hash' do
+    filter = BotFilter::PosterInfo.new
+    filter.options.should == {}
+  end
+  
   should 'require data for processing' do
     lambda { @filter.process }.should raise_error(ArgumentError)
   end

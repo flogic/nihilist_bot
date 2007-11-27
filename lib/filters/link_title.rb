@@ -1,6 +1,7 @@
+require File.join(File.dirname(__FILE__), 'template')
 require 'open-uri'
 
-class BotFilter::LinkTitle
+class BotFilter::LinkTitle < BotFilter::Template
   def process(data)
     raise TypeError unless data.is_a?(Hash)
     

@@ -8,6 +8,25 @@ describe BotFilter::LinkTitle do
     @url = 'http://www.yahoo.com'
   end
   
+  should 'accept options on initialization' do
+    lambda { BotFilter::LinkTitle.new(stub('options')) }.should_not raise_error(ArgumentError)
+  end
+  
+  should 'not require options on initialization' do
+    lambda { BotFilter::LinkTitle.new }.should_not raise_error(ArgumentError)
+  end
+  
+  should 'store options' do
+    options = stub('options')
+    filter = BotFilter::LinkTitle.new(options)
+    filter.options.should == options
+  end
+  
+  should 'default options to empty hash' do
+    filter = BotFilter::LinkTitle.new
+    filter.options.should == {}
+  end
+  
   should 'require data for processing' do
     lambda { @filter.process }.should raise_error(ArgumentError)
   end
@@ -17,11 +36,11 @@ describe BotFilter::LinkTitle do
   end
   
   should 'accept a hash for processing' do
-    lambda { @filter.process({ :data => 'puppies'}) }.should_not raise_error
+    lambda { @filter.process({ :data => 'puppies' }) }.should_not raise_error
   end
   
   should 'return a hash' do
-    @filter.process({ :data => 'puppies'}).should be_kind_of(Hash)
+    @filter.process({ :data => 'puppies' }).should be_kind_of(Hash)
   end
   
   should 'use open to fetch URL' do

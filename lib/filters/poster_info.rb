@@ -1,4 +1,6 @@
-class BotFilter::PosterInfo
+require File.join(File.dirname(__FILE__), 'template')
+
+class BotFilter::PosterInfo < BotFilter::Template
   def process(data)
     poster_info = "(posted by #{data[:poster]})"
     

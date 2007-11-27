@@ -1,4 +1,6 @@
-class BotFilter::LinkNameCleanup
+require File.join(File.dirname(__FILE__), 'template')
+
+class BotFilter::LinkNameCleanup < BotFilter::Template
   def process(data)
     raise TypeError unless data.is_a?(Hash)
     
