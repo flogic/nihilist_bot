@@ -28,7 +28,30 @@ describe BotFilter, 'as a class' do
   end
 end
 
+describe BotFilter do
+  should 'accept options on initialization' do
+    lambda { BotFilter.new(stub('options')) }.should_not raise_error(ArgumentError)
+  end
+  
+  should 'not require options on initialization' do
+    lambda { BotFilter.new }.should_not raise_error(ArgumentError)
+  end
+  
+  should 'store options' do
+    options = stub('options')
+    filter = BotFilter.new(options)
+    filter.options.should == options
+  end
+  
+  should 'default options to empty hash' do
+    filter = BotFilter.new
+    filter.options.should == {}
+  end
+end
+
 def setup_filter_chain
+  @options = stub('options')
+  @filter.stubs(:options).returns(@options)
   @data = %w[a b c d e]
   @filters = Array.new(@data.size - 1) { |i|  { "name_#{@data[i]}".to_sym => stub("class #{@data[i]}") } }
   @objects = []
@@ -38,7 +61,7 @@ def setup_filter_chain
     obj = stub('object #{@data[i]}')
     @objects.push(obj)
     obj.stubs(:process).with(@data[i]).returns(@data[i+1])
-    filter.stubs(:new).returns(obj)
+    filter.stubs(:new).with(@options).returns(obj)
   end
   
   @filters.each do |f|

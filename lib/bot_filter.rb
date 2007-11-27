@@ -1,4 +1,10 @@
 class BotFilter
+  attr_reader :options
+  
+  def initialize(options = {})
+    @options = options
+  end
+  
   @@kinds = {}
   
   class << self
@@ -19,7 +25,7 @@ class BotFilter
     result = data
     self.class.kinds.each do |k|
       if result
-        result = @@kinds[k].new.process(result)
+        result = @@kinds[k].new(options).process(result)
       else
         result = nil
         break
