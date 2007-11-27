@@ -78,3 +78,23 @@ describe BotFilter::IgnoreNicks, 'when asked about nicks to ignore' do
     BotFilter::IgnoreNicks.nick_list.should == []
   end
 end
+
+describe BotFilter::IgnoreNicks, 'when initialized' do
+  should 'set the nick list from the given options' do
+    nick_list = stub('nick list')
+    options = { :data => 'puppies', :ignore => { 'nicks' => nick_list }}
+    BotFilter::IgnoreNicks.expects(:nick_list=).with(nick_list)
+    BotFilter::IgnoreNicks.new(options)
+  end
+  
+  should 'set the nick list to nil if no option exists' do
+    options = { :data => 'puppies' }
+    BotFilter::IgnoreNicks.expects(:nick_list=).with(nil)
+    BotFilter::IgnoreNicks.new(options)
+  end
+  
+  should 'set the nick list to nil if no options given' do
+    BotFilter::IgnoreNicks.expects(:nick_list=).with(nil)
+    BotFilter::IgnoreNicks.new
+  end
+end
