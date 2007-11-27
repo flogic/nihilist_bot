@@ -43,3 +43,6 @@ BotFilter.register(:link_title => BotFilter::LinkTitle)
 
 require 'filters/poster_info'
 BotFilter.register(:poster_info => BotFilter::PosterInfo)
+
+require 'filters/ignore_nicks'
+BotFilter.register(:ignore_nicks => BotFilter::IgnoreNicks)
