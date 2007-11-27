@@ -89,6 +89,17 @@ describe Bot do
     @bot.expects(:sender_configuration)
     @bot.did_receive_channel_message('bob', 'foochat', "what's up, bitches???")
   end
+  
+  should 'pass options to filter' do
+    options = stub('options')
+    @bot.stubs(:options).returns(options)
+    @mock_parser.stubs(:parse).returns(@mock_result)
+    @mock_sender.stubs(:deliver).returns(@mock_result)
+    BotFilter.expects(:new).with(options).returns(@mock_filter)
+    @mock_filter.stubs(:process).returns(@mock_result)
+    @bot.stubs(:respond).returns(@mock_result)
+    @bot.did_receive_channel_message('bob', 'foochat', "what's up, bitches???")
+  end
 end
 
 describe Bot, 'giving the sender configuration' do
