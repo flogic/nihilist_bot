@@ -122,9 +122,10 @@ describe Bot, 'giving the sender configuration' do
   end
   
   should "ensure that sender options are in a format usable by the sender" do
-    @bot.stubs(:options).returns({ :active_sender => 'foo', :senders => { 'foo' => { 'destination' => 'bar', 'option' => 'baz' } } })
+    @bot.stubs(:options).returns({ :active_sender => 'foo', :senders => { 'foo' => { 'destination' => 'bar', 'option' => 'baz', 'turd' => 'nugget' } } })
     result = @bot.sender_configuration
     result[:destination].should == :bar
-    result[:option].should == :baz
+    result[:option].should == 'baz'
+    result[:turd].should == 'nugget'
   end
 end

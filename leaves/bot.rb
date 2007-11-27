@@ -29,7 +29,11 @@ class Bot < AutumnLeaf
     raise "leaf bot configuration doesn't have a :destination type for :active_sender [#{options[:active_sender]}]" unless options[:senders][options[:active_sender]]['destination']
     
     result = {}
-    options[:senders][options[:active_sender]].each_pair {|k,v| result[k.to_sym] = v.to_sym }
+    options[:senders][options[:active_sender]].each_pair do |k, v|
+      new_key = k.to_sym
+      new_val = new_key == :destination ? v.to_sym : v
+      result[new_key] = new_val
+    end
     result
   end
 end
