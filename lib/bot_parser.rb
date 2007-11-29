@@ -17,8 +17,8 @@ class BotParser
     { :title => md[1], :source => md[2], :caption => md[3] }
   end
   
-  register_format :video, %r{^\s*(http://(?:www\.)?youtube\.com/\S+\?\S+)(?:\s+(.*))?$}i do |md, _|
-    { :embed => md[1], :caption => md[2] }
+  register_format :video, %r{^\s*(?:(.*?)\s+)?(http://(?:www\.)?youtube\.com/\S+\?\S+)(?:\s+(.*))?$}i do |md, _|
+    { :title => md[1], :embed => md[2], :caption => md[3] }
   end
   
   register_format :quote, /^\s*"([^"]+)"\s+--\s*(.*)\s+\((https?:.*)\)$/i do |md, _|
