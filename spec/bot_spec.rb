@@ -158,30 +158,48 @@ describe Bot, '!help command' do
     lambda { @bot.help_command('sender') }.should raise_error(ArgumentError)
   end
   
-  should 'require text' do
+  should 'require format' do
     lambda { @bot.help_command('sender', 'channel') }.should raise_error(ArgumentError)
   end
   
-  should 'accept sender, channel, and text' do
-    lambda { @bot.help_command('sender', 'channel', 'text') }.should_not raise_error(ArgumentError)
+  should 'accept sender, channel, and format' do
+    lambda { @bot.help_command('sender', 'channel', 'format') }.should_not raise_error(ArgumentError)
   end
   
   should 'get formats from parser' do
     BotParser.expects(:formats).returns([])
-    @bot.help_command('sender', 'channel', 'text')
+    @bot.stubs(:respond)
+    @bot.help_command('sender', 'channel', 'format')
   end
   
-  should 'respond with format descriptions' do
-    formats = Array.new(3) { |i|  stub("format #{i}", :name => "format_#{i}".to_sym, :description => "This explains format #{i}") }
+  should 'respond with format list if no format specified' do
+    formats = Array.new(3) { |i|  stub("format #{i}", :name => "format_#{i}".to_sym) }
     BotParser.stubs(:formats).returns(formats)
-    formats.each { |f|  @bot.expects(:respond).with("#{f.name}: #{f.description}", 'channel') }
-    @bot.help_command('sender', 'channel', 'text')
+    @bot.expects(:respond).with("Known formats: #{formats.collect { |f|  f.name }.join(', ')}", 'channel')
+    @bot.help_command('sender', 'channel', nil)
   end
   
-  should 'indicate missing descriptions' do
-    formats = Array.new(1) { |i|  stub("format #{i}", :name => "format_#{i}".to_sym, :description => nil) }
+  should 'respond with format description if format specified' do
+    formats = Array.new(3) { |i|  stub("format #{i}", :name => "format_#{i}".to_sym, :description => "Description for format #{i}") }
     BotParser.stubs(:formats).returns(formats)
-    formats.each { |f|  @bot.expects(:respond).with("#{f.name}: no description available", 'channel') }
-    @bot.help_command('sender', 'channel', 'text')
+    wanted_format = formats[1]
+    @bot.expects(:respond).with("#{wanted_format.name}: #{wanted_format.description}", 'channel')
+    @bot.help_command('sender', 'channel', wanted_format.name.to_s)
+  end
+  
+  should 'indicate an unspecified format description' do
+    formats = Array.new(3) { |i|  stub("format #{i}", :name => "format_#{i}".to_sym, :description => nil) }
+    BotParser.stubs(:formats).returns(formats)
+    wanted_format = formats[1]
+    @bot.expects(:respond).with("#{wanted_format.name}: no description available", 'channel')
+    @bot.help_command('sender', 'channel', wanted_format.name.to_s)
+  end
+  
+  should 'indicate an unknown format' do
+    formats = Array.new(3) { |i|  stub("format #{i}", :name => "format_#{i}".to_sym, :description => "Description for format #{i}") }
+    BotParser.stubs(:formats).returns(formats)
+    wanted_format = 'turdnugget'
+    @bot.expects(:respond).with("Format '#{wanted_format}' unknown", 'channel')
+    @bot.help_command('sender', 'channel', wanted_format)
   end
 end

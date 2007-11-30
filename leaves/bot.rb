@@ -23,8 +23,16 @@ class Bot < AutumnLeaf
   end
   
   def help_command(sender, channel, text)
-    BotParser.formats.each do |f|
-      respond("#{f.name}: #{f.description || 'no description available'}", channel)
+    formats = BotParser.formats
+    if text
+      format = formats.detect { |f|  f.name == text.to_sym }
+      if format
+        respond("#{format.name}: #{format.description || 'no description available'}", channel)
+      else
+        respond("Format '#{text}' unknown", channel)
+      end
+    else
+      respond("Known formats: #{formats.collect { |f|  f.name }.join(', ')}", channel)
     end
   end
   
