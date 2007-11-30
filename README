@@ -1,13 +1,13 @@
 = nihilist bot
 
-IRC robot designed to post to a Tumblelog.  Utilizes Autumn-Leaves IRC bot library.
+IRC robot designed to post to a Tumblelog.  Uses Autumn-Leaves IRC bot library.
 Currently can send to tumblr.com sites.  Site posting back-ends are pluggable.
 
 Rick Bradley (rick@rickbradley.com)
 
 TODO:
- - factor out the last config options from the Sender setup (should read from YAML file); make an example config file so we can ignore the real one in version control
+- diagnose: what is the problem with trying to start with the big-switch.rb command.  Currently start with 'ruby genesis.rb'
  - make the BotSender subclasses register automatically by discovery.
- - add some sort of help command
- - diagnose: what is the problem with trying to start with the big-switch.rb command.  Currently start with 'ruby genesis.rb'
  - add more BotSender targets
+ - add descriptions for formats
+ - make the BotFilter classes register automatically by discovery
