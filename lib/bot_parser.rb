@@ -50,14 +50,9 @@ class BotParser
     
     common = { :poster => sender, :channel => channel }
     
-    # This is bunk, but I'm tired and can't think of the right way to do this
-    # I was trying formats.detect, but that just returns the format, not the result
     result = nil
-    formats.each do |f|
-      result = f.process(mesg)
-      break if result
-    end
-    
+    formats.detect { |f|  result = f.process(mesg) }
+        
     return nil unless result
     
     result = common.merge(result)
