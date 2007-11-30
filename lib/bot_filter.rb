@@ -46,3 +46,6 @@ BotFilter.register(:poster_info => BotFilter::PosterInfo)
 
 require 'filters/ignore_nicks'
 BotFilter.register(:ignore_nicks => BotFilter::IgnoreNicks)
+
+require 'filters/ignore_patterns'
+BotFilter.register(:ignore_patterns => BotFilter::IgnorePatterns)
