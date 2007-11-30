@@ -18,6 +18,10 @@ describe BotParserFormat, 'when initializing' do
     lambda { BotParserFormat.new(:format_name, /format/) {} }.should_not raise_error(ArgumentError)
   end
   
+  should 'accept a name, format, description, and block' do
+    lambda { BotParserFormat.new(:format_name, /format/, 'description') {} }.should_not raise_error(ArgumentError)
+  end
+  
   should 'store the name' do
     format = BotParserFormat.new(:format_name, /format/) {}
     format.name.should == :format_name
@@ -32,6 +36,11 @@ describe BotParserFormat, 'when initializing' do
     block = lambda {}
     format = BotParserFormat.new(:format_name, /format/, &block)
     format.block.should == block
+  end
+  
+  should 'store the description' do
+    format = BotParserFormat.new(:format_name, /format/, 'description') {}
+    format.description.should == 'description'
   end
 end
 

@@ -201,6 +201,10 @@ describe BotParser do
 end
 
 describe BotParser, 'when registering formats' do
+  before :each do
+    BotParser.clear_formats
+  end
+  
   should 'require a format name' do
     lambda { BotParser.register_format }.should raise_error(ArgumentError)
   end
@@ -214,17 +218,28 @@ describe BotParser, 'when registering formats' do
   end
   
   should 'accept a format name, format, and block' do
-    lambda { BotParser.register_format(:format_name, /format/) {} }.should_not raise_error
+    lambda { BotParser.register_format(:format_name, /format/) {} }.should_not raise_error(ArgumentError)
+  end
+  
+  should 'accept a format name, format, description, and block' do
+    lambda { BotParser.register_format(:format_name, /format/, 'description') {} }.should_not raise_error(ArgumentError)
   end
   
   should 'provide access to formats' do
     BotParser.should respond_to(:formats)
   end
   
+  should 'provide a way to clear formats' do
+    BotParser.register_format(:format_name, /format/) {}
+    BotParser.formats.should_not be_empty
+    BotParser.clear_formats
+    BotParser.formats.should be_empty
+  end
+  
   should 'store given format' do
     block = lambda {}
-    BotParser.register_format(:format_name, /format/, &block)
-    format = BotParser.formats.detect { |f|  f.name == :format_name and f.format == /format/ and f.block == block }
-    BotParser.formats.should_not be_nil
+    BotParser.register_format(:format_name, /format/, 'description', &block)
+    format = BotParser.formats.detect { |f|  f.name == :format_name and f.format == /format/ and f.description == 'description' and f.block == block }
+    format.should_not be_nil
   end
 end

@@ -1,12 +1,13 @@
 class BotParserFormat
-  attr_reader :name, :format, :block
+  attr_reader :name, :format, :block, :description
   
-  def initialize(name, format, &block)
+  def initialize(name, format, description = nil, &block)
     raise ArgumentError, 'Block needed' if block.nil?
     
     @name   = name
     @format = format
     @block  = block
+    @description = description
   end
   
   def process(text)

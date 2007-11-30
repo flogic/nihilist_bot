@@ -6,8 +6,12 @@ class BotParser
   class << self
     attr_reader :formats
     
-    def register_format(format_name, format, &block)
-      formats << BotParserFormat.new(format_name, format, &block)
+    def register_format(*args, &block)
+      formats << BotParserFormat.new(*args, &block)
+    end
+    
+    def clear_formats
+      @formats = []
     end
   end
   
