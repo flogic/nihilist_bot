@@ -30,7 +30,7 @@ class BotParser
   end
   
   register_format :link, %r{^\s*(?:(.*?)\s+)?(https?://\S+)\s*(?:\s+(\S.*))?$}i do |md, _|
-      { :url => md[2], :name => md[1], :description => md[3] }
+      { :name => md[1], :url => md[2], :description => md[3] }
   end
   
   register_format :fact, %r{^\s*fact:\s+(.*)}i do |md, _|
