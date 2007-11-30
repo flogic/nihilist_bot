@@ -150,14 +150,14 @@ describe BotParser do
     result[:caption].should match(/Robot Chicken/)
   end
   
-  should 'recognize an vieo link with a title' do
+  should 'recognize a video link with a title' do
     result = @parser.parse('rick', 't3hchannel', 'Video of the day http://youtube.com/watch?v=uwEXywdSpNQ')
     result[:type].should == :video
     result[:embed].should == 'http://youtube.com/watch?v=uwEXywdSpNQ'
     result[:title].should == 'Video of the day'
   end
   
-  should 'recognize an vieo link with a title' do
+  should 'recognize a video link with a title' do
     result = @parser.parse('rick', 't3hchannel', 'Video of the day http://youtube.com/watch?v=uwEXywdSpNQ Robot Chicken')
     result[:type].should == :video
     result[:embed].should == 'http://youtube.com/watch?v=uwEXywdSpNQ'
