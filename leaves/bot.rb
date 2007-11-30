@@ -22,6 +22,12 @@ class Bot < AutumnLeaf
     message(mesg, channel) if mesg
   end
   
+  def help_command(sender, channel, text)
+    BotParser.formats.each do |f|
+      respond("#{f.name}: #{f.description || 'no description available'}", channel)
+    end
+  end
+  
   def sender_configuration
     raise "leaf bot configuration should include an :active_sender option" unless options[:active_sender] 
     raise "leaf bot configuration should include a list of :senders" unless options[:senders] 

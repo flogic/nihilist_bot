@@ -76,6 +76,10 @@ describe Bot do
     @bot.should_not respond_to(:foo_command)
   end
   
+  should 'respond to !help' do
+    @bot.should respond_to(:help_command)
+  end
+  
   should "should not send a message to the channel when responding with an empty message" do
     @bot.expects(:message).never
     @bot.respond(nil, "channel")
@@ -138,5 +142,46 @@ describe Bot, 'giving the sender configuration' do
     result[:destination].should == :bar
     result[:option].should == 'baz'
     result[:turd].should == 'nugget'
+  end
+end
+
+describe Bot, '!help command' do
+  before :each do
+    @bot = Bot.new
+  end
+  
+  should 'require sender' do
+    lambda { @bot.help_command }.should raise_error(ArgumentError)
+  end
+  
+  should 'require channel' do
+    lambda { @bot.help_command('sender') }.should raise_error(ArgumentError)
+  end
+  
+  should 'require text' do
+    lambda { @bot.help_command('sender', 'channel') }.should raise_error(ArgumentError)
+  end
+  
+  should 'accept sender, channel, and text' do
+    lambda { @bot.help_command('sender', 'channel', 'text') }.should_not raise_error(ArgumentError)
+  end
+  
+  should 'get formats from parser' do
+    BotParser.expects(:formats).returns([])
+    @bot.help_command('sender', 'channel', 'text')
+  end
+  
+  should 'respond with format descriptions' do
+    formats = Array.new(3) { |i|  stub("format #{i}", :name => "format_#{i}".to_sym, :description => "This explains format #{i}") }
+    BotParser.stubs(:formats).returns(formats)
+    formats.each { |f|  @bot.expects(:respond).with("#{f.name}: #{f.description}", 'channel') }
+    @bot.help_command('sender', 'channel', 'text')
+  end
+  
+  should 'indicate missing descriptions' do
+    formats = Array.new(1) { |i|  stub("format #{i}", :name => "format_#{i}".to_sym, :description => nil) }
+    BotParser.stubs(:formats).returns(formats)
+    formats.each { |f|  @bot.expects(:respond).with("#{f.name}: no description available", 'channel') }
+    @bot.help_command('sender', 'channel', 'text')
   end
 end
