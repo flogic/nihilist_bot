@@ -102,6 +102,18 @@ describe BotFilter::LinkTitle do
     result = @filter.process({:url => @url, :type => :link})
     result[:name].should == title
   end
+  
+  should 'populate title from uppercased HTML title tag' do
+    title = 'Yahoo is the bomb'
+    html = %Q[<html>
+                <head><TITLE>#{title}</TITLE></head>
+                <body></body>
+              </html>]
+    f = stub('fh', :read => html)
+    @filter.stubs(:open).yields(f)
+    result = @filter.process({:url => @url, :type => :link})
+    result[:name].should == title
+  end
 
   # Uncomment test if you want to test with a network connection
   # should 'work if there is a network connection' do
