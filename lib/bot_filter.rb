@@ -35,8 +35,8 @@ class BotFilter
     end
     
     def locate_filters(options)
-      if options and options['active_filters']
-        options['active_filters'].each do |filter|
+      if options and options[:active_filters]
+        options[:active_filters].each do |filter|
           register_filter(filter)
         end
       end
@@ -44,13 +44,14 @@ class BotFilter
     end
     
     def filter_path(name)
-      File.expand_path(File.dirname(__FILE__)+"/../filters/#{name}.rb")
+      File.expand_path(File.dirname(__FILE__)+"/../lib/filters/#{name}.rb")
     end
     
     def register_filter(name)
       path = filter_path(name)
       raise ArgumentError, "Could not find source code for filter [#{name}] in [#{path}]" unless File.exists? path
       load(path)
+      register(name)
     end
   end
   

@@ -79,7 +79,7 @@ describe BotFilter, "when locating filters" do
   end
   
   should "register an individual filter" do
-    options = { 'active_filters' => [ 'foo', 'bar' ] }
+    options = { :active_filters => [ 'foo', 'bar' ] }
     BotFilter.expects(:register_filter).with('foo')
     BotFilter.expects(:register_filter).with('bar')
     BotFilter.locate_filters options
@@ -97,11 +97,18 @@ describe BotFilter, "when registering a filter" do
     BotFilter.expects(:load).with(__FILE__)
     BotFilter.register_filter 'foo'
   end
+  
+  should "register the filter" do
+    BotFilter.stubs(:filter_path).returns(__FILE__)
+    BotFilter.stubs(:load)
+    BotFilter.expects(:register).with('foo')
+    BotFilter.register_filter 'foo'
+  end
 end
 
 describe BotFilter, "when computing a filter path" do
   should "look in the filters directory" do
-    filter_path = File.expand_path(File.dirname(__FILE__) + '/../filters/')
+    filter_path = File.expand_path(File.dirname(__FILE__) + '/../lib/filters/')
     File.expand_path(BotFilter.filter_path('foo')).should match(Regexp.new('^' + Regexp.escape(filter_path)))
   end
   
