@@ -2,12 +2,14 @@
 
 IRC robot designed to post to a Tumblelog.  Uses Autumn-Leaves IRC bot library.
 Currently can send to tumblr.com sites.  Site posting back-ends are pluggable.
+Filters are pluggable.
 
 Rick Bradley (rick@rickbradley.com)
 
 TODO:
-- diagnose: what is the problem with trying to start with the big-switch.rb command.  Currently start with 'ruby genesis.rb'
- - make the BotSender subclasses register automatically by discovery.
- - add more BotSender targets
+
+ - make parser formats into discoverable subclasses(?) ... may need to implement ordering
  - add descriptions for formats
- - make the BotFilter classes register automatically by discovery
+ - add more BotSender targets
+ - make the BotSender subclasses register automatically by discovery.
+ - diagnose: what is the problem with trying to start with the big-switch.rb command.  Currently start with 'ruby genesis.rb'
