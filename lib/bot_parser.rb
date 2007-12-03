@@ -33,11 +33,13 @@ class BotParser
       { :name => md[1], :url => md[2], :description => md[3] }
   end
   
-  register_format :fact, %r{^\s*fact:\s+(.*)}i do |md, _|
+  register_format :fact, %r{^\s*fact:\s+(.*)}i,
+  %Q['fact: Zed Shaw doesn't do pushups, he pushes the earth down'] do |md, _|
     { :title => "FACT: #{md[1]}" }
   end
   
-  register_format :true_or_false, %r{^\s*(?:(?:true\s+or\s+false)|(?:t\s+or\s+f))\s*[:\?]\s+(.*)}i do |md, _|
+  register_format :true_or_false, %r{^\s*(?:(?:true\s+or\s+false)|(?:t\s+or\s+f))\s*[:\?]\s+(.*)}i,
+  %Q['T or F: the human body has more than one sphincter'] do |md, _|
     { :title => "True or False?  #{md[1]}" }
   end
   

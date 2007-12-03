@@ -42,6 +42,20 @@ describe BotParserFormat, 'when initializing' do
     format = BotParserFormat.new(:format_name, /format/, 'description') {}
     format.description.should == 'description'
   end
+  
+  should 'accept multiple descriptions' do
+    lambda { BotParserFormat.new(:format_name, /format/, 'desc 1', 'desc 2', 'desc 3') {} }.should_not raise_error(ArgumentError)
+  end
+  
+  should 'return the descriptions joined with newlines' do
+    format = BotParserFormat.new(:format_name, /format/, 'desc 1', 'desc 2', 'desc 3') {}
+    format.description.should == "desc 1\ndesc 2\ndesc 3"
+  end
+  
+  should 'return nil if no description given' do
+    format = BotParserFormat.new(:format_name, /format/) {}
+    format.description.should be_nil
+  end
 end
 
 describe BotParserFormat, 'when processing' do
