@@ -12,8 +12,8 @@ class BotFilter
       @@kinds
     end
     
-    def register(args = {})
-      args.each_pair { |k, v|  @@kinds << k }
+    def register(name)
+      @@kinds << name
     end
     
     def clear_kinds
@@ -41,16 +41,16 @@ class BotFilter
 end
 
 require 'filters/link_name_cleanup'
-BotFilter.register(:link_name_cleanup => BotFilter::LinkNameCleanup)
+BotFilter.register(:link_name_cleanup)
 
 require 'filters/link_title'
-BotFilter.register(:link_title => BotFilter::LinkTitle)
+BotFilter.register(:link_title)
 
 require 'filters/poster_info'
-BotFilter.register(:poster_info => BotFilter::PosterInfo)
+BotFilter.register(:poster_info)
 
 require 'filters/ignore_nicks'
-BotFilter.register(:ignore_nicks => BotFilter::IgnoreNicks)
+BotFilter.register(:ignore_nicks)
 
 require 'filters/ignore_patterns'
-BotFilter.register(:ignore_patterns => BotFilter::IgnorePatterns)
+BotFilter.register(:ignore_patterns)

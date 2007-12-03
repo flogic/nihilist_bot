@@ -3,8 +3,7 @@ require 'bot_filter'
 
 describe BotFilter, 'as a class' do
   should 'provide a way to register a new filter' do
-    mock_class = mock('BotFilter subclass')
-    BotFilter.register(:filt => mock_class)
+    BotFilter.register(:filt)
     BotFilter.kinds.should include(:filt)
   end
   
@@ -13,17 +12,15 @@ describe BotFilter, 'as a class' do
   end
   
   should 'provide a way to clear the list of known filters' do
-    mock_class = mock('BotFilter subclass')
-    BotFilter.register(:testing => mock_class)
+    BotFilter.register(:testing)
     BotFilter.kinds.should include(:testing)
     BotFilter.clear_kinds
     BotFilter.kinds.should be_empty
   end
   
   should 'provide the list of known filters in registration order' do
-    mock_class = mock('BotFilter subclass')
     kinds = [:filt, :test, :blah, :stuff, :hello]
-    kinds.each { |kind|  BotFilter.register(kind => mock_class) }
+    kinds.each { |kind|  BotFilter.register(kind) }
     BotFilter.kinds.should == kinds
   end
   
@@ -59,20 +56,17 @@ def setup_filter_chain
   @options = stub('options')
   @filter.stubs(:options).returns(@options)
   @data = %w[a b c d e]
-  @filters = Array.new(@data.size - 1) { |i|  { "name_#{@data[i]}".to_sym => stub("class #{@data[i]}") } }
+  @filters = Array.new(@data.size - 1) { |i|  "name_#{@data[i]}".to_sym }
   @objects = []
   @filters.each_index do |i|
+    filter = stub('filter')
     name = "name_#{@data[i]}".to_sym
-    filter = @filters[i][name]
     obj = stub('object #{@data[i]}')
     @objects.push(obj)
     obj.stubs(:process).with(@data[i]).returns(@data[i+1])
     filter.stubs(:new).with(@options).returns(obj)
     BotFilter.stubs(:get).with(name).returns(filter)
-  end
-  
-  @filters.each do |f|
-    f.each_pair { |k, v|  BotFilter.register(k => v) }
+    BotFilter.register(name)
   end
 end
 
