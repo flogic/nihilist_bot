@@ -13,11 +13,11 @@ describe Bot do
     @mock_sender = stub('sender')
     @mock_filter = stub('filter')
     @mock_result = {}
-    BotParser.stubs(:new).returns(@mock_parser)
-    BotSender.stubs(:new).returns(@mock_sender)
-    BotFilter.stubs(:new).returns(@mock_filter)
     @bot = Bot.new
     @bot.stubs(:sender_configuration).returns({})
+    @bot.stubs(:parser).returns(@mock_parser)
+    @bot.stubs(:sender).returns(@mock_sender)
+    @bot.stubs(:filter).returns(@mock_filter)
   end
   
   should "pass channel messages to a parser for identification" do
@@ -86,23 +86,24 @@ describe Bot do
   end
   
   should "look up options for sender" do
-    @mock_parser.stubs(:parse).returns(@mock_result)
-    @mock_sender.stubs(:deliver).returns(@mock_result)
-    @mock_filter.stubs(:process).returns(@mock_result)
-    @bot.stubs(:respond).returns(@mock_result)
     @bot.expects(:sender_configuration)
-    @bot.did_receive_channel_message('bob', 'foochat', "what's up, bitches???")
+    BotSender.stubs(:new)
+    @bot.did_start_up
+  end
+  
+  should "pass sender config to sender" do
+    config = stub('config')
+    @bot.stubs(:sender_configuration).returns(config)
+    BotSender.expects(:new).with(config)
+    @bot.did_start_up
   end
   
   should 'pass options to filter' do
     options = stub('options')
     @bot.stubs(:options).returns(options)
-    @mock_parser.stubs(:parse).returns(@mock_result)
-    @mock_sender.stubs(:deliver).returns(@mock_result)
-    BotFilter.expects(:new).with(options).returns(@mock_filter)
-    @mock_filter.stubs(:process).returns(@mock_result)
-    @bot.stubs(:respond).returns(@mock_result)
-    @bot.did_receive_channel_message('bob', 'foochat', "what's up, bitches???")
+    BotFilter.expects(:new).with(options)
+    BotSender.stubs(:new)
+    @bot.did_start_up
   end
 end
 

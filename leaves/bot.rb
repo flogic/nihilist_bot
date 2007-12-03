@@ -6,16 +6,20 @@ require 'bot_filter'
 
 class Bot < AutumnLeaf
   attr_reader :options
+  attr_reader :parser, :sender, :filter
+  
+  def did_start_up
+    @parser = BotParser.new
+    @sender = BotSender.new(sender_configuration)
+    @filter = BotFilter.new(options)
+  end
   
   self.instance_methods.select {|meth| meth.to_s =~ /_command$/ }.each {|meth| undef_method(meth) }
   
-  def did_receive_channel_message(sender, channel, mesg)
-    bot_parser = BotParser.new
-    bot_sender = BotSender.new(sender_configuration)
-    bot_filter = BotFilter.new(options)
-    result = bot_parser.parse(sender, channel, mesg)
-    result = bot_filter.process(result) if result
-    respond(bot_sender.deliver(result), channel) if result
+  def did_receive_channel_message(name, channel, mesg)
+    result = parser.parse(name, channel, mesg)
+    result = filter.process(result) if result
+    respond(sender.deliver(result), channel) if result
   end
   
   def respond(mesg, channel)
