@@ -5,19 +5,19 @@ class BotFilter
     @options = options
   end
   
-  @@kinds = {}
+  @@kinds = []
   
   class << self
     def kinds
-      @@kinds.keys.sort_by { |k|  k.to_s }
+      @@kinds
     end
     
     def register(args = {})
-      args.each_pair { |k, v|  @@kinds[k] = v }
+      args.each_pair { |k, v|  @@kinds << k }
     end
     
     def clear_kinds
-      @@kinds = {}
+      @@kinds = []
     end
     
     def get(ident)
@@ -30,7 +30,7 @@ class BotFilter
     result = data
     self.class.kinds.each do |k|
       if result
-        result = @@kinds[k].new(options).process(result)
+        result = BotFilter.get(k).new(options).process(result)
       else
         result = nil
         break

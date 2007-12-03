@@ -20,11 +20,11 @@ describe BotFilter, 'as a class' do
     BotFilter.kinds.should be_empty
   end
   
-  should 'provide the list of known filters in a stable order' do
+  should 'provide the list of known filters in registration order' do
     mock_class = mock('BotFilter subclass')
     kinds = [:filt, :test, :blah, :stuff, :hello]
     kinds.each { |kind|  BotFilter.register(kind => mock_class) }
-    BotFilter.kinds.should == kinds.sort_by { |k|  k.to_s }
+    BotFilter.kinds.should == kinds
   end
   
   should 'provide a way to retrieve a filter class from a name' do
@@ -68,6 +68,7 @@ def setup_filter_chain
     @objects.push(obj)
     obj.stubs(:process).with(@data[i]).returns(@data[i+1])
     filter.stubs(:new).with(@options).returns(obj)
+    BotFilter.stubs(:get).with(name).returns(filter)
   end
   
   @filters.each do |f|
