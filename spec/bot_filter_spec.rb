@@ -31,12 +31,16 @@ describe BotFilter, 'as a class' do
   end
 end
 
-describe BotFilter do
-  should 'accept options on initialization' do
+describe BotFilter, "on initialization" do
+  before(:each) do
+    BotFilter.clear_kinds
+  end
+  
+  should 'accept options' do
     lambda { BotFilter.new(stub('options')) }.should_not raise_error(ArgumentError)
   end
   
-  should 'not require options on initialization' do
+  should 'not require options' do
     lambda { BotFilter.new }.should_not raise_error(ArgumentError)
   end
   
@@ -50,6 +54,28 @@ describe BotFilter do
     filter = BotFilter.new
     filter.options.should == {}
   end
+  
+  should "look for filters" do
+    BotFilter.expects(:locate_filters)
+    BotFilter.new
+  end
+  
+  should "not look for filters more than once" do
+    BotFilter.new
+    BotFilter.expects(:locate_filters).never
+    BotFilter.new
+  end
+  
+  should "register any filters named in the filter options"
+  
+  should "fail when a filter to be registered cannot be found"
+  
+  should "register filters in the order they appear in the filter options"
+end
+
+describe BotFilter, "when registering a filter" do
+  should "load the filter file"
+  should "make the filter avilable"
 end
 
 def setup_filter_chain

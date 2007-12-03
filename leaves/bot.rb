@@ -14,7 +14,7 @@ class Bot < AutumnLeaf
     @filter = BotFilter.new(options)
   end
   
-  self.instance_methods.select {|meth| meth.to_s =~ /_command$/ }.each {|meth| undef_method(meth) }
+  instance_methods.select {|meth| meth.to_s =~ /_command$/ }.each {|meth| undef_method(meth) }
   
   def did_receive_channel_message(name, channel, mesg)
     result = parser.parse(name, channel, mesg)
