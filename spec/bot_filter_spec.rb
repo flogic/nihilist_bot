@@ -45,7 +45,7 @@ describe BotFilter, "on initialization" do
   end
   
   should 'store options' do
-    options = stub('options')
+    options = { :foo => :bar }
     filter = BotFilter.new(options)
     filter.options.should == options
   end
@@ -66,20 +66,52 @@ describe BotFilter, "on initialization" do
     BotFilter.new
   end
   
-  should "register any filters named in the filter options"
+  should "register any active filters named in the filter options" do
+    options = { 'active_filters' => [ 'foo', 'bar' ] }
+    BotFilter.expects(:locate_filters).with(options)
+    BotFilter.new(options)
+  end
+end
+
+describe BotFilter, "when locating filters" do
+  should "not fail when no active filters are specified" do
+    lambda { BotFilter.locate_filters({}) }.should_not raise_error
+  end
   
-  should "fail when a filter to be registered cannot be found"
-  
-  should "register filters in the order they appear in the filter options"
+  should "register an individual filter" do
+    options = { 'active_filters' => [ 'foo', 'bar' ] }
+    BotFilter.expects(:register_filter).with('foo')
+    BotFilter.expects(:register_filter).with('bar')
+    BotFilter.locate_filters options
+  end
 end
 
 describe BotFilter, "when registering a filter" do
-  should "load the filter file"
-  should "make the filter avilable"
+  should "fail when a filter to be registered cannot be found" do
+    BotFilter.stubs(:filter_path).returns('gobbeldygook')
+    lambda { BotFilter.register_filter 'foo' }.should raise_error
+  end
+  
+  should "load the filter file" do
+    BotFilter.stubs(:filter_path).returns(__FILE__)
+    BotFilter.expects(:load).with(__FILE__)
+    BotFilter.register_filter 'foo'
+  end
+end
+
+describe BotFilter, "when computing a filter path" do
+  should "look in the filters directory" do
+    filter_path = File.expand_path(File.dirname(__FILE__) + '/../filters/')
+    File.expand_path(BotFilter.filter_path('foo')).should match(Regexp.new('^' + Regexp.escape(filter_path)))
+  end
+  
+  should "look for a ruby file with the same name as the filter" do
+    BotFilter.filter_path('foo_bar').should match(%r{/foo_bar\.rb$})
+  end
 end
 
 def setup_filter_chain
-  @options = stub('options')
+  @options = { :foo => :bar }
   @filter.stubs(:options).returns(@options)
   @data = %w[a b c d e]
   @filters = Array.new(@data.size - 1) { |i|  "name_#{@data[i]}".to_sym }

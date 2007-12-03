@@ -10,7 +10,7 @@ class BotFilter
   
   class << self
     def new(options = {})
-      locate_filters unless @@filters_registered
+      locate_filters(options) unless @@filters_registered
       obj = allocate
       obj.send :initialize, options
       obj
@@ -34,8 +34,23 @@ class BotFilter
       const_get(name)
     end
     
-    def locate_filters
+    def locate_filters(options)
+      if options and options['active_filters']
+        options['active_filters'].each do |filter|
+          register_filter(filter)
+        end
+      end
       @@filters_registered = true
+    end
+    
+    def filter_path(name)
+      File.expand_path(File.dirname(__FILE__)+"/../filters/#{name}.rb")
+    end
+    
+    def register_filter(name)
+      path = filter_path(name)
+      raise ArgumentError, "Could not find source code for filter [#{name}] in [#{path}]" unless File.exists? path
+      load(path)
     end
   end
   
@@ -51,9 +66,4 @@ class BotFilter
     end
     result
   end
-end
-
-[:link_name_cleanup, :link_title, :poster_info, :ignore_nicks, :ignore_patterns].each do |filter|
-  require "filters/#{filter}"
-  BotFilter.register(filter)
 end
