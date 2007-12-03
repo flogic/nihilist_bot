@@ -40,17 +40,7 @@ class BotFilter
   end
 end
 
-require 'filters/link_name_cleanup'
-BotFilter.register(:link_name_cleanup)
-
-require 'filters/link_title'
-BotFilter.register(:link_title)
-
-require 'filters/poster_info'
-BotFilter.register(:poster_info)
-
-require 'filters/ignore_nicks'
-BotFilter.register(:ignore_nicks)
-
-require 'filters/ignore_patterns'
-BotFilter.register(:ignore_patterns)
+[:link_name_cleanup, :link_title, :poster_info, :ignore_nicks, :ignore_patterns].each do |filter|
+  require "filters/#{filter}"
+  BotFilter.register(filter)
+end
