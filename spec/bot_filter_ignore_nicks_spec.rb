@@ -15,10 +15,10 @@ describe BotFilter::IgnoreNicks do
     lambda { BotFilter::IgnoreNicks.new }.should_not raise_error(ArgumentError)
   end
   
-  should 'store options' do
-    options = stub('options')
+  should 'store options for this filter' do
+    options = { :filters => { 'ignore_nicks' => { :turd => :nugget } } }
     filter = BotFilter::IgnoreNicks.new(options)
-    filter.options.should == options
+    filter.options.should == { :turd => :nugget }
   end
   
   should 'default options to empty hash' do
@@ -82,7 +82,7 @@ end
 describe BotFilter::IgnoreNicks, 'when initialized' do
   should 'set the nick list from the given options' do
     nick_list = stub('nick list')
-    options = { :data => 'puppies', :ignore => { 'nicks' => nick_list }}
+    options = { :filters => { 'ignore_nicks' => { 'nicks' => nick_list } } }
     BotFilter::IgnoreNicks.expects(:nick_list=).with(nick_list)
     BotFilter::IgnoreNicks.new(options)
   end

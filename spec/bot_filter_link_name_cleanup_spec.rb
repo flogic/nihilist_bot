@@ -15,10 +15,10 @@ describe BotFilter::LinkNameCleanup do
     lambda { BotFilter::LinkNameCleanup.new }.should_not raise_error(ArgumentError)
   end
   
-  should 'store options' do
-    options = stub('options')
+  should 'store options for this filter' do
+    options = { :filters => { 'link_name_cleanup' => { :turd => :nugget } } }
     filter = BotFilter::LinkNameCleanup.new(options)
-    filter.options.should == options
+    filter.options.should == { :turd => :nugget }
   end
   
   should 'default options to empty hash' do

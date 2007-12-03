@@ -16,10 +16,10 @@ describe BotFilter::LinkTitle do
     lambda { BotFilter::LinkTitle.new }.should_not raise_error(ArgumentError)
   end
   
-  should 'store options' do
-    options = stub('options')
+  should 'store options for this filter' do
+    options = { :filters => { 'link_title' => { :turd => :nugget } } }
     filter = BotFilter::LinkTitle.new(options)
-    filter.options.should == options
+    filter.options.should == { :turd => :nugget }
   end
   
   should 'default options to empty hash' do
@@ -120,4 +120,5 @@ describe BotFilter::LinkTitle do
   #   result = @filter.process({:url => 'http://ni.hili.st' })
   #   result[:title].should == 'ni.hili.st'
   # end
+
 end

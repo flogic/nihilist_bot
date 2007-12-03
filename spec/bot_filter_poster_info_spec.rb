@@ -15,10 +15,10 @@ describe BotFilter::PosterInfo, 'adding poster info' do
     lambda { BotFilter::PosterInfo.new }.should_not raise_error(ArgumentError)
   end
   
-  should 'store options' do
-    options = stub('options')
+  should 'store options for this filter' do
+    options = { :filters => { 'poster_info' => { :turd => :nugget } } }
     filter = BotFilter::PosterInfo.new(options)
-    filter.options.should == options
+    filter.options.should == { :turd => :nugget }
   end
   
   should 'default options to empty hash' do

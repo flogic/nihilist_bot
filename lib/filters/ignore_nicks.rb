@@ -3,7 +3,7 @@ require File.join(File.dirname(__FILE__), 'template')
 class BotFilter::IgnoreNicks < BotFilter::Template
   def initialize(*args)
     super
-    self.class.nick_list = options[:ignore]['nicks'] rescue nil
+    self.class.nick_list = options['nicks'] rescue nil
   end
   
   def process(data)

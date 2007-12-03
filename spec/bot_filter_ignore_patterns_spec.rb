@@ -15,10 +15,10 @@ describe BotFilter::IgnorePatterns do
     lambda { BotFilter::IgnorePatterns.new }.should_not raise_error(ArgumentError)
   end
   
-  should 'store options' do
-    options = stub('options')
+  should 'store options for this filter' do
+    options = { :filters => { 'ignore_patterns' => { :turd => :nugget } } }
     filter = BotFilter::IgnorePatterns.new(options)
-    filter.options.should == options
+    filter.options.should == { :turd => :nugget }
   end
   
   should 'default options to empty hash' do
@@ -88,7 +88,7 @@ end
 describe BotFilter::IgnorePatterns, 'when initialized' do
   should 'set the pattern list from the given options' do
     pattern_list = stub('pattern list')
-    options = { :data => 'puppies', :ignore => { 'patterns' => pattern_list }}
+    options = { :filters => { 'ignore_patterns' => { 'patterns' => pattern_list } } }
     BotFilter::IgnorePatterns.expects(:pattern_list=).with(pattern_list)
     BotFilter::IgnorePatterns.new(options)
   end

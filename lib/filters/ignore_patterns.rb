@@ -3,7 +3,7 @@ require File.join(File.dirname(__FILE__), 'template')
 class BotFilter::IgnorePatterns < BotFilter::Template
   def initialize(*args)
     super
-    self.class.pattern_list = options[:ignore]['patterns'] rescue nil
+    self.class.pattern_list = options['patterns'] rescue nil
   end
   
   def process(data)
