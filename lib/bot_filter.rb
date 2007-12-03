@@ -19,6 +19,11 @@ class BotFilter
     def clear_kinds
       @@kinds = {}
     end
+    
+    def get(ident)
+      name = ident.to_s.gsub(/(?:^|_)([a-z])/) { $1.upcase }.to_sym
+      const_get(name)
+    end
   end
   
   def process(data)

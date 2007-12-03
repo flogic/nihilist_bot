@@ -26,6 +26,12 @@ describe BotFilter, 'as a class' do
     kinds.each { |kind|  BotFilter.register(kind => mock_class) }
     BotFilter.kinds.should == kinds.sort_by { |k|  k.to_s }
   end
+  
+  should 'provide a way to retrieve a filter class from a name' do
+    filter = stub('turd nugget filter')
+    BotFilter.expects(:const_get).with(:TurdNugget).returns(filter)
+    BotFilter.get(:turd_nugget).should == filter
+  end
 end
 
 describe BotFilter do
