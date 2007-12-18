@@ -247,14 +247,14 @@ describe BotSender::Tumblr, "when posting a fact" do
     @sender.do_fact(:title => 'FACT:  cardioid is a turd nugget', :body => 'word')
   end
 
-  should "set the fact title" do
+  should "set the title" do
     Net::HTTP.expects(:post_form).with do |url, args|
       args[:title] == 'FACT:  cardioid is a turd nugget'
     end
     @sender.do_fact(:title => 'FACT:  cardioid is a turd nugget', :body => 'word')
   end
   
-  should "set the fact body" do
+  should "set the body" do
     Net::HTTP.expects(:post_form).with do |url, args|
       args[:body] == 'word'
     end
@@ -308,7 +308,7 @@ describe BotSender::Tumblr, "when posting a true/false post" do
     @sender.do_true_or_false(:title => 'T or F: cardioid is still a turd nugget', :body => 'word')
   end
   
-  should "set the fact body" do
+  should "set the body" do
     Net::HTTP.expects(:post_form).with do |url, args|
       args[:body] == 'word'
     end
@@ -326,6 +326,53 @@ describe BotSender::Tumblr, "when posting a true/false post" do
     Net::HTTP.stubs(:post_form).returns('fake response')
     @sender.expects(:handle_response).returns("fake response")
     @sender.do_true_or_false(:title => 'T or F: cardioid is still a turd nugget', :body => 'word')
+  end
+end
+
+describe BotSender::Tumblr, "when posting a definition post" do
+  before(:each) do
+    setup_for_posting
+  end
+
+  should "authenticate with the email address and password" do
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:email] == @params[:email] and args[:password] == @params[:password]
+    end
+    @sender.do_definition(:title => 'Definition: tardulism: the ideology of the tard culture')
+  end
+
+  should "make a post to the post url" do
+    Net::HTTP.expects(:post_form).with do |url, args|
+      url == URI.parse(@params[:post_url])
+    end
+    @sender.do_definition(:title => 'Definition: tardulism: the ideology of the tard culture')
+  end
+
+  should "post a text item" do
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:type] == 'regular'
+    end
+    @sender.do_definition(:title => 'Definition: tardulism: the ideology of the tard culture')
+  end
+
+  should "set the title" do
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:title] == 'Definition: tardulism: the ideology of the tard culture'
+    end
+    @sender.do_definition(:title => 'Definition: tardulism: the ideology of the tard culture')
+  end
+  
+  should "handle empty arguments" do
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:title] == ''
+    end
+    @sender.do_definition()
+  end
+  
+  should "process the result to get a standard response" do
+    Net::HTTP.stubs(:post_form).returns('fake response')
+    @sender.expects(:handle_response).returns("fake response")
+    @sender.do_definition(:title => 'Definition: tardulism: the ideology of the tard culture')
   end
 end
 

@@ -56,6 +56,13 @@ class BotParser
     { :title => "True or False?  #{md[1]}" }
   end
   
+  register_format :definition, %r{^\s*defin(?:e|ition):?\s+(.*?)\s*(?:[:=]|as)\s*(.*)}i,
+  %q['Definition: tardulism: the ideology of the tard culture'],
+  %q['Definition: tardulism = the ideology of the tard culture'],
+  %q["define tardulism as the ideology of the tard culture"] do |md, _|
+    { :title => "DEFINITION: #{md[1]}: #{md[2]}" }
+  end
+  
   def parse(sender, channel, mesg)
     return nil if mesg.empty?
     

@@ -37,6 +37,7 @@ class BotSender::Tumblr < BotSender
   
   alias_method :do_fact, :do_text
   alias_method :do_true_or_false, :do_text
+  alias_method :do_definition, :do_text
 
   def do_image(args = {})
     caption = args[:source] ? %Q[#{args[:caption] || ''} <a href="#{args[:source]}">zoom</a>] : ''

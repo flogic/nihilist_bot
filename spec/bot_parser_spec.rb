@@ -195,6 +195,24 @@ describe BotParser do
     result[:title].should == "True or False?  the human body has more than one sphincter"        
   end
   
+  should "recognize a definition post" do
+    result = @parser.parse('rick', 't3hchannel', "definition: tardulism: the ideology of the tard culture")
+    result[:type].should == :definition
+    result[:title].should == "DEFINITION: tardulism: the ideology of the tard culture"
+  end
+  
+  should "recognize a definition post with ':' or '=' as a separator" do
+    result = @parser.parse('rick', 't3hchannel', "definition: tardulism = the ideology of the tard culture")
+    result[:type].should == :definition
+    result[:title].should == "DEFINITION: tardulism: the ideology of the tard culture"
+  end
+  
+  should "recognize a definition post with natural text" do
+    result = @parser.parse('rick', 't3hchannel', "define tardulism as the ideology of the tard culture")
+    result[:type].should == :definition
+    result[:title].should == "DEFINITION: tardulism: the ideology of the tard culture"
+  end
+  
   should "return nothing for an unrecognized message" do
     @parser.parse('rick', 't3hchannel', "This is some wack shizzle, m'nizzle.").should be_nil
   end
