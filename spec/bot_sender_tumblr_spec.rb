@@ -338,33 +338,40 @@ describe BotSender::Tumblr, "when posting a definition post" do
     Net::HTTP.expects(:post_form).with do |url, args|
       args[:email] == @params[:email] and args[:password] == @params[:password]
     end
-    @sender.do_definition(:title => 'Definition: tardulism: the ideology of the tard culture')
+    @sender.do_definition(:title => 'Definition: tardulism: the ideology of the tard culture', :body => 'word')
   end
 
   should "make a post to the post url" do
     Net::HTTP.expects(:post_form).with do |url, args|
       url == URI.parse(@params[:post_url])
     end
-    @sender.do_definition(:title => 'Definition: tardulism: the ideology of the tard culture')
+    @sender.do_definition(:title => 'Definition: tardulism: the ideology of the tard culture', :body => 'word')
   end
 
   should "post a text item" do
     Net::HTTP.expects(:post_form).with do |url, args|
       args[:type] == 'regular'
     end
-    @sender.do_definition(:title => 'Definition: tardulism: the ideology of the tard culture')
+    @sender.do_definition(:title => 'Definition: tardulism: the ideology of the tard culture', :body => 'word')
   end
 
   should "set the title" do
     Net::HTTP.expects(:post_form).with do |url, args|
       args[:title] == 'Definition: tardulism: the ideology of the tard culture'
     end
-    @sender.do_definition(:title => 'Definition: tardulism: the ideology of the tard culture')
+    @sender.do_definition(:title => 'Definition: tardulism: the ideology of the tard culture', :body => 'word')
+  end
+  
+  should "set the body" do
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:body] == 'word'
+    end
+    @sender.do_definition(:title => 'Definition: tardulism: the ideology of the tard culture', :body => 'word')
   end
   
   should "handle empty arguments" do
     Net::HTTP.expects(:post_form).with do |url, args|
-      args[:title] == ''
+      args[:title] == '' and args[:body] == ''
     end
     @sender.do_definition()
   end
@@ -372,7 +379,7 @@ describe BotSender::Tumblr, "when posting a definition post" do
   should "process the result to get a standard response" do
     Net::HTTP.stubs(:post_form).returns('fake response')
     @sender.expects(:handle_response).returns("fake response")
-    @sender.do_definition(:title => 'Definition: tardulism: the ideology of the tard culture')
+    @sender.do_definition(:title => 'Definition: tardulism: the ideology of the tard culture', :body => 'word')
   end
 end
 

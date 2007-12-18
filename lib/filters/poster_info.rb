@@ -17,7 +17,7 @@ class BotFilter::PosterInfo < BotFilter::Template
       data[key] += " #{poster_info}"
     else
       key = case data[:type]
-        when :fact, :true_or_false : :body
+        when :fact, :true_or_false, :definition : :body
       end
       
       data[key] = poster_info

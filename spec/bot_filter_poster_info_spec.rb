@@ -90,8 +90,14 @@ describe BotFilter::PosterInfo, 'adding poster info' do
     result[:body].should == '(posted by fred)'
   end
   
-  should 'set body for true_or_face' do
+  should 'set body for true_or_false' do
     hash = { :type => :true_or_false, :poster => 'fred', :body => 'test one two' }
+    result = @filter.process(hash)
+    result[:body].should == '(posted by fred)'
+  end
+  
+  should 'set body for definition' do
+    hash = { :type => :definition, :poster => 'fred', :body => 'test one two' }
     result = @filter.process(hash)
     result[:body].should == '(posted by fred)'
   end
