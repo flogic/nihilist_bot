@@ -24,4 +24,5 @@
     - ignore_patterns
     - link_name_cleanup
     - link_title
+    - link_entity_cleanup
     - poster_info
