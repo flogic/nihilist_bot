@@ -60,6 +60,6 @@ class Bot < AutumnLeaf
   end
   
   def address_required_channels
-    options[:address_required_channels] || []
+    (options[:address_required_channels] || []).collect { |channel| normalized_channel_name(channel) }
   end
 end

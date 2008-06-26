@@ -197,8 +197,13 @@ describe Bot, 'getting the address-required channels' do
   end
   
   it 'should return the channels marked as requiring addressing in the configuration' do
-    @bot.stubs(:options).returns({ :address_required_channels => %w[4chan 2chan redchan bluechan] })
-    @bot.address_required_channels.should == %w[4chan 2chan redchan bluechan]
+    @bot.stubs(:options).returns({ :address_required_channels => %w[#4chan #2chan #redchan #bluechan] })
+    @bot.address_required_channels.should == %w[#4chan #2chan #redchan #bluechan]
+  end
+  
+  it 'should ensure the channels have normalized names' do
+    @bot.stubs(:options).returns({ :address_required_channels => %w[#4chan &2chan +redchan !bluechan upchan downchan] })
+    @bot.address_required_channels.should == %w[#4chan &2chan +redchan !bluechan #upchan #downchan]
   end
   
   it 'should return an empty array if the configuration has no channels requiring addressing' do
