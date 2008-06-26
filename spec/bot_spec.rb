@@ -180,6 +180,13 @@ describe Bot, '!help command' do
     @bot.help_command('sender', 'channel', nil)
   end
   
+  it 'should respond with format list if empty format specified' do
+    formats = Array.new(3) { |i|  stub("format #{i}", :name => "format_#{i}".to_sym) }
+    BotParser.stubs(:formats).returns(formats)
+    @bot.expects(:respond).with("Known formats: #{formats.collect { |f|  f.name }.join(', ')}", 'channel')
+    @bot.help_command('sender', 'channel', '')
+  end
+  
   it 'should respond with format description if format specified' do
     formats = Array.new(3) { |i|  stub("format #{i}", :name => "format_#{i}".to_sym, :description => "Description for format #{i}") }
     BotParser.stubs(:formats).returns(formats)

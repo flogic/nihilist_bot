@@ -28,7 +28,7 @@ class Bot < AutumnLeaf
   
   def help_command(sender, channel, text)
     formats = BotParser.formats
-    if text
+    if text and !text.empty?
       format = formats.detect { |f|  f.name == text.to_sym }
       if format
         respond("#{format.name}: #{format.description || 'no description available'}", channel)
