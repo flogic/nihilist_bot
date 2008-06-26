@@ -19,7 +19,7 @@ class Bot < AutumnLeaf
   def did_receive_channel_message(name, channel, mesg)
     result = nil
     if address_required_channels.include?(channel)
-      return unless mesg.sub!(/^#{self.name}\s*:\s*/, '')
+      return unless mesg.sub!(/^#{Regexp.escape(self.name)}\s*:\s*/, '')
     end
     result = parser.parse(name, channel, mesg)
     result = filter.process(result) if result

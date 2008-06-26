@@ -65,6 +65,13 @@ describe Bot do
       @mock_parser.expects(:parse).with('bob', 'foochat', "what's up, bitches???")
       @bot.did_receive_channel_message('bob', 'foochat', "#{@name}:what's up, bitches???")
     end
+    
+    it 'should handle a bot name with special characters' do
+      @name = 'RO^|B07'
+      @bot.stubs(:name).returns(@name)
+      @mock_parser.expects(:parse).with('bob', 'foochat', "what's up, bitches???")
+      @bot.did_receive_channel_message('bob', 'foochat', "#{@name}: what's up, bitches???")
+    end
   end
   
   it "should pass data to filter when parser provides results" do
