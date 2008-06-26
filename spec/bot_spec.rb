@@ -14,6 +14,7 @@ describe Bot do
     @mock_filter = stub('filter')
     @mock_result = {}
     @bot = Bot.new
+    @bot.stubs(:address_required_channels).returns([])
     @bot.stubs(:sender_configuration).returns({})
     @bot.stubs(:parser).returns(@mock_parser)
     @bot.stubs(:sender).returns(@mock_sender)
@@ -31,6 +32,39 @@ describe Bot do
     @mock_filter.stubs(:process)
     @mock_parser.expects(:parse).with('bob', 'foochat', "you winnin', homey?").returns(@mock_result)
     @bot.did_receive_channel_message('bob', 'foochat', "you winnin', homey?")    
+  end
+  
+  describe 'when the channel is set to require addressing' do
+    before :each do
+      @bot.stubs(:address_required_channels).returns(%w[blahchat barchat foochat bazchat])
+      @name = 'RO-BOT'
+      @bot.stubs(:name).returns(@name)
+    end
+    
+    it "should ignore any message that does not start with the bot's name" do
+      @mock_parser.expects(:parse).never
+      @bot.did_receive_channel_message('bob', 'foochat', "what's up, bitches???")
+    end
+    
+    it "should parse any message starting with the bot's name" do
+      @mock_parser.expects(:parse)
+      @bot.did_receive_channel_message('bob', 'foochat', "#{@name}: what's up, bitches???")
+    end
+    
+    it "should strip the bot's name from the message before passing it on to the parser" do
+      @mock_parser.expects(:parse).with('bob', 'foochat', "what's up, bitches???")
+      @bot.did_receive_channel_message('bob', 'foochat', "#{@name}: what's up, bitches???")
+    end
+    
+    it 'should handle extra whitespace when addressing the bot' do
+      @mock_parser.expects(:parse).with('bob', 'foochat', "what's up, bitches???")
+      @bot.did_receive_channel_message('bob', 'foochat', "#{@name}    :     what's up, bitches???")
+    end
+    
+    it 'should handle minimal whitespace when addressing the bot' do
+      @mock_parser.expects(:parse).with('bob', 'foochat', "what's up, bitches???")
+      @bot.did_receive_channel_message('bob', 'foochat', "#{@name}:what's up, bitches???")
+    end
   end
   
   it "should pass data to filter when parser provides results" do
@@ -143,6 +177,22 @@ describe Bot, 'giving the sender configuration' do
     result[:destination].should == :bar
     result[:option].should == 'baz'
     result[:turd].should == 'nugget'
+  end
+end
+
+describe Bot, 'getting the address-required channels' do
+  before :each do
+    @bot = Bot.new
+  end
+  
+  it 'should return the channels marked as requiring addressing in the configuration' do
+    @bot.stubs(:options).returns({ :address_required_channels => %w[4chan 2chan redchan bluechan] })
+    @bot.address_required_channels.should == %w[4chan 2chan redchan bluechan]
+  end
+  
+  it 'should return an empty array if the configuration has no channels requiring addressing' do
+    @bot.stubs(:options).returns({})
+    @bot.address_required_channels.should == []
   end
 end
 

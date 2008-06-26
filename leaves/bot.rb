@@ -17,6 +17,10 @@ class Bot < AutumnLeaf
   instance_methods.select {|meth| meth.to_s =~ /_command$/ }.each {|meth| undef_method(meth) }
   
   def did_receive_channel_message(name, channel, mesg)
+    result = nil
+    if address_required_channels.include?(channel)
+      return unless mesg.sub!(/^#{self.name}\s*:\s*/, '')
+    end
     result = parser.parse(name, channel, mesg)
     result = filter.process(result) if result
     respond(sender.deliver(result), channel) if result
@@ -53,5 +57,9 @@ class Bot < AutumnLeaf
       result[new_key] = new_val
     end
     result
+  end
+  
+  def address_required_channels
+    options[:address_required_channels] || []
   end
 end
