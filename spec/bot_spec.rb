@@ -13,7 +13,7 @@ describe Bot do
     @mock_sender = stub('sender')
     @mock_filter = stub('filter')
     @mock_result = {}
-    @bot = Bot.new
+    @bot = Bot.new('name', 'password', :channel => 'blah')
     @bot.stubs(:address_required_channels).returns([])
     @bot.stubs(:sender_configuration).returns({})
     @bot.stubs(:parser).returns(@mock_parser)
@@ -113,7 +113,11 @@ describe Bot do
     @bot.respond("foo", "channel")
   end
   
-  it "should not respond to !foo commands" do
+  it "should not respond to !quit" do
+    @bot.should_not respond_to(:quit_command)
+  end
+  
+  it "should not respond to !foo commands in general" do
     @bot.should_not respond_to(:foo_command)
   end
   
@@ -150,7 +154,7 @@ end
 
 describe Bot, 'giving the sender configuration' do
   before(:each) do
-    @bot = Bot.new
+    @bot = Bot.new('name', 'password', :channel => 'blah')
   end
   
   it "should fail unless an active sender is known" do
@@ -189,7 +193,7 @@ end
 
 describe Bot, 'getting the address-required channels' do
   before :each do
-    @bot = Bot.new
+    @bot = Bot.new('name', 'password', :channel => 'blah')
   end
   
   it 'should return the channels marked as requiring addressing in the configuration' do
@@ -205,7 +209,7 @@ end
 
 describe Bot, '!help command' do
   before :each do
-    @bot = Bot.new
+    @bot = Bot.new('name', 'password', :channel => 'blah')
   end
   
   it 'should require sender' do
