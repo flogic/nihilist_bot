@@ -139,6 +139,13 @@ describe BotSender::Tumblr, "when posting a quote" do
     @sender.do_quote(:quote => 'sibboleth, yo!', :source => 'ymendel')
   end
   
+  it 'should escape HTML entities in the quote body' do
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:quote] == 'xmlrpc = &lt;win&gt;&lt;/win&gt;'
+    end
+    @sender.do_quote(:quote => 'xmlrpc = <win></win>', :source => 'vinbarnes')
+  end
+  
   it "should set the quote source to the provided source" do
     Net::HTTP.expects(:post_form).with do |url, args|
       args[:source] == 'ymendel'

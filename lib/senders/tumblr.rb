@@ -1,5 +1,7 @@
 require 'net/http'
 require 'uri'
+$:.unshift(File.dirname(__FILE__)+'/../htmlentities/lib/')
+require 'htmlentities'
 
 # post to tumblr.com -- see http://www.tumblr.com/api/
 class BotSender::Tumblr < BotSender
@@ -16,7 +18,7 @@ class BotSender::Tumblr < BotSender
     source = %Q[<a href="#{args[:url]}">#{source}</a>] if args[:url]
     result = Net::HTTP.post_form(URI.parse(@post_url), { 
       :type     => 'quote', 
-      :quote    => (args[:quote] || ''), 
+      :quote    => HTMLEntities.new.encode(args[:quote] || ''), 
       :source   => source, 
       :email    => @email, 
       :password => @password
