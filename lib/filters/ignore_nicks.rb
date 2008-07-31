@@ -9,7 +9,10 @@ class BotFilter::IgnoreNicks < BotFilter::Template
   def process(data)
     raise TypeError unless data.is_a?(Hash)
     
-    result = self.class.nick_list.include?(data[:poster]) ? nil : data
+    result = data
+    if self.class.nick_list.any? { |nick|  nick === data[:poster] }
+      result = nil
+    end
     
     result
   end

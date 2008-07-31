@@ -60,6 +60,24 @@ describe BotFilter::IgnoreNicks do
     data = { :data => 'puppies', :poster => 'fred' }
     @filter.process(data).should be_nil
   end
+  
+  it 'should return the input hash if poster does not match any pattern in the nick list' do
+    BotFilter::IgnoreNicks.stubs(:nick_list).returns(['fred', 'thomas', /^g.*g$/])
+    data = { :data => 'puppies', :poster => 'george' }
+    @filter.process(data).should == data
+  end
+  
+  it 'should return nil if poster matches a pattern in the nick list' do
+    BotFilter::IgnoreNicks.stubs(:nick_list).returns(['fred', 'thomas', /^g.*g/])
+    data = { :data => 'puppies', :poster => 'george' }
+    @filter.process(data).should be_nil
+  end
+  
+  it 'should return the input hash if poster is a substring of a string in the nick list' do
+    BotFilter::IgnoreNicks.stubs(:nick_list).returns(%w[fred thomas])
+    data = { :data => 'puppies', :poster => 'winifred' }
+    @filter.process(data).should == data
+  end
 end
 
 describe BotFilter::IgnoreNicks, 'when asked about nicks to ignore' do
