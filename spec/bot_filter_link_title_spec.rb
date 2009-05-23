@@ -44,10 +44,21 @@ describe BotFilter::LinkTitle do
   end
   
   it 'should use open to fetch URL' do
-    @filter.expects(:open).with(@url)
+    @filter.expects(:open).with(@url, anything)
     @filter.process({:url => @url, :type => :link})
   end
   
+  it 'should specify a common browser as the user agent when opening' do
+    @filter.expects(:open).with(@url, has_entry('User-Agent', 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'))
+    @filter.process({:url => @url, :type => :link})
+  end
+  
+  it 'should use the protocol and domain of the link as the HTTP referer when opening' do
+    url = 'http://bp1.blogspot.com/foo/bar/baz/dontlinkthisimage.jpg'
+    @filter.expects(:open).with(url, has_entry('Referer', 'http://bp1.blogspot.com/'))    
+    @filter.process({:url => url, :type => :link})
+  end
+    
   it 'should do nothing for non-links' do
     @filter.expects(:open).never
     data = {:url => @url}

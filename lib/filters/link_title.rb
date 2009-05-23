@@ -10,7 +10,8 @@ class BotFilter::LinkTitle < BotFilter::Template
     title = data[:name]
     unless title
       begin
-        open(data[:url]) do |f|
+        open(data[:url], { 'User-Agent' => 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)',
+                           'Referer' => data[:url].sub(%r{^([a-z]+:/+[^/]+)/.*$}, '\1/') }) do |f|
           title = f.read.match(/<title>(.*?)<\/title>/mi)[1].strip.gsub(/\s+/, ' ')
         end
       rescue
