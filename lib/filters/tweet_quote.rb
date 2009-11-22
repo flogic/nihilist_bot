@@ -1,6 +1,7 @@
 require File.join(File.dirname(__FILE__), 'template')
 
 begin
+  require 'rubygems'
   require 'mechanize'
 rescue LoadError
   puts 'mechanize required for the TweetQuote filter'
@@ -28,6 +29,7 @@ class BotFilter::TweetQuote < BotFilter::Template
       result[:quote]  = (page / 'span.entry-content').text
       result[:source] = (page / 'div.full-name').text
       result[:url]    = data[:url]
+      result[:poster] = data[:poster]
     rescue
       result = data
     end

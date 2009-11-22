@@ -51,7 +51,7 @@ describe BotFilter::TweetQuote do
       @page.stubs(:/).with('div.full-name').returns(@name_content)
       @agent = stub('mechanize agent', :get => @page)
       WWW::Mechanize.stubs(:new).returns(@agent)
-      @data = { :url => 'http://twitter.com/rickbradley/status/3065413804', :type => :link }
+      @data = { :url => 'http://twitter.com/rickbradley/status/3065413804', :type => :link, :poster => 'rickbradley' }
     end
     
     it 'should create a mechanize agent' do
@@ -92,6 +92,11 @@ describe BotFilter::TweetQuote do
     it 'should leave the twitter link as the quote url' do
       result = @filter.process(@data)
       result[:url].should == @data[:url]
+    end
+    
+    it 'should leave the initial poster intact' do
+      result = @filter.process(@data)
+      result[:poster].should == @data[:poster]
     end
   end
   
