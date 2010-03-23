@@ -12,7 +12,7 @@ class BotFilter::TweetQuote < BotFilter::Template
     raise TypeError unless data.is_a?(Hash)
     
     return data unless data[:type] == :link
-    return data unless data[:url].match(Regexp.new('^http://twitter.com/\w+/status/\d+$'))
+    return data unless data[:url].match(Regexp.new('^http://twitter.com/\w+/status(es)?/\d+$'))
     
     begin
       agent = WWW::Mechanize.new

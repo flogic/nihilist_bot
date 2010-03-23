@@ -98,6 +98,12 @@ describe BotFilter::TweetQuote do
       result = @filter.process(@data)
       result[:poster].should == @data[:poster]
     end
+    
+    it "should also work for 'statuses' links" do
+      @data[:url].sub!(/status/, 'statuses')
+      result = @filter.process(@data)
+      result[:quote].should == @entry_content.text
+    end
   end
   
   it 'should do nothing for non-twitter links' do
