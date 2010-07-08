@@ -1,6 +1,6 @@
 require 'net/http'
 require 'uri'
-$:.unshift(File.dirname(__FILE__)+'/../htmlentities/lib/')
+$:.unshift File.join(File.dirname(__FILE__), %w[.. htmlentities lib])
 require 'htmlentities'
 
 # post to tumblr.com -- see http://www.tumblr.com/api/
