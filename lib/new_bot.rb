@@ -38,6 +38,7 @@ class NewBot
       :server   => config['server'],
       :nick     => config['nick'],
       :realname => config['realname'],
+      :username => config['username'],
       :channels => config['channels'],
     }
     @bot = Cinch.setup(options)
@@ -73,6 +74,7 @@ class NewBot
   
   def normalize_config
     config['realname'] ||= config['nick']
+    config['username'] ||= config['nick']
     %w[channels address_required_channels].each do |channels|
       config[channels] = (config[channels] || []).collect { |c| normalized_channel_name(c) }
     end

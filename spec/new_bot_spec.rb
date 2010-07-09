@@ -128,7 +128,7 @@ describe NewBot do
   
   describe 'when loading its config' do
     before :each do
-      @config_data = { 'server' => 'some.irc.server', 'nick' => 'my_nick', 'realname' => 'heyo', 'channels' => %w[#one #two], 'address_required_channels' => [] }
+      @config_data = { 'server' => 'some.irc.server', 'nick' => 'my_nick', 'realname' => 'heyo', 'username' => 'user', 'channels' => %w[#one #two], 'address_required_channels' => [] }
       @config_contents = @config_data.to_yaml
       File.stubs(:read).returns(@config_contents)
     end
@@ -149,7 +149,7 @@ describe NewBot do
     end
     
     describe 'normalizing the config data' do
-      it 'should use the config name as the config realname if no realname is given' do
+      it 'should use the config nick as the config realname if no realname is given' do
         @config_data.delete('realname')
         @config_contents = @config_data.to_yaml
         File.stubs(:read).returns(@config_contents)
@@ -166,6 +166,25 @@ describe NewBot do
         
         @bot.load_config
         @bot.config['realname'].should == realname
+      end
+      
+      it 'should use the config nick as the config username if no username is given' do
+        @config_data.delete('username')
+        @config_contents = @config_data.to_yaml
+        File.stubs(:read).returns(@config_contents)
+        
+        @bot.load_config
+        @bot.config['username'].should == @bot.config['nick']
+      end
+      
+      it 'should use the config username if given' do
+        username = 'someuser'
+        @config_data['username'] = username
+        @config_contents = @config_data.to_yaml
+        File.stubs(:read).returns(@config_contents)
+        
+        @bot.load_config
+        @bot.config['username'].should == username
       end
       
       it 'should ensure the channels in the config file are normalized to always start with a #' do
