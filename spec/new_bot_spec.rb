@@ -12,6 +12,33 @@ describe NewBot do
     @bot = NewBot.new
   end
   
+  it 'should be able to prepare itself' do
+    @bot.should respond_to(:prepare)
+  end
+  
+  describe 'preparing itself' do
+    before :each do
+      @bot.stubs(:load_config)
+      @bot.stubs(:setup)
+      @bot.stubs(:init_bot)
+    end
+    
+    it 'should load its config' do
+      @bot.expects(:load_config)
+      @bot.prepare
+    end
+    
+    it 'should set itself up' do
+      @bot.expects(:setup)
+      @bot.prepare
+    end
+    
+    it 'should initialize the bot' do
+      @bot.expects(:init_bot)
+      @bot.prepare
+    end
+  end
+  
   it 'should be able to set itself up' do
     @bot.should respond_to(:setup)
   end

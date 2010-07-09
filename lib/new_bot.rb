@@ -12,6 +12,12 @@ class NewBot
   attr_reader :bot
   attr_reader :parser, :filter, :sender
   
+  def prepare
+    load_config
+    setup
+    init_bot
+  end
+  
   def setup
     @parser = BotParser.new
     @filter = BotFilter.new(config)
