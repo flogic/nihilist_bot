@@ -1,0 +1,28 @@
+---
+server: irc.freenode.net
+nick: n1h1l1s7_test
+channels:
+- nihilist_test
+senders:
+  nihilist:
+    destination: tumblr
+    post_url: http://www.tumblr.com/api/write
+    site_url: http://ni.hili.st/
+    email: ni@hili.st
+    password: password
+active_sender: nihilist
+filters:
+  ignore_nicks:
+    nicks:
+    - "atmos"
+    - "atmos^"
+  ignore_patterns:
+    patterns:
+    - !ruby/regexp /\bpastie\b.+\bprivate\b/
+active_filters:
+  - ignore_nicks
+  - ignore_patterns
+  - link_name_cleanup
+  - link_title
+  - link_entity_cleanup
+  - poster_info

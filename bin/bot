@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+$:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
+
+require 'bot'
+
+bot = Bot.new
+bot.prepare
+bot.start

@@ -1,6 +1,6 @@
 = nihilist bot
 
-IRC robot designed to post to a Tumblelog.  Uses Autumn-Leaves IRC bot library.
+IRC robot designed to post to a Tumblelog.  Uses Cinch IRC bot library.
 Currently can send to tumblr.com sites.  Site posting back-ends are pluggable.
 Filters are pluggable.
 
