@@ -264,6 +264,16 @@ describe Bot do
       @bot.init_bot
       @bot.bot.listeners[:privmsg].should_not be_nil
     end
+    
+    it 'should set up a help command' do
+      @bot.init_bot
+      @bot.bot.rules['^help$'].should_not be_nil
+    end
+    
+    it 'should set up a format-specific help command' do
+      @bot.init_bot
+      @bot.bot.rules.instance_variable_get('@rules').keys.detect { |k|  k.match(/^#{Regexp.escape('^help ')}/) }.should_not be_nil
+    end
   end
   
   describe 'privmsg listener' do
@@ -407,7 +417,83 @@ describe Bot do
       end
     end
   end
+  
+  describe 'help command' do
+    before :each do
+      @config = { 'server' => 'some.server.irc', 'nick' => 'botnick', 'realname' => 'botname', 'channels' => %w[one two], 'address_required_channels' => [] }
+      @bot.instance_variable_set('@config', @config)
+      @bot.init_bot
+      @command = @bot.bot.rules['^help$'].callbacks.first
+      @message = Struct.new(:nick, :channel, :text).new('somenick', 'somechannel', 'sometext')
+      @message.stubs(:reply)
+    end
+    
+    it 'should be callable' do
+      @command.should respond_to(:call)
+    end
+    
+    it 'should get formats from parser' do
+      BotParser.expects(:formats).returns([])
+      @command.call(@message)
+    end
+    
+    it 'should respond with a list of formats' do
+      formats = Array.new(3) { |i|  stub("format #{i}", :name => "format_#{i}".to_sym) }
+      BotParser.stubs(:formats).returns(formats)
+      @message.expects(:reply).with("Known formats: #{formats.collect { |f|  f.name }.join(', ')}")
+      @command.call(@message)
+    end
+  end
 
+  describe 'format-specific help command' do
+    before :each do
+      @config = { 'server' => 'some.server.irc', 'nick' => 'botnick', 'realname' => 'botname', 'channels' => %w[one two], 'address_required_channels' => [] }
+      @bot.instance_variable_set('@config', @config)
+      @bot.init_bot
+      rule_key = @bot.bot.rules.instance_variable_get('@rules').keys.detect { |k|  k.match(/^#{Regexp.escape('^help ')}/) }
+      @rule = @bot.bot.rules[rule_key]
+      @command = @rule.callbacks.first
+      @message = Struct.new(:nick, :channel, :text, :args).new('somenick', 'somechannel', 'sometext', {})
+      @message.stubs(:reply)
+    end
+    
+    it 'should be callable' do
+      @command.should respond_to(:call)
+    end
+    
+    it 'should get formats from parser' do
+      BotParser.expects(:formats).returns([])
+      @command.call(@message)
+    end
+    
+    it 'should respond with format description if format specified' do
+      formats = Array.new(3) { |i|  stub("format #{i}", :name => "format_#{i}".to_sym, :description => "Description for format #{i}") }
+      BotParser.stubs(:formats).returns(formats)
+      wanted_format = formats[1]
+      @message.args[:format] = wanted_format.name
+      @message.expects(:reply).with("#{wanted_format.name}: #{wanted_format.description}")
+      @command.call(@message)
+    end
+    
+    it 'should indicate an unspecified format description' do
+      formats = Array.new(3) { |i|  stub("format #{i}", :name => "format_#{i}".to_sym, :description => nil) }
+      BotParser.stubs(:formats).returns(formats)
+      wanted_format = formats[1]
+      @message.args[:format] = wanted_format.name
+      @message.expects(:reply).with("#{wanted_format.name}: no description available")
+      @command.call(@message)
+    end
+    
+    it 'should indicate an unknown format' do
+      formats = Array.new(3) { |i|  stub("format #{i}", :name => "format_#{i}".to_sym, :description => "Description for format #{i}") }
+      BotParser.stubs(:formats).returns(formats)
+      wanted_format = 'turdnugget'
+      @message.args[:format] = wanted_format
+      @message.expects(:reply).with("Format '#{wanted_format}' unknown")
+      @command.call(@message)
+    end
+  end
+  
   it 'should be able to start the bot' do
     @bot.should respond_to(:start)
   end

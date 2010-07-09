@@ -52,6 +52,21 @@ class Bot
       result = filter.process(result) if result
       m.reply sender.deliver(result)  if result
     end
+    
+    bot.plugin 'help' do |m|
+      formats = BotParser.formats
+      m.reply "Known formats: #{formats.collect { |f|  f.name }.join(', ')}"
+    end
+    
+    bot.plugin 'help :format' do |m|
+      formats = BotParser.formats
+      format  = formats.detect { |f|  f.name == m.args[:format].to_sym }
+      if format
+        m.reply "#{format.name}: #{format.description || 'no description available'}"
+      else
+        m.reply "Format '#{m.args[:format]}' unknown"
+      end
+    end
   end
   
   def sender_configuration
