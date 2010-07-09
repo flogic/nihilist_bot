@@ -43,6 +43,10 @@ class NewBot
     end
   end
   
+  def start
+    bot.run
+  end
+  
   def sender_configuration
     raise "bot configuration should include an active_sender option" unless config['active_sender']
     raise "bot configuration should include a list of senders" unless config['senders']

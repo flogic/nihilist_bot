@@ -361,4 +361,21 @@ describe NewBot do
       end
     end
   end
+
+  it 'should be able to start the bot' do
+    @bot.should respond_to(:start)
+  end
+  
+  describe 'starting the bot' do
+    before :each do
+      @actual_bot = Cinch::Base.new
+      @actual_bot.stubs(:run)
+      @bot.stubs(:bot).returns(@actual_bot)
+    end
+    
+    it 'should tell the stored bot to run' do
+      @actual_bot.expects(:run)
+      @bot.start
+    end
+  end
 end
