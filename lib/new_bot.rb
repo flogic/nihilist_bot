@@ -25,8 +25,8 @@ class NewBot
   
   def init_bot
     options = {
-      :server => config['server'],
-      :nick => config['nick'],
+      :server   => config['server'],
+      :nick     => config['nick'],
       :realname => config['realname'],
       :channels => config['channels'],
     }
