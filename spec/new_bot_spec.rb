@@ -148,5 +148,60 @@ describe NewBot do
       @bot.init_bot
       @bot.bot.options.channels.should == @config['channels']
     end
+    
+    it 'should set up a privmsg listener' do
+      @bot.init_bot
+      @bot.bot.listeners[:privmsg].should_not be_nil
+    end
+  end
+  
+  describe 'privmsg listener' do
+    before :each do
+      @config = { 'server' => 'some.server.irc', 'nick' => 'botnick', 'realname' => 'botname', 'channels' => %w[one two] }
+      @bot.instance_variable_set('@config', @config)
+      @bot.init_bot
+      @listener = @bot.bot.listeners[:privmsg].first
+      @message = Struct.new(:nick, :channel, :text).new('somenick', 'somechannel', 'sometext')
+      
+      @parsed = 'some parsed stuff'
+      @parser = BotParser.new
+      @parser.stubs(:parse).returns(@parsed)
+      @bot.stubs(:parser).returns(@parser)
+      
+      @filtered = 'some filtered stuff'
+      @filter = BotFilter.new
+      @filter.stubs(:process).returns(@filtered)
+      @bot.stubs(:filter).returns(@filter)
+    end
+    
+    it 'should be callable' do
+      @listener.should respond_to(:call)
+    end
+    
+    it 'should access the parser' do
+      @bot.expects(:parser).returns(@parser)
+      @listener.call(@message)
+    end
+    
+    it 'should parse the message, passing the message nick, channel, and text' do
+      @parser.expects(:parse).with(@message.nick, @message.channel, @message.text)
+      @listener.call(@message)
+    end
+    
+    it 'should access the filter' do
+      @bot.expects(:filter).returns(@filter)
+      @listener.call(@message)
+    end
+    
+    it 'should pass the result from the parser to the filter for processing' do
+      @filter.expects(:process).with(@parsed)
+      @listener.call(@message)
+    end
+    
+    it 'should not filter if the parser returns nil' do
+      @parser.stubs(:parse).returns(nil)
+      @filter.expects(:process).never
+      @listener.call(@message)
+    end
   end
 end

@@ -29,6 +29,11 @@ class NewBot
       :channels => config['channels'],
     }
     @bot = Cinch.setup(options)
+    
+    bot.on :privmsg do |m|
+      result = parser.parse(m.nick, m.channel, m.text)
+      filter.process(result) if result
+    end
   end
   
   
