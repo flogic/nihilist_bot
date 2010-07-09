@@ -18,15 +18,19 @@ class NewBot
     init_bot
   end
   
-  def setup
-    @parser = BotParser.new
-    @filter = BotFilter.new(config)
-    @sender = BotSender.new(sender_configuration)
+  def start
+    bot.run
   end
   
   def load_config
     @config = YAML.load(File.read('./config/config.yml'))
     normalize_config
+  end
+  
+  def setup
+    @parser = BotParser.new
+    @filter = BotFilter.new(config)
+    @sender = BotSender.new(sender_configuration)
   end
   
   def init_bot
@@ -47,10 +51,6 @@ class NewBot
       result = filter.process(result) if result
       m.reply sender.deliver(result)  if result
     end
-  end
-  
-  def start
-    bot.run
   end
   
   def sender_configuration
