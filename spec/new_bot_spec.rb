@@ -222,7 +222,7 @@ describe NewBot do
   
   describe 'privmsg listener' do
     before :each do
-      @config = { 'server' => 'some.server.irc', 'nick' => 'botnick', 'realname' => 'botname', 'channels' => %w[one two] }
+      @config = { 'server' => 'some.server.irc', 'nick' => 'botnick', 'realname' => 'botname', 'channels' => %w[one two], 'address_required_channels' => [] }
       @bot.instance_variable_set('@config', @config)
       @bot.init_bot
       @listener = @bot.bot.listeners[:privmsg].first
@@ -312,6 +312,53 @@ describe NewBot do
       @parser.stubs(:parse).returns(nil)
       @message.expects(:reply).never
       @listener.call(@message)
+    end
+    
+    describe 'when the channel is set to require addressing' do
+      before :each do
+        @config['address_required_channels'] = %w[#blahchat #barchat #foochat #bazchat]
+        @message.channel = '#foochat'
+        
+        @nick = 'RO-BOT'
+        @bot.bot.stubs(:nick).returns(@nick)
+      end
+
+      it "should ignore any message that does not start with the bot's nick" do
+        @parser.expects(:parse).never
+        @listener.call(@message)
+      end
+
+      it "should parse any message starting with the bot's nick" do
+        @parser.expects(:parse)
+        @message.text[0,0] = "#{@nick}: "
+        @listener.call(@message)
+      end
+
+      it "should strip the bot's nick from the message before passing it on to the parser" do
+        @parser.expects(:parse).with(@message.nick, @message.channel, @message.text.dup)
+        @message.text[0,0] = "#{@nick}: "
+        @listener.call(@message)
+      end
+
+      it 'should handle extra whitespace when addressing the bot' do
+        @parser.expects(:parse).with(@message.nick, @message.channel, @message.text.dup)
+        @message.text[0,0] = "#{@nick}    :     "
+        @listener.call(@message)
+      end
+
+      it 'should handle minimal whitespace when addressing the bot' do
+        @parser.expects(:parse).with(@message.nick, @message.channel, @message.text.dup)
+        @message.text[0,0] = "#{@nick}:"
+        @listener.call(@message)
+      end
+
+      it 'should handle a bot nick with special characters' do
+        @nick = 'RO^|B07'
+        @bot.bot.stubs(:nick).returns(@nick)
+        @parser.expects(:parse).with(@message.nick, @message.channel, @message.text.dup)
+        @message.text[0,0] = "#{@nick}: "
+        @listener.call(@message)
+      end
     end
   end
 end

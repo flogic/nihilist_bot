@@ -33,6 +33,10 @@ class NewBot
     @bot = Cinch.setup(options)
     
     bot.on :privmsg do |m|
+      if config['address_required_channels'].include?(m.channel)
+        next unless m.text.sub!(/^#{Regexp.escape(bot.nick)}\s*:\s*/, '')
+      end
+      
       result = parser.parse(m.nick, m.channel, m.text)
       result = filter.process(result) if result
       m.reply sender.deliver(result)  if result
