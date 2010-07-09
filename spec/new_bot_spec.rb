@@ -90,4 +90,40 @@ describe NewBot do
       end
     end
   end
+  
+  it 'should be able to initialize the bot' do
+    @bot.should respond_to(:init_bot)
+  end
+  
+  describe 'initializing the bot' do
+    before :each do
+      @config = { 'server' => 'some.server.irc', 'nick' => 'botnick', 'realname' => 'botname', 'channels' => %w[one two] }
+      @bot.instance_variable_set('@config', @config)
+    end
+    
+    it 'should store the bot for retrieval' do
+      @bot.init_bot
+      @bot.bot.should be_kind_of(Cinch::Base)
+    end
+    
+    it 'should set the server from the config' do
+      @bot.init_bot
+      @bot.bot.options.server.should == @config['server']
+    end
+    
+    it 'should set the nick from the config' do
+      @bot.init_bot
+      @bot.bot.options.nick.should == @config['nick']
+    end
+    
+    it 'should set the realname from the config' do
+      @bot.init_bot
+      @bot.bot.options.realname.should == @config['realname']
+    end
+    
+    it 'should set the channels from the config' do
+      @bot.init_bot
+      @bot.bot.options.channels.should == @config['channels']
+    end
+  end
 end

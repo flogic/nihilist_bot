@@ -1,11 +1,25 @@
+require 'rubygems'
+require 'cinch'
+
 require 'yaml'
 
 class NewBot
   attr_reader :config
+  attr_reader :bot
   
   def load_config
     @config = YAML.load(File.read('./config/config.yml'))
     normalize_config
+  end
+  
+  def init_bot
+    options = {
+      :server => config['server'],
+      :nick => config['nick'],
+      :realname => config['realname'],
+      :channels => config['channels'],
+    }
+    @bot = Cinch.setup(options)
   end
   
   
