@@ -52,6 +52,11 @@ class Bot
       result = filter.process(result) if result
       m.reply sender.deliver(result)  if result
     end
+    
+    bot.plugin 'help' do |m|
+      formats = BotParser.formats
+      m.reply "Known formats: #{formats.collect { |f|  f.name }.join(', ')}"
+    end
   end
   
   def sender_configuration

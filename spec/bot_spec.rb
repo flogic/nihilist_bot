@@ -264,6 +264,11 @@ describe Bot do
       @bot.init_bot
       @bot.bot.listeners[:privmsg].should_not be_nil
     end
+    
+    it 'should set up a help command' do
+      @bot.init_bot
+      @bot.bot.rules['^help$'].should_not be_nil
+    end
   end
   
   describe 'privmsg listener' do
@@ -407,7 +412,34 @@ describe Bot do
       end
     end
   end
-
+  
+  describe 'help command' do
+    before :each do
+      @config = { 'server' => 'some.server.irc', 'nick' => 'botnick', 'realname' => 'botname', 'channels' => %w[one two], 'address_required_channels' => [] }
+      @bot.instance_variable_set('@config', @config)
+      @bot.init_bot
+      @command = @bot.bot.rules['^help$'].callbacks.first
+      @message = Struct.new(:nick, :channel, :text).new('somenick', 'somechannel', 'sometext')
+      @message.stubs(:reply)
+    end
+    
+    it 'should be callable' do
+      @command.should respond_to(:call)
+    end
+    
+    it 'should get formats from parser' do
+      BotParser.expects(:formats).returns([])
+      @command.call(@message)
+    end
+    
+    it 'should respond with a list of formats' do
+      formats = Array.new(3) { |i|  stub("format #{i}", :name => "format_#{i}".to_sym) }
+      BotParser.stubs(:formats).returns(formats)
+      @message.expects(:reply).with("Known formats: #{formats.collect { |f|  f.name }.join(', ')}")
+      @command.call(@message)
+    end
+  end
+  
   it 'should be able to start the bot' do
     @bot.should respond_to(:start)
   end
