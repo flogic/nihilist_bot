@@ -1,15 +1,15 @@
 require File.expand_path(File.join(File.dirname(__FILE__), *%w[spec_helper]))
 
-require 'new_bot'
+require 'bot'
 
 class BotSender::Blah < BotSender; end
 class BotSender
   @@kinds[:blah] = BotSender::Blah
 end
 
-describe NewBot do
+describe Bot do
   before :each do
-    @bot = NewBot.new
+    @bot = Bot.new
   end
   
   it 'should be able to prepare itself' do

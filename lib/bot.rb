@@ -7,7 +7,7 @@ require 'bot_parser'
 require 'bot_filter'
 require 'bot_sender'
 
-class NewBot
+class Bot
   attr_reader :config
   attr_reader :bot
   attr_reader :parser, :filter, :sender
