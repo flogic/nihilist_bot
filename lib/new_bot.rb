@@ -3,9 +3,18 @@ require 'cinch'
 
 require 'yaml'
 
+require 'bot_parser'
+require 'bot_filter'
+
 class NewBot
   attr_reader :config
   attr_reader :bot
+  attr_reader :parser, :filter
+  
+  def setup
+    @parser = BotParser.new
+    @filter = BotFilter.new(config)
+  end
   
   def load_config
     @config = YAML.load(File.read('./config/config.yml'))

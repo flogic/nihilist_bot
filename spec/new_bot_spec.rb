@@ -7,6 +7,29 @@ describe NewBot do
     @bot = NewBot.new
   end
   
+  it 'should be able to set itself up' do
+    @bot.should respond_to(:setup)
+  end
+  
+  describe 'setting itself up' do
+    it 'should store a parser' do
+      @bot.setup
+      @bot.parser.should be_kind_of(BotParser)
+    end
+    
+    it 'should store a filter' do
+      @bot.setup
+      @bot.filter.should be_kind_of(BotFilter)
+    end
+    
+    it 'should pass the config when creating the filter' do
+      @config = { 'server' => 'some.server.irc', 'nick' => 'botnick', 'realname' => 'botname', 'channels' => %w[one two] }
+      @bot.instance_variable_set('@config', @config)
+      BotFilter.expects(:new).with(@config)
+      @bot.setup
+    end
+  end
+  
   it 'should be able to load its config' do
     @bot.should respond_to(:load_config)
   end
