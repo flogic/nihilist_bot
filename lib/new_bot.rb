@@ -5,15 +5,17 @@ require 'yaml'
 
 require 'bot_parser'
 require 'bot_filter'
+require 'bot_sender'
 
 class NewBot
   attr_reader :config
   attr_reader :bot
-  attr_reader :parser, :filter
+  attr_reader :parser, :filter, :sender
   
   def setup
     @parser = BotParser.new
     @filter = BotFilter.new(config)
+    @sender = BotSender.new(sender_configuration)
   end
   
   def load_config
@@ -34,6 +36,21 @@ class NewBot
       result = parser.parse(m.nick, m.channel, m.text)
       filter.process(result) if result
     end
+  end
+  
+  def sender_configuration
+    raise "bot configuration should include an active_sender option" unless config['active_sender']
+    raise "bot configuration should include a list of senders" unless config['senders']
+    raise "bot configuration doesn't have a senders entry for active_sender [#{options['active_sender']}]" unless config['senders'][config['active_sender']]
+    raise "bot configuration doesn't have a destination type for active_sender [#{options['active_sender']}]" unless config['senders'][config['active_sender']]['destination']
+    
+    result = {}
+    config['senders'][config['active_sender']].each_pair do |k, v|
+      new_key = k.to_sym
+      new_val = new_key == :destination ? v.to_sym : v
+      result[new_key] = new_val
+    end
+    result
   end
   
   

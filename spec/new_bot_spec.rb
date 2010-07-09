@@ -2,6 +2,11 @@ require File.expand_path(File.join(File.dirname(__FILE__), *%w[spec_helper]))
 
 require 'new_bot'
 
+class BotSender::Blah < BotSender; end
+class BotSender
+  @@kinds[:blah] = BotSender::Blah
+end
+
 describe NewBot do
   before :each do
     @bot = NewBot.new
@@ -12,6 +17,11 @@ describe NewBot do
   end
   
   describe 'setting itself up' do
+    before :each do
+      @sender_configuration = { :destination => :blah }
+      @bot.stubs(:sender_configuration).returns(@sender_configuration)
+    end
+    
     it 'should store a parser' do
       @bot.setup
       @bot.parser.should be_kind_of(BotParser)
@@ -27,6 +37,61 @@ describe NewBot do
       @bot.instance_variable_set('@config', @config)
       BotFilter.expects(:new).with(@config)
       @bot.setup
+    end
+    
+    it 'should store a sender' do
+      @bot.setup
+      @bot.sender.should be_kind_of(BotSender)
+    end
+    
+    it 'should use the sender configuration when creating the sender' do
+      BotSender.expects(:new).with(@sender_configuration)
+      @bot.setup
+    end
+  end
+  
+  it 'should get a sender configuration' do
+    @bot.should respond_to(:sender_configuration)
+  end
+  
+  describe 'getting sender configuration' do
+    it 'should fail unless an active sender is known' do
+      @config = {}
+      @bot.instance_variable_set('@config', @config)
+      lambda { @bot.sender_configuration }.should raise_error
+    end
+
+    it 'should fail unless a set of senders is known' do
+      @config = { 'active_sender' => 'foo' }
+      @bot.instance_variable_set('@config', @config)
+      lambda { @bot.sender_configuration }.should raise_error
+    end
+
+    it 'should fail unless the specified active sender is known' do
+      @config = { 'active_sender' => 'foo', 'senders' => { } }
+      @bot.instance_variable_set('@config', @config)
+      lambda { @bot.sender_configuration }.should raise_error
+    end
+
+    it 'should fail unless the active sender has a destination type' do
+      @config = { 'active_sender' => 'foo', 'senders' => { 'foo' => { } } }
+      @bot.instance_variable_set('@config', @config)
+      lambda { @bot.sender_configuration }.should raise_error
+    end
+
+    it 'should succeed when options are fully specified' do
+      @config = { 'active_sender' => 'foo', 'senders' => { 'foo' => { 'destination' => 'bar' } }  }
+      @bot.instance_variable_set('@config', @config)
+      lambda { @bot.sender_configuration }.should_not raise_error
+    end
+
+    it 'should ensure that sender options are in a format usable by the sender' do
+      @config = { 'active_sender' => 'foo', 'senders' => { 'foo' => { 'destination' => 'bar', 'option' => 'baz', 'turd' => 'nugget' } } }
+      @bot.instance_variable_set('@config', @config)
+      result = @bot.sender_configuration
+      result[:destination].should == :bar
+      result[:option].should == 'baz'
+      result[:turd].should == 'nugget'
     end
   end
   
