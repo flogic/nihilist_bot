@@ -34,7 +34,8 @@ class NewBot
     
     bot.on :privmsg do |m|
       result = parser.parse(m.nick, m.channel, m.text)
-      filter.process(result) if result
+      result = filter.process(result) if result
+      m.reply sender.deliver(result)  if result
     end
   end
   

@@ -227,6 +227,7 @@ describe NewBot do
       @bot.init_bot
       @listener = @bot.bot.listeners[:privmsg].first
       @message = Struct.new(:nick, :channel, :text).new('somenick', 'somechannel', 'sometext')
+      @message.stubs(:reply)
       
       @parsed = 'some parsed stuff'
       @parser = BotParser.new
@@ -237,6 +238,11 @@ describe NewBot do
       @filter = BotFilter.new
       @filter.stubs(:process).returns(@filtered)
       @bot.stubs(:filter).returns(@filter)
+      
+      @delivered = 'some delivered stuff'
+      @sender = BotSender.new({ :destination => :blah })
+      @sender.stubs(:deliver).returns(@delivered)
+      @bot.stubs(:sender).returns(@sender)
     end
     
     it 'should be callable' do
@@ -266,6 +272,45 @@ describe NewBot do
     it 'should not filter if the parser returns nil' do
       @parser.stubs(:parse).returns(nil)
       @filter.expects(:process).never
+      @listener.call(@message)
+    end
+    
+    it 'should access the sender' do
+      @bot.expects(:sender).returns(@sender)
+      @listener.call(@message)
+    end
+    
+    it 'should deliver the result from the filter' do
+      @sender.expects(:deliver).with(@filtered)
+      @listener.call(@message)
+    end
+    
+    it 'should reply with the sender delivery message' do
+      @message.expects(:reply).with(@delivered)
+      @listener.call(@message)
+    end
+    
+    it 'should not deliver if the filter returns nil' do
+      @filter.stubs(:process).returns(nil)
+      @sender.expects(:deliver).never
+      @listener.call(@message)
+    end
+    
+    it 'should not deliver if the parser returns nil' do
+      @parser.stubs(:parse).returns(nil)
+      @sender.expects(:deliver).never
+      @listener.call(@message)
+    end
+    
+    it 'should not reply if the filter returns nil' do
+      @filter.stubs(:process).returns(nil)
+      @message.expects(:reply).never
+      @listener.call(@message)
+    end
+    
+    it 'should not reply if the parser returns nil' do
+      @parser.stubs(:parse).returns(nil)
+      @message.expects(:reply).never
       @listener.call(@message)
     end
   end
