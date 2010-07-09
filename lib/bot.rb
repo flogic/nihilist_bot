@@ -23,7 +23,7 @@ class Bot
   end
   
   def load_config
-    @config = YAML.load(File.read('./config/config.yml'))
+    @config = YAML.load(File.read(File.expand_path(File.join(File.dirname(__FILE__), '/../config/config.yml'))))
     normalize_config
   end
   

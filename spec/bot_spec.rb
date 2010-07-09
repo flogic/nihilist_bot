@@ -134,7 +134,7 @@ describe Bot do
     end
     
     it 'should read the config file' do
-      File.expects(:read).with('./config/config.yml').returns(@config_contents)
+      File.expects(:read).with(File.expand_path(File.join(File.dirname(__FILE__),'/../config/config.yml'))).returns(@config_contents)
       @bot.load_config
     end
     
