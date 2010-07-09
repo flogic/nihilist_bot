@@ -15,7 +15,7 @@ class BotFilter::TweetQuote < BotFilter::Template
     return data unless data[:url].match(Regexp.new('^http://twitter.com/\w+/status(es)?/\d+$'))
     
     begin
-      agent = WWW::Mechanize.new
+      agent = Mechanize.new
     rescue NameError
       puts 'mechanize required for the TweetQuote filter'
       return data

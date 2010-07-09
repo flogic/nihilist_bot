@@ -50,12 +50,12 @@ describe BotFilter::TweetQuote do
       @page.stubs(:/).with('span.entry-content').returns(@entry_content)
       @page.stubs(:/).with('div.full-name').returns(@name_content)
       @agent = stub('mechanize agent', :get => @page)
-      WWW::Mechanize.stubs(:new).returns(@agent)
+      Mechanize.stubs(:new).returns(@agent)
       @data = { :url => 'http://twitter.com/rickbradley/status/3065413804', :type => :link, :poster => 'rickbradley' }
     end
     
     it 'should create a mechanize agent' do
-      WWW::Mechanize.expects(:new).returns(@agent)
+      Mechanize.expects(:new).returns(@agent)
       @filter.process(@data)
     end
     
@@ -109,14 +109,14 @@ describe BotFilter::TweetQuote do
   it 'should do nothing for non-twitter links' do
     data = { :url => 'http://www.yahoo.com/', :type => :link }
     result = @filter.process(data)
-    WWW::Mechanize.expects(:new).never
+    Mechanize.expects(:new).never
     result.should == data
   end
   
   it 'should do nothing for non-links' do
     data = { :url => 'http://twitter.com/rickbradley/status/3065413804', :type => :blah }
     result = @filter.process(data)
-    WWW::Mechanize.expects(:new).never
+    Mechanize.expects(:new).never
     result.should == data
   end
 end
