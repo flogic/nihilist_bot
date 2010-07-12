@@ -16,7 +16,7 @@ describe BotFilter::IgnorePatterns do
   end
   
   it 'should store options for this filter' do
-    options = { :filters => { 'ignore_patterns' => { :turd => :nugget } } }
+    options = { 'filters' => { 'ignore_patterns' => { :turd => :nugget } } }
     filter = BotFilter::IgnorePatterns.new(options)
     filter.options.should == { :turd => :nugget }
   end
@@ -88,7 +88,7 @@ end
 describe BotFilter::IgnorePatterns, 'when initialized' do
   it 'should set the pattern list from the given options' do
     pattern_list = stub('pattern list')
-    options = { :filters => { 'ignore_patterns' => { 'patterns' => pattern_list } } }
+    options = { 'filters' => { 'ignore_patterns' => { 'patterns' => pattern_list } } }
     BotFilter::IgnorePatterns.expects(:pattern_list=).with(pattern_list)
     BotFilter::IgnorePatterns.new(options)
   end

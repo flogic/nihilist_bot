@@ -16,7 +16,7 @@ describe BotFilter::TweetQuote do
   end
   
   it 'should store options for this filter' do
-    options = { :filters => { 'tweet_quote' => { :turd => :nugget } } }
+    options = { 'filters' => { 'tweet_quote' => { :turd => :nugget } } }
     filter = BotFilter::TweetQuote.new(options)
     filter.options.should == { :turd => :nugget }
   end

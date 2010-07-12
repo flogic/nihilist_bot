@@ -17,7 +17,7 @@ describe BotFilter::LinkTitle do
   end
   
   it 'should store options for this filter' do
-    options = { :filters => { 'link_title' => { :turd => :nugget } } }
+    options = { 'filters' => { 'link_title' => { :turd => :nugget } } }
     filter = BotFilter::LinkTitle.new(options)
     filter.options.should == { :turd => :nugget }
   end

@@ -16,7 +16,7 @@ describe BotFilter::IgnoreNicks do
   end
   
   it 'should store options for this filter' do
-    options = { :filters => { 'ignore_nicks' => { :turd => :nugget } } }
+    options = { 'filters' => { 'ignore_nicks' => { :turd => :nugget } } }
     filter = BotFilter::IgnoreNicks.new(options)
     filter.options.should == { :turd => :nugget }
   end
@@ -100,7 +100,7 @@ end
 describe BotFilter::IgnoreNicks, 'when initialized' do
   it 'should set the nick list from the given options' do
     nick_list = stub('nick list')
-    options = { :filters => { 'ignore_nicks' => { 'nicks' => nick_list } } }
+    options = { 'filters' => { 'ignore_nicks' => { 'nicks' => nick_list } } }
     BotFilter::IgnoreNicks.expects(:nick_list=).with(nick_list)
     BotFilter::IgnoreNicks.new(options)
   end

@@ -2,7 +2,7 @@ class BotFilter::Template
   attr_reader :options
   
   def initialize(options = {})
-    @options = (options[:filters] and options[:filters][kind.to_s]) ? options[:filters][kind.to_s] : {}
+    @options = (options['filters'] and options['filters'][kind.to_s]) ? options['filters'][kind.to_s] : {}
   end
   
   def process(data)

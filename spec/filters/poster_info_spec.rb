@@ -16,7 +16,7 @@ describe BotFilter::PosterInfo, 'adding poster info' do
   end
   
   it 'should store options for this filter' do
-    options = { :filters => { 'poster_info' => { :turd => :nugget } } }
+    options = { 'filters' => { 'poster_info' => { :turd => :nugget } } }
     filter = BotFilter::PosterInfo.new(options)
     filter.options.should == { :turd => :nugget }
   end
