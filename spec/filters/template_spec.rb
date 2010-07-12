@@ -16,13 +16,13 @@ describe BotFilter::Template, 'on initialization' do
   end
 
   it 'should not require specific options for its kind of filter' do
-    options = { :filters => { } }
+    options = { 'filters' => { } }
     BotFilter::Template.any_instance.stubs(:kind).returns(:foo)
     lambda { BotFilter::Template.new(options) }.should_not raise_error
   end
   
   it 'should store options for its kind of filter' do
-    options = { :filters => { 'foo' => { :bar => :baz } } }
+    options = { 'filters' => { 'foo' => { :bar => :baz } } }
     BotFilter::Template.any_instance.stubs(:kind).returns(:foo)
     filter = BotFilter::Template.new(options)
     filter.options.should == { :bar => :baz }

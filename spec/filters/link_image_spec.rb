@@ -18,7 +18,7 @@ describe BotFilter::LinkImage do
   end
   
   it 'should store options for this filter' do
-    options = { :filters => { 'link_image' => { :turd => :nugget } } }
+    options = { 'filters' => { 'link_image' => { :turd => :nugget } } }
     filter = BotFilter::LinkImage.new(options)
     filter.options.should == { :turd => :nugget }
   end

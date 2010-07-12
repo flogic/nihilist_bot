@@ -16,7 +16,7 @@ describe BotFilter::LinkEntityCleanup do
   end
   
   it 'should store options for this filter' do
-    options = { :filters => { 'link_entity_cleanup' => { :turd => :nugget } } }
+    options = { 'filters' => { 'link_entity_cleanup' => { :turd => :nugget } } }
     filter = BotFilter::LinkEntityCleanup.new(options)
     filter.options.should == { :turd => :nugget }
   end
