@@ -35,8 +35,8 @@ class BotFilter
     end
     
     def locate_filters(options)
-      if options and options[:active_filters]
-        options[:active_filters].each do |filter|
+      if options and options['active_filters']
+        options['active_filters'].each do |filter|
           register_filter(filter)
         end
       end

@@ -79,7 +79,7 @@ describe BotFilter, "when locating filters" do
   end
   
   it "should register an individual filter" do
-    options = { :active_filters => [ 'foo', 'bar' ] }
+    options = { 'active_filters' => [ 'foo', 'bar' ] }
     BotFilter.expects(:register_filter).with('foo')
     BotFilter.expects(:register_filter).with('bar')
     BotFilter.locate_filters options
