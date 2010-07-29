@@ -89,6 +89,29 @@ describe BotFilter::TweetQuote do
       result[:source].should == @name_content.text
     end
     
+    describe 'when the author name is blank' do
+      before :each do
+        @name_content.stubs(:text).returns('')
+        @username_content = stub('username content', :text => 'some user')
+        @page.stubs(:/).with('a.screen-name').returns(@username_content)
+      end
+      
+      it 'should get the username' do
+        @page.expects(:/).with('a.screen-name').returns(@username_content)
+        @filter.process(@data)
+      end
+      
+      it 'should use the username as the quote source' do
+        result = @filter.process(@data)
+        result[:source].should == @username_content.text
+      end
+    end
+    
+    it 'normally should not get the username' do
+      @page.expects(:/).with('a.screen-name').never
+      @filter.process(@data)
+    end
+    
     it 'should leave the twitter link as the quote url' do
       result = @filter.process(@data)
       result[:url].should == @data[:url]

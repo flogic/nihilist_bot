@@ -25,9 +25,12 @@ class BotFilter::TweetQuote < BotFilter::Template
     begin
       page = agent.get(data[:url])
       
+      author = (page / 'div.full-name').text
+      author = (page / 'a.screen-name').text if author == ''
+      
       result[:type]   = :quote
       result[:quote]  = (page / 'span.entry-content').text
-      result[:source] = (page / 'div.full-name').text
+      result[:source] = author
       result[:url]    = data[:url]
       result[:poster] = data[:poster]
     rescue
