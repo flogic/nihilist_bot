@@ -475,6 +475,18 @@ describe Bot do
       @command.call(@message)
     end
     
+    it 'should respond with multiple lines if the format description is multiple lines' do
+      formats = Array.new(3) { |i|  stub("format #{i}", :name => "format_#{i}".to_sym, :description => "Description for format #{i}") }
+      BotParser.stubs(:formats).returns(formats)
+      formats[1].stubs(:description).returns("I have\nmany lines\nin my\ndescription")
+      wanted_format = formats[1]
+      @message.args[:format] = wanted_format.name
+      wanted_format.description.split("\n").each do |desc_line|
+        @message.expects(:reply).with("#{wanted_format.name}: #{desc_line}")
+      end
+      @command.call(@message)
+    end
+    
     it 'should indicate an unspecified format description' do
       formats = Array.new(3) { |i|  stub("format #{i}", :name => "format_#{i}".to_sym, :description => nil) }
       BotParser.stubs(:formats).returns(formats)

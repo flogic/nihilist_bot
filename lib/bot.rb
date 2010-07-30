@@ -62,7 +62,8 @@ class Bot
       formats = BotParser.formats
       format  = formats.detect { |f|  f.name == m.args[:format].to_sym }
       if format
-        m.reply "#{format.name}: #{format.description || 'no description available'}"
+        description = format.description || 'no description available'
+        description.split("\n").each { |line|  m.reply "#{format.name}: #{line}" }
       else
         m.reply "Format '#{m.args[:format]}' unknown"
       end
