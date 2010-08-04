@@ -124,13 +124,6 @@ describe BotParser do
     result[:description].should match(/ROCKING!/)        
   end
   
-  it "should put link poster into the link description" do
-    result = @parser.parse('rick', 't3hchannel', 'Please Rocking! http://www.rickbradley.com/misc/communist_bloc(k)_party.html ROCKING!')
-    result[:type].should == :link
-    result[:url].should == 'http://www.rickbradley.com/misc/communist_bloc(k)_party.html'
-    result[:name].should == 'Please Rocking!'
-  end
-  
   it "should make poster and channel available in the results when matching a link" do
     result = @parser.parse('rick', 't3hchannel', 'Please Rocking! http://www.rickbradley.com/misc/communist_bloc(k)_party.html ROCKING!')
     result[:poster].should == 'rick'
@@ -157,14 +150,38 @@ describe BotParser do
     result[:title].should == 'Video of the day'
   end
   
-  it 'should recognize a video link with a title' do
+  it 'should recognize a video link with a title and description' do
     result = @parser.parse('rick', 't3hchannel', 'Video of the day http://youtube.com/watch?v=uwEXywdSpNQ Robot Chicken')
     result[:type].should == :video
     result[:embed].should == 'http://youtube.com/watch?v=uwEXywdSpNQ'
     result[:title].should == 'Video of the day'
     result[:caption].should match(/Robot Chicken/)
   end
-    
+  
+  it "should recognize a video link under www.youtube.com" do
+    result = @parser.parse('rick', 't3hchannel', 'http://www.youtube.com/watch?v=uwEXywdSpNQ')
+    result[:type].should == :video
+    result[:embed].should == 'http://www.youtube.com/watch?v=uwEXywdSpNQ'
+  end
+  
+  it "should recognize a video link under a different-language subdomain (like il.youtube.com)" do
+    result = @parser.parse('rick', 't3hchannel', 'http://il.youtube.com/watch?v=4N1M7Kwl81A')
+    result[:type].should == :video
+    result[:embed].should == 'http://il.youtube.com/watch?v=4N1M7Kwl81A'
+  end
+  
+  it "should recognize a video link under a country code domain (like www.youtube.co.uk)" do
+    result = @parser.parse('rick', 't3hchannel', 'http://www.youtube.co.uk/watch?v=IrV1rC8qr44')
+    result[:type].should == :video
+    result[:embed].should == 'http://www.youtube.co.uk/watch?v=IrV1rC8qr44'
+  end
+  
+  it "should recognize that some youtube links with question marks are not videos" do
+    result = @parser.parse('rick', 't3hchannel', 'http://www.youtube.com/profile?user=parlezuml#g/u')
+    result[:type].should == :link
+    result[:url].should == 'http://www.youtube.com/profile?user=parlezuml#g/u'
+  end
+  
   it "should make poster and channel available in the results when matching a video link" do
     result = @parser.parse('rick', 't3hchannel', 'http://youtube.com/watch?v=uwEXywdSpNQ  Robot Chicken')
     result[:poster].should == 'rick'
