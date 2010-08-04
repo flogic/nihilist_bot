@@ -176,6 +176,12 @@ describe BotParser do
     result[:embed].should == 'http://www.youtube.co.uk/watch?v=IrV1rC8qr44'
   end
   
+  it "should recognize that some youtube links with question marks are not videos" do
+    result = @parser.parse('rick', 't3hchannel', 'http://www.youtube.com/profile?user=parlezuml#g/u')
+    result[:type].should == :link
+    result[:url].should == 'http://www.youtube.com/profile?user=parlezuml#g/u'
+  end
+  
   it "should make poster and channel available in the results when matching a video link" do
     result = @parser.parse('rick', 't3hchannel', 'http://youtube.com/watch?v=uwEXywdSpNQ  Robot Chicken')
     result[:poster].should == 'rick'
