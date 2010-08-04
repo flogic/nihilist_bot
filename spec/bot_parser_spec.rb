@@ -124,13 +124,6 @@ describe BotParser do
     result[:description].should match(/ROCKING!/)        
   end
   
-  it "should put link poster into the link description" do
-    result = @parser.parse('rick', 't3hchannel', 'Please Rocking! http://www.rickbradley.com/misc/communist_bloc(k)_party.html ROCKING!')
-    result[:type].should == :link
-    result[:url].should == 'http://www.rickbradley.com/misc/communist_bloc(k)_party.html'
-    result[:name].should == 'Please Rocking!'
-  end
-  
   it "should make poster and channel available in the results when matching a link" do
     result = @parser.parse('rick', 't3hchannel', 'Please Rocking! http://www.rickbradley.com/misc/communist_bloc(k)_party.html ROCKING!')
     result[:poster].should == 'rick'
@@ -157,7 +150,7 @@ describe BotParser do
     result[:title].should == 'Video of the day'
   end
   
-  it 'should recognize a video link with a title' do
+  it 'should recognize a video link with a title and description' do
     result = @parser.parse('rick', 't3hchannel', 'Video of the day http://youtube.com/watch?v=uwEXywdSpNQ Robot Chicken')
     result[:type].should == :video
     result[:embed].should == 'http://youtube.com/watch?v=uwEXywdSpNQ'
