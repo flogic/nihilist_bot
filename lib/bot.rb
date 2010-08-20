@@ -73,8 +73,8 @@ class Bot
   def sender_configuration
     raise "bot configuration should include an active_sender option" unless config['active_sender']
     raise "bot configuration should include a list of senders" unless config['senders']
-    raise "bot configuration doesn't have a senders entry for active_sender [#{options['active_sender']}]" unless config['senders'][config['active_sender']]
-    raise "bot configuration doesn't have a destination type for active_sender [#{options['active_sender']}]" unless config['senders'][config['active_sender']]['destination']
+    raise "bot configuration doesn't have a senders entry for active_sender [#{config['active_sender']}]" unless config['senders'][config['active_sender']]
+    raise "bot configuration doesn't have a destination type for active_sender [#{config['active_sender']}]" unless config['senders'][config['active_sender']]['destination']
     
     result = {}
     config['senders'][config['active_sender']].each_pair do |k, v|

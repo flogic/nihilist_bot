@@ -85,25 +85,25 @@ describe Bot do
     it 'should fail unless an active sender is known' do
       @config = {}
       @bot.instance_variable_set('@config', @config)
-      lambda { @bot.sender_configuration }.should raise_error
+      lambda { @bot.sender_configuration }.should raise_error(RuntimeError)
     end
 
     it 'should fail unless a set of senders is known' do
       @config = { 'active_sender' => 'foo' }
       @bot.instance_variable_set('@config', @config)
-      lambda { @bot.sender_configuration }.should raise_error
+      lambda { @bot.sender_configuration }.should raise_error(RuntimeError)
     end
 
     it 'should fail unless the specified active sender is known' do
       @config = { 'active_sender' => 'foo', 'senders' => { } }
       @bot.instance_variable_set('@config', @config)
-      lambda { @bot.sender_configuration }.should raise_error
+      lambda { @bot.sender_configuration }.should raise_error(RuntimeError)
     end
 
     it 'should fail unless the active sender has a destination type' do
       @config = { 'active_sender' => 'foo', 'senders' => { 'foo' => { } } }
       @bot.instance_variable_set('@config', @config)
-      lambda { @bot.sender_configuration }.should raise_error
+      lambda { @bot.sender_configuration }.should raise_error(RuntimeError)
     end
 
     it 'should succeed when options are fully specified' do
