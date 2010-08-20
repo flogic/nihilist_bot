@@ -6,6 +6,7 @@ require 'yaml'
 require 'bot_parser'
 require 'bot_filter'
 require 'bot_sender'
+require 'bot_plugin'
 
 class Bot
   attr_reader :config
