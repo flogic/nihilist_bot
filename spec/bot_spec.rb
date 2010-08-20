@@ -241,27 +241,23 @@ describe Bot do
     end
     
     it 'should set the server from the config' do
-      pending 'handling upgrade to cinch 1.0'
       @bot.init_bot
-      @bot.bot.options.server.should == @config['server']
+      @bot.bot.config.server.should == @config['server']
     end
     
     it 'should set the nick from the config' do
-      pending 'handling upgrade to cinch 1.0'
       @bot.init_bot
-      @bot.bot.options.nick.should == @config['nick']
+      @bot.bot.config.nick.should == @config['nick']
     end
     
     it 'should set the realname from the config' do
-      pending 'handling upgrade to cinch 1.0'
       @bot.init_bot
-      @bot.bot.options.realname.should == @config['realname']
+      @bot.bot.config.realname.should == @config['realname']
     end
     
     it 'should set the channels from the config' do
-      pending 'handling upgrade to cinch 1.0'
       @bot.init_bot
-      @bot.bot.options.channels.should == @config['channels']
+      @bot.bot.config.channels.should == @config['channels']
     end
     
     it 'should set up a privmsg listener' do

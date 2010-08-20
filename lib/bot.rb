@@ -41,7 +41,16 @@ class Bot
       :username => config['username'],
       :channels => config['channels'],
     }
-    @bot = Cinch::Bot.new
+    
+    @bot = Cinch::Bot.new do
+      configure do |c|
+        c.server   = options[:server]
+        c.nick     = options[:nick]
+        c.realname = options[:realname]
+        c.username = options[:username]
+        c.channels = options[:channels]
+      end
+    end
     
     bot.on :privmsg do |m|
       if config['address_required_channels'].include?(m.channel)
