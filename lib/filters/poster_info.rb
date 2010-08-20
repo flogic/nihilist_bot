@@ -7,9 +7,12 @@ class BotFilter::PosterInfo < BotFilter::Template
     result = data
     
     key = case data[:type]
-      when :image, :video : :caption
-      when :quote         : :source
-      when :link          : :description
+      when :image, :video
+        :caption
+      when :quote
+        :source
+      when :link
+        :description
     end
     
     if key
@@ -17,7 +20,8 @@ class BotFilter::PosterInfo < BotFilter::Template
       data[key] += " #{poster_info}"
     else
       key = case data[:type]
-        when :fact, :true_or_false, :definition : :body
+        when :fact, :true_or_false, :definition
+          :body
       end
       
       data[key] = poster_info

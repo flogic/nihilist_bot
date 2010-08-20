@@ -1,3 +1,4 @@
+# encoding: utf-8 (for the raquo below)
 require File.expand_path(File.join(File.dirname(__FILE__), *%w[.. spec_helper]))
 require 'bot_filter'
 require 'filters/link_entity_cleanup'
