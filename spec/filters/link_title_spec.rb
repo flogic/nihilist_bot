@@ -80,14 +80,6 @@ describe BotFilter::LinkTitle do
     result[:name].should == ''
   end
   
-  it 'should populate title from URL' do
-    title = 'Yahoo is the bomb'
-    match_data = stub('match data', :[] => title)
-    String.any_instance.stubs(:match).returns(match_data)
-    result = @filter.process({:url => @url, :type => :link})
-    result[:name].should == title
-  end
-  
   it 'should populate title from HTML title tag' do
     title = 'Yahoo is the bomb'
     html = %Q[<html>
