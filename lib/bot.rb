@@ -41,7 +41,7 @@ class Bot
       :username => config['username'],
       :channels => config['channels'],
     }
-    @bot = Cinch.setup(options)
+    @bot = Cinch::Bot.new
     
     bot.on :privmsg do |m|
       if config['address_required_channels'].include?(m.channel)
@@ -53,21 +53,21 @@ class Bot
       m.reply sender.deliver(result)  if result
     end
     
-    bot.plugin 'help' do |m|
-      formats = BotParser.formats
-      m.reply "Known formats: #{formats.collect { |f|  f.name }.join(', ')}"
-    end
-    
-    bot.plugin 'help :format' do |m|
-      formats = BotParser.formats
-      format  = formats.detect { |f|  f.name == m.args[:format].to_sym }
-      if format
-        description = format.description || 'no description available'
-        description.split("\n").each { |line|  m.reply "#{format.name}: #{line}" }
-      else
-        m.reply "Format '#{m.args[:format]}' unknown"
-      end
-    end
+    # bot.plugin 'help' do |m|
+    #   formats = BotParser.formats
+    #   m.reply "Known formats: #{formats.collect { |f|  f.name }.join(', ')}"
+    # end
+    # 
+    # bot.plugin 'help :format' do |m|
+    #   formats = BotParser.formats
+    #   format  = formats.detect { |f|  f.name == m.args[:format].to_sym }
+    #   if format
+    #     description = format.description || 'no description available'
+    #     description.split("\n").each { |line|  m.reply "#{format.name}: #{line}" }
+    #   else
+    #     m.reply "Format '#{m.args[:format]}' unknown"
+    #   end
+    # end
   end
   
   def sender_configuration
