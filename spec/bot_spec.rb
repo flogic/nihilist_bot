@@ -283,12 +283,12 @@ describe Bot do
   describe 'starting the bot' do
     before :each do
       @actual_bot = Cinch::Bot.new
-      @actual_bot.stubs(:run)
+      @actual_bot.stubs(:start)
       @bot.stubs(:bot).returns(@actual_bot)
     end
     
     it 'should tell the stored bot to run' do
-      @actual_bot.expects(:run)
+      @actual_bot.expects(:start)
       @bot.start
     end
   end

@@ -20,7 +20,7 @@ class Bot
   end
   
   def start
-    bot.run
+    bot.start
   end
   
   def load_config
