@@ -35,7 +35,9 @@ describe BotPlugin::Process do
   
   describe 'listening to a channel message' do
     before :each do
-      @message = Struct.new(:nick, :channel, :text).new('somenick', 'somechannel', 'sometext')
+      @user    = Struct.new(:nick).new('somenick')
+      @channel = Struct.new(:name).new('somechannel')
+      @message = Struct.new(:user, :channel, :message).new(@user, @channel, 'sometext')
       @message.stubs(:reply)
       
       @parsed = 'some parsed stuff'
@@ -68,7 +70,7 @@ describe BotPlugin::Process do
     end
     
     it 'should parse the message, passing the message nick, channel, and text' do
-      @parser.expects(:parse).with(@message.nick, @message.channel, @message.text)
+      @parser.expects(:parse).with(@user.nick, @channel.name, @message.message)
       @plugin.listen(@message)
     end
     
@@ -130,7 +132,7 @@ describe BotPlugin::Process do
     describe 'when the channel is set to require addressing' do
       before :each do
         @config['address_required_channels'] = %w[#blahchat #barchat #foochat #bazchat]
-        @message.channel = '#foochat'
+        @channel.name = '#foochat'
         
         @nick = 'RO-BOT'
         @bot.bot.stubs(:nick).returns(@nick)
@@ -143,33 +145,33 @@ describe BotPlugin::Process do
 
       it "should parse any message starting with the bot's nick" do
         @parser.expects(:parse)
-        @message.text[0,0] = "#{@nick}: "
+        @message.message[0,0] = "#{@nick}: "
         @plugin.listen(@message)
       end
 
       it "should strip the bot's nick from the message before passing it on to the parser" do
-        @parser.expects(:parse).with(@message.nick, @message.channel, @message.text.dup)
-        @message.text[0,0] = "#{@nick}: "
+        @parser.expects(:parse).with(@user.nick, @channel.name, @message.message.dup)
+        @message.message[0,0] = "#{@nick}: "
         @plugin.listen(@message)
       end
 
       it 'should handle extra whitespace when addressing the bot' do
-        @parser.expects(:parse).with(@message.nick, @message.channel, @message.text.dup)
-        @message.text[0,0] = "#{@nick}    :     "
+        @parser.expects(:parse).with(@user.nick, @channel.name, @message.message.dup)
+        @message.message[0,0] = "#{@nick}    :     "
         @plugin.listen(@message)
       end
 
       it 'should handle minimal whitespace when addressing the bot' do
-        @parser.expects(:parse).with(@message.nick, @message.channel, @message.text.dup)
-        @message.text[0,0] = "#{@nick}:"
+        @parser.expects(:parse).with(@user.nick, @channel.name, @message.message.dup)
+        @message.message[0,0] = "#{@nick}:"
         @plugin.listen(@message)
       end
 
       it 'should handle a bot nick with special characters' do
         @nick = 'RO^|B07'
         @bot.bot.stubs(:nick).returns(@nick)
-        @parser.expects(:parse).with(@message.nick, @message.channel, @message.text.dup)
-        @message.text[0,0] = "#{@nick}: "
+        @parser.expects(:parse).with(@user.nick, @channel.name, @message.message.dup)
+        @message.message[0,0] = "#{@nick}: "
         @plugin.listen(@message)
       end
     end
