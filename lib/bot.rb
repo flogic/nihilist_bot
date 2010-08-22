@@ -51,23 +51,13 @@ class Bot
         c.username = options[:username]
         c.channels = options[:channels]
         
-        c.plugins.plugins = [ BotPlugin::Help ]
+        c.plugins.plugins = [ BotPlugin::Process, BotPlugin::Help ]
       end
     end
     
     # Yeah, that's right
     (class << @bot; self; end).send(:attr_accessor, :container)
     @bot.container = self
-    
-    bot.on :privmsg do |m|
-      if config['address_required_channels'].include?(m.channel)
-        next unless m.text.sub!(/^#{Regexp.escape(bot.nick)}\s*:\s*/, '')
-      end
-      
-      result = parser.parse(m.nick, m.channel, m.text)
-      result = filter.process(result) if result
-      m.reply sender.deliver(result)  if result
-    end
   end
   
   def sender_configuration
