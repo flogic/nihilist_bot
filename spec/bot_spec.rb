@@ -240,6 +240,11 @@ describe Bot do
       @bot.bot.should be_kind_of(Cinch::Bot)
     end
     
+    it 'should set up a connection from the bot to the top-level bot' do
+      @bot.init_bot
+      @bot.bot.container.should == @bot
+    end
+    
     it 'should set the server from the config' do
       @bot.init_bot
       @bot.bot.config.server.should == @config['server']

@@ -55,6 +55,10 @@ class Bot
       end
     end
     
+    # Yeah, that's right
+    (class << @bot; self; end).send(:attr_accessor, :container)
+    @bot.container = self
+    
     bot.on :privmsg do |m|
       if config['address_required_channels'].include?(m.channel)
         next unless m.text.sub!(/^#{Regexp.escape(bot.nick)}\s*:\s*/, '')
