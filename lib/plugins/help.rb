@@ -1,6 +1,4 @@
-class BotPlugin::Help
-  include Cinch::Plugin
-  
+class BotPlugin::Help < BotPlugin
   match /^!help(?:\s+(\S+))?/, :use_prefix => false
   
   def execute(m, fmt)
