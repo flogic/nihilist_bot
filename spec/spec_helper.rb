@@ -1,5 +1,5 @@
 $:.unshift File.join(File.dirname(__FILE__), *%w[.. lib])
-$:.unshift File.join(File.dirname(__FILE__), *%w[.. lib mocha lib])
+$:.unshift File.join(File.dirname(__FILE__), *%w[.. vendor mocha lib])
 
 require 'mocha'
 

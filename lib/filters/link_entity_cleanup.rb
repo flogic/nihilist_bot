@@ -1,5 +1,5 @@
 require File.join(File.dirname(__FILE__), 'template')
-$:.unshift File.join(File.dirname(__FILE__), %w[.. htmlentities lib])
+$:.unshift File.join(File.dirname(__FILE__), %w[.. .. vendor htmlentities lib])
 require 'htmlentities'
 
 class BotFilter::LinkEntityCleanup < BotFilter::Template
