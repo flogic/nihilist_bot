@@ -176,6 +176,12 @@ describe BotParser do
     result[:embed].should == 'http://www.youtube.co.uk/watch?v=IrV1rC8qr44'
   end
   
+  it "should recognize a video link that doesn't have the v parameter first" do
+    result = @parser.parse('rick', 't3hchannel', 'http://www.youtube.com/watch?feature=player_embedded&v=uwEXywdSpNQ')
+    result[:type].should == :video
+    result[:embed].should == 'http://www.youtube.com/watch?feature=player_embedded&v=uwEXywdSpNQ'
+  end
+  
   it "should recognize that some youtube links with question marks are not videos" do
     result = @parser.parse('rick', 't3hchannel', 'http://www.youtube.com/profile?user=parlezuml#g/u')
     result[:type].should == :link
