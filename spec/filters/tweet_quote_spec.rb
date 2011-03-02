@@ -64,6 +64,13 @@ describe BotFilter::TweetQuote do
       @filter.process(@data)
     end
     
+    it 'should get the normal twitter link when confronted with #! retardation' do
+      normal_url  = 'http://twitter.com/rickbradley/status/3065413804'
+      @data[:url] = 'http://twitter.com/#!/rickbradley/status/3065413804'
+      @agent.expects(:get).with(normal_url).returns(@page)
+      @filter.process(@data)
+    end
+    
     it 'should get the tweet content' do
       @page.expects(:/).with('span.entry-content').returns(@entry_content)
       @filter.process(@data)
@@ -134,6 +141,15 @@ describe BotFilter::TweetQuote do
     result = @filter.process(data)
     Mechanize.expects(:new).never
     result.should == data
+  end
+  
+  it 'should do nothing for non-twitter links even with #! retardation' do
+    data     = { :url => 'http://www.facebook.com/example.profile#!/pages/Another-Page/123456789012345', :type => :link }
+    expected = { :url => data[:url].dup, :type => :link }
+    
+    result = @filter.process(data)
+    Mechanize.expects(:new).never
+    result.should == expected
   end
   
   it 'should do nothing for non-links' do
