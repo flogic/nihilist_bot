@@ -44,8 +44,9 @@ class Bot
     @bot = Cinch.setup(options)
     
     bot.on :privmsg do |m|
+      addressed = m.text.sub!(/^#{Regexp.escape(bot.nick)}\s*:\s*/, '')
       if config['address_required_channels'].include?(m.channel)
-        next unless m.text.sub!(/^#{Regexp.escape(bot.nick)}\s*:\s*/, '')
+        next unless addressed
       end
       
       result = parser.parse(m.nick, m.channel, m.text)
