@@ -11,29 +11,28 @@ class BotSender::Tumblr < BotSender
     @email    = args[:email]
     @password = args[:password]
     @site_url = args[:site_url]
+    @group    = args[:group]
   end
 
   def do_quote(args = {})
     source = args[:source] || ''
     source = %Q[<a href="#{args[:url]}">#{source}</a>] if args[:url]
-    result = Net::HTTP.post_form(URI.parse(@post_url), { 
+    data   = { 
       :type     => 'quote', 
       :quote    => HTMLEntities.new.encode(args[:quote] || ''), 
-      :source   => source, 
-      :email    => @email, 
-      :password => @password
-    })
+      :source   => source
+    }.merge(credentials)
+    result = Net::HTTP.post_form(URI.parse(@post_url), data)
     handle_response(result, args)
   end
   
   def do_text(args = {})
-    result = Net::HTTP.post_form(URI.parse(@post_url), { 
+    data = { 
       :type     => 'regular', 
       :title    => (args[:title] || ''),
-      :body     => (args[:body] || ''),
-      :email    => @email,
-      :password => @password
-    })
+      :body     => (args[:body] || '')
+    }.merge(credentials)
+    result = Net::HTTP.post_form(URI.parse(@post_url), data)
     handle_response(result, args)
   end
   
@@ -43,47 +42,43 @@ class BotSender::Tumblr < BotSender
 
   def do_image(args = {})
     caption = args[:source] ? %Q[#{args[:caption] || ''} <a href="#{args[:source]}">zoom</a>] : ''
-    result = Net::HTTP.post_form(URI.parse(@post_url), { 
+    data    = { 
       :type           => 'photo',
       :source         => (args[:source] || ''),
-      :caption        => caption, 
-      :email          => @email,
-      :password       => @password
-    })
+      :caption        => caption 
+    }.merge(credentials)
+    result = Net::HTTP.post_form(URI.parse(@post_url), data)
     handle_response(result, args)
   end
 
   def do_chat(args = {})
-    result = Net::HTTP.post_form(URI.parse(@post_url), { 
+    data = { 
       :type           => 'conversation', 
       :title          => (args[:title] || ''),
-      :conversation   => (args[:body] || ''),
-      :email          => @email,
-      :password       => @password
-    })
+      :conversation   => (args[:body] || '')
+    }.merge(credentials)
+    result = Net::HTTP.post_form(URI.parse(@post_url), data)
     handle_response(result, args)
   end
   
   def do_video(args = {})
-    result = Net::HTTP.post_form(URI.parse(@post_url), { 
+    data = { 
       :type           => 'video', 
       :caption        => (args[:caption] || ''),
-      :embed          => (args[:embed] || ''),
-      :email          => @email,
-      :password       => @password
-    })
+      :embed          => (args[:embed] || '')
+    }.merge(credentials)
+    result = Net::HTTP.post_form(URI.parse(@post_url), data)
     handle_response(result, args)
   end
 
   def do_link(args = {})
-    result = Net::HTTP.post_form(URI.parse(@post_url), { 
+    data = { 
       :type           => 'link', 
       :url            => (args[:url] || ''),
       :name           => (args[:name] || ''),
-      :description    => (args[:description] || ''),
-      :email          => @email,
-      :password       => @password
-    })
+      :description    => (args[:description] || '')
+    }.merge(credentials)
+    result = Net::HTTP.post_form(URI.parse(@post_url), data)
     handle_response(result, args)
   end
   
@@ -96,5 +91,16 @@ class BotSender::Tumblr < BotSender
       else
         "encountered error: [#{response.error!}] when trying to post #{type_string} for #{metadata[:poster]}"
     end
+  end
+
+  private
+
+  def credentials
+    creds = {
+      :email    => @email,
+      :password => @password
+    }
+    creds[:group] = @group if @group
+    creds
   end
 end

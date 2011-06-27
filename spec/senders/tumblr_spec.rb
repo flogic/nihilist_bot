@@ -5,7 +5,7 @@ require 'senders/tumblr'
 # TODO: make sure that nil values passed in don't freak things out
 
 
-def setup_for_posting
+def setup_for_posting(extra = {})
   @params = { 
               :destination => :tumblr, 
               :post_url    => 'http://www.domain.com/example/post/',
@@ -13,6 +13,7 @@ def setup_for_posting
               :email       => 'example@domain.com',
               :password    => 's3kr17'
             }
+  @params = @params.merge(extra)
   @sender = BotSender.new(@params)
 end
 
@@ -46,6 +47,10 @@ describe BotSender::Tumblr, "when creating" do
   
   it "should succeed when a post_url, site url, email address, and password are provided" do
     Proc.new { BotSender.new(@params) }.should_not raise_error
+  end
+
+  it "should allow a group to be specified" do
+    Proc.new { BotSender.new(@params.merge(:group => 'other.tumblr.com')) }.should_not raise_error
   end
 end
 
@@ -118,6 +123,15 @@ describe BotSender::Tumblr, "when posting a quote" do
     @sender.do_quote(:quote => 'sibboleth, yo!', :source => 'ymendel')    
   end
 
+  it "should include the group if provided" do
+    group = 'elsewards.tumblr.com'
+    setup_for_posting(:group => group)
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:group] == group
+    end
+    @sender.do_quote(:quote => 'sibboleth, yo!', :source => 'ymendel')    
+  end
+
   it "should make a post to the post url" do
     Net::HTTP.expects(:post_form).with do |url, args|
       url == URI.parse(@params[:post_url])
@@ -186,6 +200,15 @@ describe BotSender::Tumblr, "when posting a text item" do
     @sender.do_text(:title => 'thoughts from the Swedish chef', :body => 'bork bork bork')
   end
 
+  it "should include the group if provided" do
+    group = 'elsewards.tumblr.com'
+    setup_for_posting(:group => group)
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:group] == group
+    end
+    @sender.do_text(:title => 'thoughts from the Swedish chef', :body => 'bork bork bork')
+  end
+
   it "should make a post to the post url" do
     Net::HTTP.expects(:post_form).with do |url, args|
       url == URI.parse(@params[:post_url])
@@ -236,6 +259,15 @@ describe BotSender::Tumblr, "when posting a fact" do
   it "should authenticate with the email address and password" do
     Net::HTTP.expects(:post_form).with do |url, args|
       args[:email] == @params[:email] and args[:password] == @params[:password]
+    end
+    @sender.do_fact(:title => 'FACT:  cardioid is a turd nugget', :body => 'word')
+  end
+
+  it "should include the group if provided" do
+    group = 'elsewards.tumblr.com'
+    setup_for_posting(:group => group)
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:group] == group
     end
     @sender.do_fact(:title => 'FACT:  cardioid is a turd nugget', :body => 'word')
   end
@@ -294,6 +326,15 @@ describe BotSender::Tumblr, "when posting a true/false post" do
     @sender.do_true_or_false(:title => 'T or F: cardioid is still a turd nugget', :body => 'word')
   end
 
+  it "should include the group if provided" do
+    group = 'elsewards.tumblr.com'
+    setup_for_posting(:group => group)
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:group] == group
+    end
+    @sender.do_true_or_false(:title => 'T or F: cardioid is still a turd nugget', :body => 'word')
+  end
+
   it "should make a post to the post url" do
     Net::HTTP.expects(:post_form).with do |url, args|
       url == URI.parse(@params[:post_url])
@@ -344,6 +385,15 @@ describe BotSender::Tumblr, "when posting a definition post" do
   it "should authenticate with the email address and password" do
     Net::HTTP.expects(:post_form).with do |url, args|
       args[:email] == @params[:email] and args[:password] == @params[:password]
+    end
+    @sender.do_definition(:title => 'Definition: tardulism: the ideology of the tard culture', :body => 'word')
+  end
+
+  it "should include the group if provided" do
+    group = 'elsewards.tumblr.com'
+    setup_for_posting(:group => group)
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:group] == group
     end
     @sender.do_definition(:title => 'Definition: tardulism: the ideology of the tard culture', :body => 'word')
   end
@@ -402,6 +452,15 @@ describe BotSender::Tumblr, "when posting a chat message" do
     @sender.do_chat(:title => 'your mom called', :body => "me: whatup?\nyou: shizzle.")
   end
 
+  it "should include the group if provided" do
+    group = 'elsewards.tumblr.com'
+    setup_for_posting(:group => group)
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:group] == group
+    end
+    @sender.do_chat(:title => 'your mom called', :body => "me: whatup?\nyou: shizzle.")
+  end
+
   it "should make a post to the post url" do
     Net::HTTP.expects(:post_form).with do |url, args|
       url == URI.parse(@params[:post_url])
@@ -452,6 +511,15 @@ describe BotSender::Tumblr, "when posting an image message" do
   it "should authenticate with the email address and password" do
     Net::HTTP.expects(:post_form).with do |url, args|
       args[:email] == @params[:email] and args[:password] == @params[:password]
+    end
+    @sender.do_image(:source => 'http://www.upscaleaudio.com/rare/rickjames.jpg', :caption => "I'm Rick James, b*tch!")
+  end
+
+  it "should include the group if provided" do
+    group = 'elsewards.tumblr.com'
+    setup_for_posting(:group => group)
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:group] == group
     end
     @sender.do_image(:source => 'http://www.upscaleaudio.com/rare/rickjames.jpg', :caption => "I'm Rick James, b*tch!")
   end
@@ -517,6 +585,15 @@ describe BotSender::Tumblr, "when posting a video message" do
     @sender.do_video(:embed => 'http://www.youtube.com/watch?v=Rd8OGmZtAws', :caption => "yoyoyo!")
   end
 
+  it "should include the group if provided" do
+    group = 'elsewards.tumblr.com'
+    setup_for_posting(:group => group)
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:group] == group
+    end
+    @sender.do_video(:embed => 'http://www.youtube.com/watch?v=Rd8OGmZtAws', :caption => "yoyoyo!")
+  end
+
   it "should make a post to the post url" do
     Net::HTTP.expects(:post_form).with do |url, args|
       url == URI.parse(@params[:post_url])
@@ -567,6 +644,17 @@ describe BotSender::Tumblr, "when posting a link message" do
   it "should authenticate with the email address and password" do
     Net::HTTP.expects(:post_form).with do |url, args|
       args[:email] == @params[:email] and args[:password] == @params[:password]
+    end
+    @sender.do_link(:url => 'http://www.thewvsr.com/alli.htm', 
+                    :name => "Alli Side Effects In Layman's Terms", 
+                    :description => 'by Jeff Kay')
+  end
+
+  it "should include the group if provided" do
+    group = 'elsewards.tumblr.com'
+    setup_for_posting(:group => group)
+    Net::HTTP.expects(:post_form).with do |url, args|
+      args[:group] == group
     end
     @sender.do_link(:url => 'http://www.thewvsr.com/alli.htm', 
                     :name => "Alli Side Effects In Layman's Terms", 
