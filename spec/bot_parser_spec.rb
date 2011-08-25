@@ -72,6 +72,12 @@ describe BotParser do
     result[:caption].should match(/Best Picture Never/)
   end
   
+  it "should recognize an HTTPS image link" do
+    result = @parser.parse('rick', 't3hchannel', 'https://citizenx.cx/img/tn/best_picture_ever.jpg')
+    result[:type].should == :image
+    result[:source].should == 'https://citizenx.cx/img/tn/best_picture_ever.jpg'
+  end
+  
   it "should make poster and channel available in the results when matching an image" do
     result = @parser.parse('rick', 't3hchannel', 'http://photos-b.ak.facebook.com/photos-ak-sctm/v122/61/43/625045653/n625045653_1275457_7998.jpg')
     result[:poster].should == 'rick'
@@ -124,6 +130,13 @@ describe BotParser do
     result[:description].should match(/ROCKING!/)        
   end
   
+  it "should recognize an HTTPS link post" do
+    result = @parser.parse('rick', 't3hchannel', 'https://www.rickbradley.com/misc/communist_bloc(k)_party.html')
+    result[:type].should == :link
+    result[:url].should == 'https://www.rickbradley.com/misc/communist_bloc(k)_party.html'
+    result[:name].should be_nil
+  end
+
   it "should make poster and channel available in the results when matching a link" do
     result = @parser.parse('rick', 't3hchannel', 'Please Rocking! http://www.rickbradley.com/misc/communist_bloc(k)_party.html ROCKING!')
     result[:poster].should == 'rick'
@@ -186,6 +199,12 @@ describe BotParser do
     result = @parser.parse('rick', 't3hchannel', 'http://www.youtube.com/profile?user=parlezuml#g/u')
     result[:type].should == :link
     result[:url].should == 'http://www.youtube.com/profile?user=parlezuml#g/u'
+  end
+  
+  it "should recognize an HTTPS video link" do
+    result = @parser.parse('rick', 't3hchannel', 'https://youtube.com/watch?v=uwEXywdSpNQ')
+    result[:type].should == :video
+    result[:embed].should == 'https://youtube.com/watch?v=uwEXywdSpNQ'
   end
   
   it "should make poster and channel available in the results when matching a video link" do

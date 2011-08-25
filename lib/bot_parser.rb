@@ -17,14 +17,14 @@ class BotParser
   
   def formats()  self.class.formats;  end
   
-  register_format :image, /^\s*(?:(.*?)\s+)?(http:\S+\.(?:jpe?g|png|gif))(?:\s+(\S.*))?$/i,
+  register_format :image, /^\s*(?:(.*?)\s+)?(https?:\S+\.(?:jpe?g|png|gif))(?:\s+(\S.*))?$/i,
   %q['http://www.citizenx.cx/img/best_picture_ever.jpg'],
   %q['http://www.citizenx.cx/img/best_picture_never.jpg this poster hangs over my bed'],
   %q['Best. Picture. Ever. http://www.citizenx.cx/img/best_picture_ever.jpg'] do |md, _|
     { :title => md[1], :source => md[2], :caption => md[3] }
   end
   
-  register_format :video, %r{^\s*(?:(.*?)\s+)?(http://(?:[^.]+\.)?youtube\.co[^/]+/watch\?\S+)(?:\s+(.*))?$}i,
+  register_format :video, %r{^\s*(?:(.*?)\s+)?(https?://(?:[^.]+\.)?youtube\.co[^/]+/watch\?\S+)(?:\s+(.*))?$}i,
   %q['http://www.youtube.com/watch?v=E2Fjilze0eI'],
   %q['http://www.youtube.com/watch?v=E2Fjilze0eI the bunny gets it'],
   %q['A waste of chocolate http://www.youtube.com/watch?v=E2Fjilze0eI'] do |md, _|
