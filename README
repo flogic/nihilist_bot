@@ -9,7 +9,6 @@ Rick Bradley (rick@rickbradley.com)
 TODO:
 
  - make parser formats into discoverable subclasses(?) ... may need to implement ordering
- - add descriptions for formats
  - add more BotSender targets
  - make the BotSender subclasses register automatically by discovery.
  - diagnose: what is the problem with trying to start with the big-switch.rb command.  Currently start with 'ruby genesis.rb'
