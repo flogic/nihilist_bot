@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'isolate/now'
 require 'cinch'
 
 require 'yaml'

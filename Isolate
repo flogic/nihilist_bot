@@ -1,0 +1,5 @@
+gem "cinch", "0.3.5"
+gem "mocha", "0.5.5"
+gem "htmlentities", "4.0.0"
+gem "mechanize", "2.0.1"
+gem "daemons", "1.0.10"

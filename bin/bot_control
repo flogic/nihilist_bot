@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
+require 'isolate/now'
 require 'daemons'
 
 Dir.chdir(File.expand_path(File.dirname(__FILE__)))
