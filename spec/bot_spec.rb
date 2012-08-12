@@ -128,7 +128,15 @@ describe Bot do
   
   describe 'when loading its config' do
     before :each do
-      @config_data = { 'server' => 'some.irc.server', 'nick' => 'my_nick', 'realname' => 'heyo', 'username' => 'user', 'channels' => %w[#one #two], 'address_required_channels' => [] }
+      @config_data = {
+        'server' => 'some.irc.server',
+        'nick' => 'my_nick',
+        'realname' => 'heyo',
+        'username' => 'user',
+        'channels' => %w[#one #two],
+        'address_required_channels' => [],
+        'address_required_users' => []
+      }
       @config_contents = @config_data.to_yaml
       File.stubs(:read).returns(@config_contents)
     end
@@ -214,13 +222,15 @@ describe Bot do
         @bot.config['address_required_channels'].should == ['#feh', '#bling withakey', '#blort', '#crap alsokeyed']
       end
       
-      it 'should not error if the config file contains no address-required channels' do
-        @config_data.delete('address_required_channels')
-        @config_contents = @config_data.to_yaml
-        File.stubs(:read).returns(@config_contents)
-        
-        @bot.load_config
-        @bot.config['address_required_channels'].should == []
+      ['channels', 'users'].each do |things|
+        it "should not error if the config file contains no address-required #{things}" do
+          @config_data.delete("address_required_#{things}")
+          @config_contents = @config_data.to_yaml
+          File.stubs(:read).returns(@config_contents)
+          
+          @bot.load_config
+          @bot.config["address_required_#{things}"].should == []
+        end
       end
     end
   end
@@ -370,15 +380,12 @@ describe Bot do
       @listener.call(@message)
     end
     
-    describe 'when the channel is set to require addressing' do
+    shared_examples 'when addressing is required' do
       before :each do
-        @config['address_required_channels'] = %w[#blahchat #barchat #foochat #bazchat]
-        @message.channel = '#foochat'
-        
         @nick = 'RO-BOT'
         @bot.bot.stubs(:nick).returns(@nick)
       end
-
+      
       it "should ignore any message that does not start with the bot's nick" do
         @parser.expects(:parse).never
         @listener.call(@message)
@@ -416,12 +423,27 @@ describe Bot do
         @listener.call(@message)
       end
     end
-  
-    describe 'when the channel is not set to require addressing' do
+    
+    describe 'when the channel is set to require addressing' do
       before :each do
-        @config['address_required_channels'] = %w[#blahchat #barchat #bazchat]
+        @config['address_required_channels'] = %w[#blahchat #barchat #foochat #bazchat]
         @message.channel = '#foochat'
-
+      end
+      
+      include_examples 'when addressing is required'
+    end
+    
+    describe 'when the user is set to require addressing' do
+      before :each do
+        @config['address_required_users'] = %w[cow pig jorendorff horse]
+        @message.nick = 'jorendorff'
+      end
+      
+      include_examples 'when addressing is required'
+    end
+    
+    shared_examples 'when addressing is not required' do
+      before :each do
         @nick = 'RO-BOT'
         @bot.bot.stubs(:nick).returns(@nick)
       end
@@ -451,6 +473,24 @@ describe Bot do
         @message.text[0,0] = "#{@nick}: "
         @listener.call(@message)
       end
+    end
+
+    describe 'when the channel is not set to require addressing' do
+      before :each do
+        @config['address_required_channels'] = %w[#blahchat #barchat #bazchat]
+        @message.channel = '#foochat'
+      end
+
+      include_examples 'when addressing is not required'
+    end
+    
+    describe 'when the user is not set to require addressing' do
+      before :each do
+        @config['address_required_users'] = %w[cow pig jorendorff horse]
+        @message.nick = 'duck'
+      end
+      
+      include_examples 'when addressing is not required'
     end
   end
   

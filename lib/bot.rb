@@ -96,6 +96,7 @@ class Bot
     %w[channels address_required_channels].each do |channels|
       config[channels] = (config[channels] || []).collect { |c| normalized_channel_name(c) }
     end
+    config['address_required_users'] ||= []
   end
   
   def normalized_channel_name(name)

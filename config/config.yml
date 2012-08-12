@@ -26,3 +26,5 @@ active_filters:
   - link_title
   - link_entity_cleanup
   - poster_info
+address_required_users:
+  - jorendorff
